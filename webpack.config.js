@@ -48,16 +48,16 @@ const config = {
 	},
 
 	optimization: {
-    minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: process.env.WEBPACK_SERVE ? true : false
-      }),
-      new OptimizeCSSAssetsPlugin({})
-    ]
+		minimizer: [
+			new UglifyJsPlugin({
+				cache: true,
+				parallel: true,
+				sourceMap: process.env.WEBPACK_SERVE ? true : false
+			}),
+			new OptimizeCSSAssetsPlugin({})
+		]
 	},
-	
+
 	plugins: [
 		new Dotenv(),
 		new MiniCssExtractPlugin({
