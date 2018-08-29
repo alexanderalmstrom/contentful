@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const Dotenv = require('dotenv-webpack')
 
 const config = {
 	mode: process.env.WEBPACK_SERVE ? 'development' : 'production',
@@ -36,6 +37,7 @@ const config = {
 		}]
 	},
 	plugins: [
+		new Dotenv(),
 		new MiniCssExtractPlugin({
 			filename: '[name].bundle.css',
 			chunkFilename: '[id].bundle.css'
