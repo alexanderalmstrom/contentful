@@ -17,11 +17,11 @@ const config = {
 	},
 
 	serve: {
+		port: 3000,
 		content: path.resolve(__dirname, 'src'),
 		devMiddleware: {
 			publicPath: '/build/'
-		},
-		port: 3000
+		}
 	},
 
 	module: {
