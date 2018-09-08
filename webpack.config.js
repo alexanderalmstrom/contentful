@@ -24,7 +24,19 @@ const config = {
 	},
 
 	module: {
-		rules: [{
+		rules: [
+			{
+				test: /\.js$/,
+				exclude: /node_modules/,
+				use: {
+					loader: 'babel-loader',
+					options: {
+						presets: ["@babel/preset-env", "@babel/preset-react"],
+						cacheDirectory: true
+					}
+				}
+			},
+			{
 			test: /\.scss$/,
 			use: [
 				{

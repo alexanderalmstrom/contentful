@@ -33,12 +33,12 @@ img {
 	max-width: 50%;
 	flex: 50% 0 0;
 	padding: 3rem;
-}
 
-.product-image {
-	margin-bottom: 1rem;
-}
-
-.product-description {
-	margin-top: 1rem;
+	.image {
+		margin-bottom: 1rem;
+	}
+	
+	.description {
+		margin-top: 1rem;
+	}
 }
