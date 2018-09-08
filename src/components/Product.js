@@ -15,9 +15,7 @@ class Product extends React.Component {
 
   componentDidMount () {
     getEntryBySlug('product', this.props.match.params.slug).then((product) => {
-      this.setState({
-        product: product
-      })
+      this.setState({ product: product })
     })
   }
 

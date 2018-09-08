@@ -16,9 +16,7 @@ class Products extends React.Component {
 
   componentDidMount () {
     getEntries('product').then((products) => {
-      this.setState({
-        products: products
-      })
+      this.setState({ products: products })
     })
   }
 
