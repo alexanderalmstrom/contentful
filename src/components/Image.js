@@ -44,7 +44,7 @@ class Image extends React.Component {
 
 Image.propTypes = {
   format: PropTypes.string,
-  quality: PropTypes.string,
+  quality: PropTypes.number,
   width: PropTypes.number,
   height: PropTypes.number
 }
