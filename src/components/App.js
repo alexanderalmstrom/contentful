@@ -2,9 +2,9 @@ import React from 'react'
 
 import { getEntries } from '../client'
 
-import './Home.scss'
+import './App.scss'
 
-class Home extends React.Component {
+class App extends React.Component {
   constructor (props) {
     super(props)
 
@@ -28,7 +28,9 @@ class Home extends React.Component {
           return (
             <div key={index}
               className="product">
-              <img src={`${entry.fields.image.fields.file.url}?fm=jpg&q=70&w=600`}
+              <img
+                className="image"
+                src={`${entry.fields.image.fields.file.url}?fm=jpg&q=70&w=600`}
                 alt={entry.fields.image.fields.title} />
               <div className="name">
                 {entry.fields.name}
@@ -45,8 +47,11 @@ class Home extends React.Component {
       )
 
       return (
-        <div className="products">
-          {products}
+        <div className="container">
+          <h1 className="title">Products</h1>
+          <div className="products">
+            {products}
+          </div>
         </div>
       )
     } else {
@@ -55,4 +60,4 @@ class Home extends React.Component {
   }
 }
 
-export default Home
+export default App

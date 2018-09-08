@@ -13,14 +13,15 @@ const config = {
 	output: {
 		filename: '[name].bundle.js',
 		path: path.resolve(__dirname, 'build'),
-		publicPath: '/'
+		publicPath: '/build/'
 	},
 
 	serve: {
 		content: path.resolve(__dirname, 'src'),
 		devMiddleware: {
 			publicPath: '/build/'
-		}
+		},
+		port: 3000
 	},
 
 	module: {
@@ -31,7 +32,9 @@ const config = {
 				use: {
 					loader: 'babel-loader',
 					options: {
+						babelrc: false,
 						presets: ["@babel/preset-env", "@babel/preset-react"],
+						plugins: ["react-hot-loader/babel"],
 						cacheDirectory: true
 					}
 				}

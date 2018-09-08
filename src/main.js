@@ -1,14 +1,22 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { AppContainer } from 'react-hot-loader'
 
-import Home from './components/Home'
+import App from './components/App'
 
 import './main.scss'
 
-const App = (
-	<div>
-		<Home />
-	</div>
-)
+const render = Component => {
+	ReactDOM.render(
+		<AppContainer>
+			<Component />
+		</AppContainer>,
+		document.getElementById('app')
+	)
+}
 
-ReactDOM.render(App, document.getElementById('app'))
+render(App)
+
+if (module.hot) {
+	module.hot.accept('./components/App', () => { render(App) })
+}
