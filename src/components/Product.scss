@@ -1,0 +1,34 @@
+// Product.scss
+
+.product {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	margin-left: -2rem;
+}
+
+.product-image {
+	max-width: 50%;
+	flex: 50% 0 0;
+	padding-left: 2rem;
+}
+
+.product-content {
+	max-width: 50%;
+	flex: 50% 0 0;
+	padding-left: 2rem;
+	padding-top: 2rem;
+}
+
+.product-name {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.product-price {
+	margin-bottom: 2rem;
+}
+
+.product-description {
+	font-size: 1.4rem;
+}

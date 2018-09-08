@@ -1,5 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
+const history = require('connect-history-api-fallback')
+const convert = require('koa-connect')
 const Dotenv = require('dotenv-webpack')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -25,6 +27,9 @@ const config = {
 		content: path.resolve(__dirname, 'src'),
 		devMiddleware: {
 			publicPath: '/'
+		},
+		add: (app, middleware, options) => {
+			app.use(convert(history()))
 		}
 	},
 

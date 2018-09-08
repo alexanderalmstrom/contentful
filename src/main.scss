@@ -21,42 +21,21 @@ img {
 	border: 0;
 }
 
+h1, h2, h3, h4, h5, h6 {
+	margin: 0 0 2rem 0;
+	line-height: 1.2;
+	font-weight: normal;
+}
+
+p {
+	margin: 0 0 2rem 0;
+	line-height: 1.5;
+}
+
 .container {
 	max-width: 1170px;
 	margin-left: auto;
 	margin-right: auto;
 	padding-left: 2rem;
 	padding-right: 2rem;
-}
-
-.title {
-
-}
-
-.products {
-	display: flex;
-	flex-wrap: wrap;
-	margin-left: -2rem;
-}
-
-.product {
-	max-width: 50%;
-	flex: 50% 0 0;
-	padding-left: 2rem;
-
-	.image {
-		margin-bottom: 1rem;
-	}
-
-	.name {
-		font-weight: bold;
-	}
-	
-	.description {
-		margin-top: 1rem;
-	}
-
-	.price {
-		margin-top: 1rem;
-	}
 }
