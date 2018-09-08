@@ -11,7 +11,7 @@ class App extends React.Component {
       <Router>
         <Switch>
           <Route exact path="/" component={Products}></Route>
-          <Route path="/:slug" component={Product}></Route>
+          <Route path="/product/:slug" component={Product}></Route>
           <Route path="*" component={NotFound}></Route>
         </Switch>
       </Router>

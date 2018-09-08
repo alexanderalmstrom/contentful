@@ -33,7 +33,7 @@ class Products extends React.Component {
               return (
                 <div key={index}
                   className="card">
-                  <Link to={`/${entry.fields.slug}`}
+                  <Link to={`/product/${entry.fields.slug}`}
                     className="card-link">
                     <div className="card-image">
                       <img

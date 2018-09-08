@@ -7,6 +7,7 @@ class NotFound extends React.Component {
     return (
       <div className="container not-found">
         <h1>404</h1>
+        <p>Oh no! You broke everything :(</p>
       </div>
     )
   }
