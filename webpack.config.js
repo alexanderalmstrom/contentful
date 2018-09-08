@@ -28,7 +28,7 @@ const config = {
 		devMiddleware: {
 			publicPath: '/'
 		},
-		add: (app, middleware, options) => {
+		add: (app) => {
 			app.use(convert(history()))
 		}
 	},
