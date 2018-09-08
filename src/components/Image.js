@@ -23,7 +23,7 @@ class Image extends React.Component {
     let argsArray = [],
         imageQuery = ''
 
-    Object.entries(args).map((arg, index) => {
+    Object.entries(args).map(arg => {
       if (arg[1]) {
         arg = arg.join('=')
         argsArray.push(arg)
