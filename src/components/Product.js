@@ -2,6 +2,8 @@ import React from 'react'
 
 import { getEntryBySlug } from '../client'
 
+import Image from './Image'
+
 import './Product.scss'
 
 class Product extends React.Component {
@@ -28,9 +30,7 @@ class Product extends React.Component {
           (
             <div className="product">
               <div className="product-image">
-                <img
-                  className="image"
-                  src={`${product.fields.image.fields.file.url}?fm=jpg&q=70&w=1200`}
+                <Image src={product.fields.image.fields.file.url}
                   alt={product.fields.image.fields.title} />
               </div>
               <div className="product-content">

@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 
 import { getEntries } from '../client'
 
+import Image from './Image'
+
 import './Products.scss'
 
 class Products extends React.Component {
@@ -34,10 +36,9 @@ class Products extends React.Component {
                   <Link to={`/product/${entry.fields.slug}`}
                     className="card-link">
                     <div className="card-image">
-                      <img
-                        className="image"
-                        src={`${entry.fields.image.fields.file.url}?fm=jpg&q=70&w=600`}
-                        alt={entry.fields.image.fields.title} />
+                      <Image src={entry.fields.image.fields.file.url}
+                        alt={entry.fields.image.fields.title}
+                        width={600} />
                     </div>
                     <h2 className="card-name">
                       {entry.fields.name}
