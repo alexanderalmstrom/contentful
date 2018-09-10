@@ -5,15 +5,21 @@ import Products from './Products'
 import Product from './Product'
 import NotFound from './NotFound'
 
+import Main from './Main'
+
+import './App.scss'
+
 class App extends React.Component {
   render () {
     return (
       <Router>
-        <Switch>
-          <Route exact path="/" component={Products}></Route>
-          <Route path="/product/:slug" component={Product}></Route>
-          <Route path="*" component={NotFound}></Route>
-        </Switch>
+        <Main>
+          <Switch>
+            <Route exact path="/" component={Products}></Route>
+            <Route path="/product/:slug" component={Product}></Route>
+            <Route path="*" component={NotFound}></Route>
+          </Switch>
+        </Main>
       </Router>
     )
   }

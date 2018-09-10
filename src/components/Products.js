@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 import { getEntries } from '../client'
 
+import Loading from './Loading'
 import Image from './Image'
 
 import './Products.scss'
@@ -40,21 +41,23 @@ class Products extends React.Component {
                         alt={entry.fields.image.fields.title}
                         width={640} />
                     </div>
-                    <h2 className="card-name">
-                      {entry.fields.name}
-                    </h2>
-                    <div className="card-price">
-                      {entry.fields.price} {entry.fields.currency}
+                    <div className="card-content">
+                      <h2 className="card-name">
+                        {entry.fields.name}
+                      </h2>
+                      <div className="card-price">
+                        {entry.fields.price} {entry.fields.currency}
+                      </div>
+                      <p className="card-description">
+                        {entry.fields.description}
+                      </p>
                     </div>
-                    <p className="card-description">
-                      {entry.fields.description}
-                    </p>
                   </Link>
                 </div>
               )
             })
           ) : (
-            <div>Loading...</div>
+            <Loading />
           ) }
         </div>
       </div>

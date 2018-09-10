@@ -2,6 +2,7 @@ import React from 'react'
 
 import { getEntryBySlug } from '../client'
 
+import Loading from './Loading'
 import Image from './Image'
 
 import './Product.scss'
@@ -46,7 +47,7 @@ class Product extends React.Component {
               </div>
             </div>
           ) : (
-            <div>Loading...</div>
+            <Loading />
           )
         }
       </div>

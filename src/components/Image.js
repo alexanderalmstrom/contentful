@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import './Image.scss'
+
 class Image extends React.Component {
   constructor (props) {
     super(props)
