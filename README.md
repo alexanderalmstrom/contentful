@@ -4,17 +4,23 @@ Demo setup with React, Contentful and Webpack.
 
 ## Install
 
+Install required npm dependencies.
+
 ```
 yarn install
 ```
 
 ## Development
 
+Runs webpack serve.
+
 ```
 yarn run start
 ```
 
 ## Build
+
+Builds a `build` directory with bundled files.
 
 ```
 yarn run build
