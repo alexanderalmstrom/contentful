@@ -6,7 +6,9 @@
   "scripts": {
     "start": "webpack-serve",
     "build": "webpack",
-    "server": "node server.js"
+    "server": "node server.js",
+    "deploy": "git push heroku master",
+    "heroku-postbuild": "yarn run build"
   },
   "dependencies": {
     "@babel/core": "^7.0.0",
