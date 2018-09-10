@@ -38,7 +38,7 @@ class Products extends React.Component {
                     <div className="card-image">
                       <Image src={entry.fields.image.fields.file.url}
                         alt={entry.fields.image.fields.title}
-                        width={600} />
+                        width={640} />
                     </div>
                     <h2 className="card-name">
                       {entry.fields.name}
