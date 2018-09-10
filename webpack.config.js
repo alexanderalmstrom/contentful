@@ -90,8 +90,10 @@ const config = {
 if (env == 'production') {
 	config.plugins.push(
 		new webpack.DefinePlugin({
-			CONTENTFUL_SPACE: JSON.stringify(process.env.CONTENTFUL_SPACE),
-			CONTENTFUL_ACCESS_TOKEN: JSON.stringify(process.env.CONTENTFUL_ACCESS_TOKEN)
+			'process.env': {
+				CONTENTFUL_SPACE: JSON.stringify(process.env.CONTENTFUL_SPACE),
+				CONTENTFUL_ACCESS_TOKEN: JSON.stringify(process.env.CONTENTFUL_ACCESS_TOKEN)
+			}
 		}),
 		new CleanWebpackPlugin('build'),
 		new CopyWebpackPlugin([
