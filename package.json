@@ -1,6 +1,7 @@
 {
   "name": "contentful",
   "version": "1.0.0",
+  "author": "Alexander Almström <info@alexanderalmstrom.com>",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
