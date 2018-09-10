@@ -20,23 +20,15 @@ class Image extends React.Component {
       h: this.props.height
     })
 
-    let argsArray = [],
-        imageQuery = ''
-
-    Object.entries(args).map(arg => {
-      if (arg[1]) {
-        arg = arg.join('=')
-        argsArray.push(arg)
-      }
-    })
-
-    if (argsArray.length > 0) {
-      imageQuery = '?' + argsArray.join('&')
-    }
+    const query = Object.entries(args).map(item => {
+      return item[1] ? item.join('=') : false
+    }, args).filter(item => {
+      return item
+    }).join('&')
 
     return (
       <img className="image"
-        src={`${this.props.src}${imageQuery}`}
+        src={`${this.props.src}?${query}`}
         alt={this.props.alt} />
     )
   }
