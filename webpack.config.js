@@ -97,6 +97,8 @@ if (env == 'production') {
       'process.env': {
         CONTENTFUL_SPACE: JSON.stringify(process.env.CONTENTFUL_SPACE),
         CONTENTFUL_ACCESS_TOKEN: JSON.stringify(process.env.CONTENTFUL_ACCESS_TOKEN),
+        CONTENTFUL_ACCESS_TOKEN: JSON.stringify(process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN),
+        CONTENTFUL_PREVIEW: JSON.stringify(process.env.CONTENTFUL_PREVIEW),
         CONTENTFUL_ENVIRONMENT: JSON.stringify(process.env.CONTENTFUL_ENVIRONMENT)
       }
     }),
