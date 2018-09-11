@@ -1,0 +1,68 @@
+// Card.scss
+
+@import "../variables";
+@import "../mixins";
+
+.card {
+	padding-left: 1rem;
+	padding-right: 1rem;
+	margin-bottom: 2rem;
+	max-width: 100%;
+	flex: 100% 0 0;
+
+	@include media(sm) {
+		max-width: 50%;
+		flex: 50% 0 0;
+	}
+}
+
+.card-link {
+	display: block;
+	text-decoration: none;
+
+	&:hover {
+		color: inherit;
+	}
+}
+
+.card-image {
+	img {
+		width: 100%;
+		display: block;
+	}
+}
+
+.card-content {
+	margin-left: 2rem;
+	margin-top: -1.5rem;
+
+	@include media(sm) {
+		margin-top: -2.5rem;
+	}
+
+	@include media(md) {
+		margin-top: -3.5rem;
+	}
+}
+
+.card-name {
+	margin-bottom: 1rem;
+	font-size: 3rem;
+
+	@include media(sm) {
+		font-size: 4rem;
+	}
+
+	@include media(md) {
+		font-size: 5rem;
+	}
+}
+
+.card-description {
+	margin-top: 1rem;
+	font-size: 1.4rem;
+}
+
+.card-price {
+	margin-top: 1rem;
+}
