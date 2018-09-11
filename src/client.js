@@ -1,9 +1,15 @@
 import { createClient } from 'contentful'
 
-export const client = createClient({
-	space: process.env.CONTENTFUL_SPACE,
-	accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
-})
+const config = {}
+
+config.space = process.env.CONTENTFUL_SPACE
+config.accessToken = process.env.CONTENTFUL_ACCESS_TOKEN
+
+if (process.env.CONTENTFUL_ENVIRONMENT) {
+	config.environment = process.env.CONTENTFUL_ENVIRONMENT
+}
+
+export const client = createClient(config)
 
 export function getEntries (content_type) {
 	const entries = client.getEntries({

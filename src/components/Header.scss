@@ -1,15 +1,26 @@
 // Header.scss
 
+@import "../variables";
+@import "../mixins";
+
 .main-header {
-	height: 10rem;
+	padding: 3rem 0;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+
+	@include media(sm) {
+		padding: 6rem 0;
+	}
 }
 
 .main-brand {
 	margin-bottom: 0;
-	font-size: 3rem;
+	font-size: 2rem;
+
+	@include media(sm) {
+		font-size: 3rem;
+	}
 }
 
 .main-brand-link {

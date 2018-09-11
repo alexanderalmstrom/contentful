@@ -4,15 +4,11 @@
 @import "../mixins";
 
 .card {
-	padding-left: 1rem;
-	padding-right: 1rem;
-	margin-bottom: 2rem;
-	max-width: 100%;
-	flex: 100% 0 0;
+	@include column(12);
+	margin-bottom: $grid-gutter * 2;
 
 	@include media(sm) {
-		max-width: 50%;
-		flex: 50% 0 0;
+		@include column(6);
 	}
 }
 
@@ -33,8 +29,8 @@
 }
 
 .card-content {
-	margin-left: 2rem;
-	margin-top: -1.5rem;
+	margin-left: $grid-gutter;
+	margin-top: -2rem;
 
 	@include media(sm) {
 		margin-top: -2.5rem;
@@ -59,6 +55,7 @@
 }
 
 .card-description {
+	display: none;
 	margin-top: 1rem;
 	font-size: 1.4rem;
 }

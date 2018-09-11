@@ -52,7 +52,13 @@ p {
 }
 
 a {
-	color: $blue;
+	color: $black;
+	transition: color $transition;
+	text-decoration: underline;
+
+	&:hover {
+		text-decoration: none;
+	}
 }
 
 .container {

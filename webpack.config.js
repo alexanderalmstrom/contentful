@@ -96,7 +96,8 @@ if (env == 'production') {
 		new webpack.DefinePlugin({
 			'process.env': {
 				CONTENTFUL_SPACE: JSON.stringify(process.env.CONTENTFUL_SPACE),
-				CONTENTFUL_ACCESS_TOKEN: JSON.stringify(process.env.CONTENTFUL_ACCESS_TOKEN)
+				CONTENTFUL_ACCESS_TOKEN: JSON.stringify(process.env.CONTENTFUL_ACCESS_TOKEN),
+				CONTENTFUL_ENVIRONMENT: JSON.stringify(process.env.CONTENTFUL_ENVIRONMENT)
 			}
 		}),
 		new CleanWebpackPlugin('build'),
