@@ -4,62 +4,62 @@
 @import "../mixins";
 
 .card {
-	@include column(12);
-	margin-bottom: $grid-gutter * 2;
+  @include column(12);
+  margin-bottom: $grid-gutter * 2;
 
-	@include media(sm) {
-		@include column(6);
-	}
+  @include media(sm) {
+    @include column(6);
+  }
 }
 
 .card-link {
-	display: block;
-	text-decoration: none;
+  display: block;
+  text-decoration: none;
 
-	&:hover {
-		color: inherit;
-	}
+  &:hover {
+    color: inherit;
+  }
 }
 
 .card-image {
-	img {
-		width: 100%;
-		display: block;
-	}
+  img {
+    width: 100%;
+    display: block;
+  }
 }
 
 .card-content {
-	margin-left: $grid-gutter;
-	margin-top: -2rem;
+  margin-left: $grid-gutter;
+  margin-top: -2rem;
 
-	@include media(sm) {
-		margin-top: -2.5rem;
-	}
+  @include media(sm) {
+    margin-top: -2.5rem;
+  }
 
-	@include media(md) {
-		margin-top: -3.5rem;
-	}
+  @include media(md) {
+    margin-top: -3.5rem;
+  }
 }
 
 .card-name {
-	margin-bottom: 1rem;
-	font-size: 3rem;
+  margin-bottom: 1rem;
+  font-size: 3rem;
 
-	@include media(sm) {
-		font-size: 4rem;
-	}
+  @include media(sm) {
+    font-size: 4rem;
+  }
 
-	@include media(md) {
-		font-size: 5rem;
-	}
+  @include media(md) {
+    font-size: 5rem;
+  }
 }
 
 .card-description {
-	display: none;
-	margin-top: 1rem;
-	font-size: 1.4rem;
+  display: none;
+  margin-top: 1rem;
+  font-size: 1.4rem;
 }
 
 .card-price {
-	margin-top: 1rem;
+  margin-top: 1rem;
 }

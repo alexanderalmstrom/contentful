@@ -14,135 +14,135 @@ const ManifestPlugin = require('webpack-manifest-plugin')
 const env = process.env.WEBPACK_SERVE ? 'development' : 'production'
 
 const config = {
-	mode: env,
+  mode: env,
 
-	entry: './src/main.js',
+  entry: './src/main.js',
 
-	output: {
-		filename: '[name].js',
-		path: path.resolve(__dirname, 'build'),
-		publicPath: '/'
-	},
+  output: {
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'build'),
+    publicPath: '/'
+  },
 
-	serve: {
-		port: 5000,
-		content: path.resolve(__dirname, 'src'),
-		devMiddleware: {
-			publicPath: '/'
-		},
-		add: (app) => {
-			app.use(convert(history()))
-		}
-	},
+  serve: {
+    port: 5000,
+    content: path.resolve(__dirname, 'src'),
+    devMiddleware: {
+      publicPath: '/'
+    },
+    add: (app) => {
+      app.use(convert(history()))
+    }
+  },
 
-	module: {
-		rules: [
-			{
-				test: /\.js$/,
-				exclude: /node_modules/,
-				use: {
-					loader: 'babel-loader',
-					options: {
-						babelrc: false,
-						presets: ["@babel/preset-env", "@babel/preset-react"],
-						plugins: ["react-hot-loader/babel"],
-						cacheDirectory: true
-					}
-				}
-			},
-			{
-			test: /\.scss$/,
-			use: [
-				{
-					loader: env == 'development' ? 'style-loader' : MiniCssExtractPlugin.loader
-				},
-				{
-					loader: 'css-loader',
-					options: {
-						sourceMap: env == 'development' ? true : false
-					}
-				},
-				{
-					loader: 'sass-loader',
-					options: {
-						includePaths: ['node_modules'],
-						sourceMap: env == 'development' ? true : false
-					}
-				}
-			]
-		}]
-	},
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            babelrc: false,
+            presets: ["@babel/preset-env", "@babel/preset-react"],
+            plugins: ["react-hot-loader/babel"],
+            cacheDirectory: true
+          }
+        }
+      },
+      {
+      test: /\.scss$/,
+      use: [
+        {
+          loader: env == 'development' ? 'style-loader' : MiniCssExtractPlugin.loader
+        },
+        {
+          loader: 'css-loader',
+          options: {
+            sourceMap: env == 'development' ? true : false
+          }
+        },
+        {
+          loader: 'sass-loader',
+          options: {
+            includePaths: ['node_modules'],
+            sourceMap: env == 'development' ? true : false
+          }
+        }
+      ]
+    }]
+  },
 
-	optimization: {
-		minimizer: [
-			new UglifyJsPlugin({
-				cache: true,
-				parallel: true,
-				sourceMap: env == 'development'? true : false
-			}),
-			new OptimizeCSSAssetsPlugin({})
-		]
-	},
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: env == 'development'? true : false
+      }),
+      new OptimizeCSSAssetsPlugin({})
+    ]
+  },
 
-	plugins: [
-		new Dotenv()
-	]
+  plugins: [
+    new Dotenv()
+  ]
 }
 
 if (env == 'production') {
-	config.output.filename = '[name].[contenthash].js'
+  config.output.filename = '[name].[contenthash].js'
 
-	config.plugins.push(
-		new webpack.DefinePlugin({
-			'process.env': {
-				CONTENTFUL_SPACE: JSON.stringify(process.env.CONTENTFUL_SPACE),
-				CONTENTFUL_ACCESS_TOKEN: JSON.stringify(process.env.CONTENTFUL_ACCESS_TOKEN),
-				CONTENTFUL_ENVIRONMENT: JSON.stringify(process.env.CONTENTFUL_ENVIRONMENT)
-			}
-		}),
-		new CleanWebpackPlugin('build'),
-		new CopyWebpackPlugin([
-			{
-				from: './src/index.html',
-				to: ''
-			}
-		]),
-		new MiniCssExtractPlugin({
-			filename: '[name].[contenthash].css',
-			chunkFilename: '[id].[contenthash].css'
-		}),
-		new ManifestPlugin({
-			basePath: '/',
-			filter: function (file) {
-				return file.isChunk
-			}
-		}),
-		function () {
-			this.plugin('done', function (stats) {
-				const replaceInFile = function (filePath, replaceFrom, replaceTo) {
-					const replacer = function (match) {
-						console.log('Replacing in %s: %s => %s', filePath, match, replaceTo)
-						return replaceTo
-					}
+  config.plugins.push(
+    new webpack.DefinePlugin({
+      'process.env': {
+        CONTENTFUL_SPACE: JSON.stringify(process.env.CONTENTFUL_SPACE),
+        CONTENTFUL_ACCESS_TOKEN: JSON.stringify(process.env.CONTENTFUL_ACCESS_TOKEN),
+        CONTENTFUL_ENVIRONMENT: JSON.stringify(process.env.CONTENTFUL_ENVIRONMENT)
+      }
+    }),
+    new CleanWebpackPlugin('build'),
+    new CopyWebpackPlugin([
+      {
+        from: './src/index.html',
+        to: ''
+      }
+    ]),
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash].css',
+      chunkFilename: '[id].[contenthash].css'
+    }),
+    new ManifestPlugin({
+      basePath: '/',
+      filter: function (file) {
+        return file.isChunk
+      }
+    }),
+    function () {
+      this.plugin('done', function (stats) {
+        const replaceInFile = function (filePath, replaceFrom, replaceTo) {
+          const replacer = function (match) {
+            console.log('Replacing in %s: %s => %s', filePath, match, replaceTo)
+            return replaceTo
+          }
 
-					const str = fs.readFileSync(filePath, 'utf8')
-					const out = str.replace(new RegExp(replaceFrom, 'g'), replacer)
+          const str = fs.readFileSync(filePath, 'utf8')
+          const out = str.replace(new RegExp(replaceFrom, 'g'), replacer)
 
-					fs.writeFileSync(filePath, out)
-				}
+          fs.writeFileSync(filePath, out)
+        }
 
-				const layoutPath = path.resolve(__dirname, 'build', 'index.html')
-				const manifestPath = path.resolve(__dirname, 'build', 'manifest.json')
-				const manifestData = JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
+        const layoutPath = path.resolve(__dirname, 'build', 'index.html')
+        const manifestPath = path.resolve(__dirname, 'build', 'manifest.json')
+        const manifestData = JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
 
-				for (let key in manifestData) {
-					let value = manifestData[key]
+        for (let key in manifestData) {
+          let value = manifestData[key]
 
-					replaceInFile(layoutPath, key, value)
-				}
-			})
-		}
-	)
+          replaceInFile(layoutPath, key, value)
+        }
+      })
+    }
+  )
 }
 
 module.exports = config
