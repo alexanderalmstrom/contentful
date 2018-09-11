@@ -5,4 +5,9 @@
 
 .main-section {
   margin-bottom: 2rem;
+  padding-top: 6rem;
+
+  @include media(sm) {
+    padding-top: 12rem;
+  }
 }

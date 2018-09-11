@@ -7,9 +7,11 @@ class Header extends React.Component {
   render () {
     return (
       <header className="main-header">
-        <h1 className="main-brand">
-          <Link className="main-brand-link" to="/">Contentful</Link>
-        </h1>
+        <div className="container">
+          <h1 className="main-brand">
+            <Link className="main-brand-link" to="/">Contentful</Link>
+          </h1>
+        </div>
       </header>
     )
   }
