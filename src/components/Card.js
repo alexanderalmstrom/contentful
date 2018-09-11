@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 import Image from './Image'
@@ -8,6 +9,8 @@ import './Card.scss'
 class Card extends React.Component {
 	render () {
 		const { entry } = this.props
+
+		console.log(this.props)
 
 		return (
 			<div className="card">
@@ -33,6 +36,10 @@ class Card extends React.Component {
 	    </div>
 		)
 	}
+}
+
+Card.propTypes = {
+	entry: PropTypes.object
 }
 
 export default Card

@@ -1,0 +1,17 @@
+// Header.scss
+
+.main-header {
+	height: 10rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.main-brand {
+	margin-bottom: 0;
+	font-size: 3rem;
+}
+
+.main-brand-link {
+	text-decoration: none;
+}
