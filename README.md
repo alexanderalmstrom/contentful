@@ -12,7 +12,7 @@ yarn install
 
 ## Development
 
-Runs webpack serve.
+Runs webpack serve and a local development server.
 
 ```
 yarn run start

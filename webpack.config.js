@@ -80,7 +80,7 @@ const config = {
         parallel: true,
         sourceMap: env == 'development'? true : false
       }),
-      new OptimizeCSSAssetsPlugin({})
+      new OptimizeCSSAssetsPlugin()
     ]
   },
 
