@@ -10,8 +10,6 @@ class Card extends React.Component {
 	render () {
 		const { entry } = this.props
 
-		console.log(this.props)
-
 		return (
 			<div className="card">
 	      <Link to={`/product/${entry.fields.slug}`}
