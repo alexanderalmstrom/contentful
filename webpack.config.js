@@ -1,4 +1,5 @@
 const path = require('path')
+const fs = require('fs')
 const webpack = require('webpack')
 const history = require('connect-history-api-fallback')
 const convert = require('koa-connect')
@@ -8,6 +9,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const ManifestPlugin = require('webpack-manifest-plugin')
 
 const env = process.env.WEBPACK_SERVE ? 'development' : 'production'
 
@@ -17,7 +19,7 @@ const config = {
 	entry: './src/main.js',
 
 	output: {
-		filename: '[name].bundle.js',
+		filename: '[name].js',
 		path: path.resolve(__dirname, 'build'),
 		publicPath: '/'
 	},
@@ -88,6 +90,8 @@ const config = {
 }
 
 if (env == 'production') {
+	config.output.filename = '[name].[contenthash].js'
+
 	config.plugins.push(
 		new webpack.DefinePlugin({
 			'process.env': {
@@ -103,9 +107,40 @@ if (env == 'production') {
 			}
 		]),
 		new MiniCssExtractPlugin({
-			filename: '[name].bundle.css',
-			chunkFilename: '[id].bundle.css'
-		})
+			filename: '[name].[contenthash].css',
+			chunkFilename: '[id].[contenthash].css'
+		}),
+		new ManifestPlugin({
+			basePath: '/',
+			filter: function (file) {
+				return file.isChunk
+			}
+		}),
+		function () {
+			this.plugin('done', function (stats) {
+				const replaceInFile = function (filePath, replaceFrom, replaceTo) {
+					const replacer = function (match) {
+						console.log('Replacing in %s: %s => %s', filePath, match, replaceTo)
+						return replaceTo
+					}
+
+					const str = fs.readFileSync(filePath, 'utf8')
+					const out = str.replace(new RegExp(replaceFrom, 'g'), replacer)
+
+					fs.writeFileSync(filePath, out)
+				}
+
+				const layoutPath = path.resolve(__dirname, 'build', 'index.html')
+				const manifestPath = path.resolve(__dirname, 'build', 'manifest.json')
+				const manifestData = JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
+
+				for (let key in manifestData) {
+					let value = manifestData[key]
+
+					replaceInFile(layoutPath, key, value)
+				}
+			})
+		}
 	)
 }
 
