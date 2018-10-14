@@ -9,18 +9,12 @@ class Image extends React.Component {
   }
 
   render () {
-    const defaults = {
-      fm: "jpg",
-      q: 70,
-      w: 1280
-    }
-
-    const args = Object.assign({}, defaults, {
-      fm: this.props.format != false ? this.props.format || defaults.fm : null,
-      q: this.props.quality != false ? this.props.quality || defaults.q : null,
-      w: this.props.width != false ? this.props.width || defaults.w : null,
+    const args = {
+      fm: this.props.format,
+      q: this.props.quality,
+      w: this.props.width,
       h: this.props.height
-    })
+    }
 
     const query = Object.entries(args).map(item => {
       return item[1] ? item.join('=') : false
@@ -34,6 +28,12 @@ class Image extends React.Component {
         alt={this.props.alt} />
     )
   }
+}
+
+Image.defaultProps = {
+  format: "jpg",
+  quality: 70,
+  width: 1280
 }
 
 Image.propTypes = {
