@@ -3,20 +3,20 @@ import React from 'react'
 import Header from './Header'
 import Footer from './Footer'
 
-import './Main.scss'
+import './Layout.scss'
 
-class Main extends React.Component {
+class Layout extends React.Component {
   render () {
     return (
-      <main className="main">
+      <div className="layout">
         <Header />
-        <section className="main-section">
+        <main className="main">
           {this.props.children}
-        </section>
+        </main>
         <Footer />
-      </main>
+      </div>
     )
   }
 }
 
-export default Main
+export default Layout

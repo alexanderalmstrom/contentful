@@ -5,7 +5,7 @@ import Products from './Products'
 import Product from './Product'
 import NotFound from './NotFound'
 
-import Main from './Main'
+import Layout from './Layout'
 
 import './App.scss'
 
@@ -13,13 +13,13 @@ class App extends React.Component {
   render () {
     return (
       <Router>
-        <Main>
+        <Layout>
           <Switch>
             <Route exact path="/" component={Products}></Route>
             <Route path="/product/:slug" component={Product}></Route>
             <Route path="*" component={NotFound}></Route>
           </Switch>
-        </Main>
+        </Layout>
       </Router>
     )
   }
