@@ -10,6 +10,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const ManifestPlugin = require('webpack-manifest-plugin')
+const RevPlugin = require('./lib/rev')
 
 const env = process.env.WEBPACK_SERVE ? 'development' : 'production'
 
@@ -119,31 +120,10 @@ if (env == 'production') {
         return file.isChunk
       }
     }),
-    function () {
-      this.plugin('done', function (stats) {
-        const replaceInFile = function (filePath, replaceFrom, replaceTo) {
-          const replacer = function (match) {
-            console.log('Replacing in %s: %s => %s', filePath, match, replaceTo)
-            return replaceTo
-          }
-
-          const str = fs.readFileSync(filePath, 'utf8')
-          const out = str.replace(new RegExp(replaceFrom, 'g'), replacer)
-
-          fs.writeFileSync(filePath, out)
-        }
-
-        const layoutPath = path.resolve(__dirname, 'build', 'index.html')
-        const manifestPath = path.resolve(__dirname, 'build', 'manifest.json')
-        const manifestData = JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
-
-        for (let key in manifestData) {
-          let value = manifestData[key]
-
-          replaceInFile(layoutPath, key, value)
-        }
-      })
-    }
+    new RevPlugin({
+      layoutPath: path.resolve(__dirname, 'build', 'index.html'),
+      manifestPath: path.resolve(__dirname, 'build', 'manifest.json')
+    })
   )
 }
 
