@@ -8,6 +8,14 @@ class Image extends React.Component {
     super(props)
   }
 
+  parseQuery (args) {
+    return Object.entries(args).map(item => {
+      return item[1] ? item.join('=') : false
+    }, args).filter(item => {
+      return item
+    }).join('&')
+  }
+
   render () {
     const args = {
       fm: this.props.format,
@@ -16,16 +24,22 @@ class Image extends React.Component {
       h: this.props.height
     }
 
-    const query = Object.entries(args).map(item => {
-      return item[1] ? item.join('=') : false
-    }, args).filter(item => {
-      return item
-    }).join('&')
+    const defaultQuery = this.parseQuery(args),
+          webpQuery = this.parseQuery(Object.assign(args, { fm: 'webp' }))
 
     return (
-      <img className="image"
-        src={`${this.props.src}?${query}`}
-        alt={this.props.alt} />
+      <picture>
+        <source
+          type="image/webp"
+          srcSet={`${this.props.src}?${webpQuery}`}></source>
+        <source
+          type="image/jpeg"
+          srcSet={`${this.props.src}?${defaultQuery}`}></source>
+        <img
+          className="image"
+          src={`${this.props.src}?${defaultQuery}`}
+          alt={this.props.alt} />
+      </picture>
     )
   }
 }
