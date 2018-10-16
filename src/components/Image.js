@@ -1,22 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import qs from 'query-string'
 
 import './Image.scss'
 
 class Image extends React.Component {
   constructor(props) {
     super(props)
-  }
-
-  parseQuery(args) {
-    return Object.entries(args)
-      .map(item => {
-        return item[1] ? item.join('=') : false
-      }, args)
-      .filter(item => {
-        return item
-      })
-      .join('&')
   }
 
   render() {
@@ -27,8 +17,8 @@ class Image extends React.Component {
       h: this.props.height
     }
 
-    const defaultQuery = this.parseQuery(args),
-      webpQuery = this.parseQuery(Object.assign(args, { fm: 'webp' }))
+    const defaultQuery = qs.stringify(args),
+      webpQuery = qs.stringify(Object.assign(args, { fm: 'webp' }))
 
     return (
       <picture>
