@@ -1,6 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-import { getEntryBySlug } from '../client'
+import { connectComponent } from '../connect'
 
 import Loading from './Loading'
 import Image from './Image'
@@ -10,39 +11,36 @@ import './Product.scss'
 class Product extends React.Component {
   constructor (props) {
     super(props)
-
-    this.state = {
-      product: null
-    }
   }
 
   componentDidMount () {
-    getEntryBySlug('product', this.props.match.params.slug).then((product) => {
-      this.setState({ product: product })
-    })
+    const { slug } = this.props.match.params
+
+    this.props.loadProduct(slug)
   }
 
   render () {
-    const { product } = this.state
+    const { slug } = this.props.match.params
+    const entry = this.props.product.entry[slug]
 
     return (
       <div className="container">
-        { product ?
+        { entry && entry.fields ?
           (
             <div className="product">
               <div className="product-image">
-                <Image src={product.fields.image.fields.file.url}
-                  alt={product.fields.image.fields.title} />
+              <Image src={entry.fields.image.fields.file.url}
+                  alt={entry.fields.image.fields.title} />
               </div>
               <div className="product-content">
                 <h2 className="product-name">
-                  {product.fields.name}
+                  {entry.fields.name}
                 </h2>
                 <div className="product-price">
-                  {product.fields.price} {product.fields.currency}
+                  {entry.fields.price} {entry.fields.currency}
                 </div>
                 <p className="product-description">
-                  {product.fields.description}
+                  {entry.fields.description}
                 </p>
               </div>
             </div>
@@ -55,4 +53,10 @@ class Product extends React.Component {
   }
 }
 
-export default Product
+Product.propTypes = {
+  app: PropTypes.object,
+  product: PropTypes.object,
+  loadProduct: PropTypes.func
+}
+
+export default connectComponent(Product)

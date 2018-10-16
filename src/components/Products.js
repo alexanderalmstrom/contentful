@@ -1,6 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-import { getEntries } from '../client'
+import { connectComponent } from '../connect'
 
 import Loading from './Loading'
 import Card from './Card'
@@ -10,28 +11,22 @@ import './Products.scss'
 class Products extends React.Component {
   constructor (props) {
     super(props)
-
-    this.state = {
-      products: null
-    }
   }
 
   componentDidMount () {
-    getEntries('product').then((products) => {
-      this.setState({ products: products })
-    })
+    this.props.loadProducts()
   }
 
   render () {
-    const { products } = this.state
+    const { entries } = this.props.products
 
     return (
       <div className="container">
         <div className="products">
-          { products ? (
-            products.map((entry, index) => {
+          { entries ? (
+            Object.keys(entries).map((id, index) => {
               return (
-                <Card key={index} entry={entry} />
+                <Card key={index} entry={entries[id]} />
               )
             })
           ) : (
@@ -43,4 +38,10 @@ class Products extends React.Component {
   }
 }
 
-export default Products
+Products.propTypes = {
+  app: PropTypes.object,
+  products: PropTypes.object,
+  loadProducts: PropTypes.func
+}
+
+export default connectComponent(Products)
