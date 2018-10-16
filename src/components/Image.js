@@ -4,19 +4,22 @@ import PropTypes from 'prop-types'
 import './Image.scss'
 
 class Image extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
   }
 
-  parseQuery (args) {
-    return Object.entries(args).map(item => {
-      return item[1] ? item.join('=') : false
-    }, args).filter(item => {
-      return item
-    }).join('&')
+  parseQuery(args) {
+    return Object.entries(args)
+      .map(item => {
+        return item[1] ? item.join('=') : false
+      }, args)
+      .filter(item => {
+        return item
+      })
+      .join('&')
   }
 
-  render () {
+  render() {
     const args = {
       fm: this.props.format,
       q: this.props.quality,
@@ -25,27 +28,27 @@ class Image extends React.Component {
     }
 
     const defaultQuery = this.parseQuery(args),
-          webpQuery = this.parseQuery(Object.assign(args, { fm: 'webp' }))
+      webpQuery = this.parseQuery(Object.assign(args, { fm: 'webp' }))
 
     return (
       <picture>
-        <source
-          type="image/webp"
-          srcSet={`${this.props.src}?${webpQuery}`}></source>
+        <source type="image/webp" srcSet={`${this.props.src}?${webpQuery}`} />
         <source
           type="image/jpeg"
-          srcSet={`${this.props.src}?${defaultQuery}`}></source>
+          srcSet={`${this.props.src}?${defaultQuery}`}
+        />
         <img
           className="image"
           src={`${this.props.src}?${defaultQuery}`}
-          alt={this.props.alt} />
+          alt={this.props.alt}
+        />
       </picture>
     )
   }
 }
 
 Image.defaultProps = {
-  format: "jpg",
+  format: 'jpg',
   quality: 70,
   width: 1280
 }

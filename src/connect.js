@@ -5,10 +5,13 @@ import * as actionCreators from './actions'
 
 export const mapStateToProps = state => state
 
-function mapDispatchToProps (dispatch) {
-	return bindActionCreators(actionCreators, dispatch)
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(actionCreators, dispatch)
 }
 
-export function connectComponent (component) {
-	return connect(mapStateToProps, mapDispatchToProps)(component)
+export function connectComponent(component) {
+  return connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(component)
 }

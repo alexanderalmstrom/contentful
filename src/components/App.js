@@ -13,43 +13,39 @@ import Layout from './Layout'
 import './App.scss'
 
 class App extends React.Component {
-  constructor (props) {
-		super(props)
-	}
-
-	componentWillMount () {
-		initClient().then(
-			() => this.props.setAppClientState('success'),
-			() => this.props.setAppClientState('error')
-		)
+  constructor(props) {
+    super(props)
   }
-  
-  routes () {
+
+  componentWillMount() {
+    initClient().then(
+      () => this.props.setAppClientState('success'),
+      () => this.props.setAppClientState('error')
+    )
+  }
+
+  routes() {
     return (
       <Router>
         <Layout>
           <Switch>
-            <Route exact path="/" component={Products}></Route>
-            <Route path="/product/:slug" component={Product}></Route>
-            <Route path="*" component={NotFound}></Route>
+            <Route exact path="/" component={Products} />
+            <Route path="/product/:slug" component={Product} />
+            <Route path="*" component={NotFound} />
           </Switch>
         </Layout>
       </Router>
     )
   }
 
-  render () {
+  render() {
     return (
       <div id="app">
-        { (() => {
+        {(() => {
           if (this.props.app.authState == 'success') {
-            return (
-              <div>
-                {this.routes()}
-              </div>
-            )
+            return <div>{this.routes()}</div>
           }
-        })() }
+        })()}
       </div>
     )
   }

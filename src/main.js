@@ -10,7 +10,9 @@ import { createLogger } from 'redux-logger'
 
 import reducers from './reducers'
 
-const store = applyMiddleware(promiseMiddleware(), thunk, createLogger())(createStore)
+const store = applyMiddleware(promiseMiddleware(), thunk, createLogger())(
+  createStore
+)
 
 import App from './components/App'
 
@@ -28,5 +30,7 @@ const render = Component => {
 render(App)
 
 if (module.hot) {
-  module.hot.accept('./components/App', () => { render(App) })
+  module.hot.accept('./components/App', () => {
+    render(App)
+  })
 }

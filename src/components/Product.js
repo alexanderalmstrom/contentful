@@ -9,45 +9,41 @@ import Image from './Image'
 import './Product.scss'
 
 class Product extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     const { slug } = this.props.match.params
 
     this.props.loadProduct(slug)
   }
 
-  render () {
+  render() {
     const { slug } = this.props.match.params
     const entry = this.props.product.entry[slug]
 
     return (
       <div className="container">
-        { entry && entry.fields ?
-          (
-            <div className="product">
-              <div className="product-image">
-              <Image src={entry.fields.image.fields.file.url}
-                  alt={entry.fields.image.fields.title} />
-              </div>
-              <div className="product-content">
-                <h2 className="product-name">
-                  {entry.fields.name}
-                </h2>
-                <div className="product-price">
-                  {entry.fields.price} {entry.fields.currency}
-                </div>
-                <p className="product-description">
-                  {entry.fields.description}
-                </p>
-              </div>
+        {entry && entry.fields ? (
+          <div className="product">
+            <div className="product-image">
+              <Image
+                src={entry.fields.image.fields.file.url}
+                alt={entry.fields.image.fields.title}
+              />
             </div>
-          ) : (
-            <Loading />
-          )
-        }
+            <div className="product-content">
+              <h2 className="product-name">{entry.fields.name}</h2>
+              <div className="product-price">
+                {entry.fields.price} {entry.fields.currency}
+              </div>
+              <p className="product-description">{entry.fields.description}</p>
+            </div>
+          </div>
+        ) : (
+          <Loading />
+        )}
       </div>
     )
   }

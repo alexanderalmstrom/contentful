@@ -9,29 +9,27 @@ import Card from './Card'
 import './Products.scss'
 
 class Products extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.props.loadProducts()
   }
 
-  render () {
+  render() {
     const { entries } = this.props.products
 
     return (
       <div className="container">
         <div className="products">
-          { entries ? (
+          {entries ? (
             Object.keys(entries).map((id, index) => {
-              return (
-                <Card key={index} entry={entries[id]} />
-              )
+              return <Card key={index} entry={entries[id]} />
             })
           ) : (
             <Loading />
-          ) }
+          )}
         </div>
       </div>
     )

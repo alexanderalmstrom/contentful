@@ -3,7 +3,7 @@ import React from 'react'
 import './NotFound.scss'
 
 class NotFound extends React.Component {
-  render () {
+  render() {
     return (
       <div className="container not-found">
         <h1>404</h1>

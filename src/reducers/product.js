@@ -1,30 +1,33 @@
 import { makeReducer } from './util'
 
-export const product = makeReducer(function (action) {
-	switch (action.type) {
-		case 'LOAD_PRODUCT_PENDING':
-			return {
-				entry: {
-					fetching: true,
-					[ action.meta.slug ]: {}
-				}
-			}
+export const product = makeReducer(
+  function(action) {
+    switch (action.type) {
+      case 'LOAD_PRODUCT_PENDING':
+        return {
+          entry: {
+            fetching: true,
+            [action.meta.slug]: {}
+          }
+        }
 
-		case 'LOAD_PRODUCT_FULFILLED':
-			action.payload.fetching = false
+      case 'LOAD_PRODUCT_FULFILLED':
+        action.payload.fetching = false
 
-			return {
-				fetching: false,
-				entry: {
-					[ action.meta.slug ]: action.payload
-				}
-			}
+        return {
+          fetching: false,
+          entry: {
+            [action.meta.slug]: action.payload
+          }
+        }
 
-		case 'LOAD_PRODUCT_REJECTED':
-			return {
-				error: true,
-				fetching: false,
-				entry: {}
-			}
-	}
-}, { entry: [] })
+      case 'LOAD_PRODUCT_REJECTED':
+        return {
+          error: true,
+          fetching: false,
+          entry: {}
+        }
+    }
+  },
+  { entry: [] }
+)

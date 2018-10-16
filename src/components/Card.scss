@@ -1,7 +1,7 @@
 // Card.scss
 
-@import "../variables";
-@import "../mixins";
+@import '../variables';
+@import '../mixins';
 
 .card {
   @include column(12);
