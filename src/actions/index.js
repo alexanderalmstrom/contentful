@@ -1,4 +1,4 @@
-import * as entryService from '../services/entryService'
+import * as entryService from '../services/entry'
 
 export function setAppClientState (authState) {
   return {
