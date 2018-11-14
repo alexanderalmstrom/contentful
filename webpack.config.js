@@ -52,26 +52,27 @@ const config = {
         }
       },
       {
-      test: /\.scss$/,
-      use: [
-        {
-          loader: env == 'development' ? 'style-loader' : MiniCssExtractPlugin.loader
-        },
-        {
-          loader: 'css-loader',
-          options: {
-            sourceMap: env == 'development' ? true : false
+        test: /\.scss$/,
+        use: [
+          {
+            loader: env == 'development' ? 'style-loader' : MiniCssExtractPlugin.loader
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: env == 'development' ? true : false
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              includePaths: ['node_modules'],
+              sourceMap: env == 'development' ? true : false
+            }
           }
-        },
-        {
-          loader: 'sass-loader',
-          options: {
-            includePaths: ['node_modules'],
-            sourceMap: env == 'development' ? true : false
-          }
-        }
-      ]
-    }]
+        ]
+      }
+    ]
   },
 
   optimization: {

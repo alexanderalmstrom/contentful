@@ -9,7 +9,10 @@ export function initClient() {
     accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
   }
 
-  if (process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN)
+  if (
+    process.env.NODE_ENV == 'development' &&
+    process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN
+  )
     config.accessToken = process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN
 
   if (
