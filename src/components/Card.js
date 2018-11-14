@@ -34,7 +34,7 @@ class Card extends React.Component {
 }
 
 Card.propTypes = {
-  entry: PropTypes.object
+  entry: PropTypes.object.isRequired
 }
 
 export default Card
