@@ -24,26 +24,22 @@ class App extends React.Component {
     )
   }
 
-  routes() {
-    return (
-      <Router>
-        <Layout>
-          <Switch>
-            <Route exact path="/" component={Products} />
-            <Route path="/product/:slug" component={Product} />
-            <Route path="*" component={NotFound} />
-          </Switch>
-        </Layout>
-      </Router>
-    )
-  }
-
   render() {
     return (
-      <div id="app">
+      <div className="app">
         {(() => {
           if (this.props.app.authState == 'success') {
-            return <div>{this.routes()}</div>
+            return (
+              <Router>
+                <Layout>
+                  <Switch>
+                    <Route exact path="/" component={Products} />
+                    <Route path="/product/:slug" component={Product} />
+                    <Route path="*" component={NotFound} />
+                  </Switch>
+                </Layout>
+              </Router>
+            )
           }
         })()}
       </div>
