@@ -10,17 +10,17 @@ class Image extends React.Component {
   }
 
   render() {
-    const { src, alt, ...props } = this.props
+    const { src, alt, ...args } = this.props
 
-    const args = {
-      fm: props.format,
-      q: props.quality,
-      w: props.width,
-      h: props.height
+    const query = {
+      fm: args.format,
+      q: args.quality,
+      w: args.width,
+      h: args.height
     }
 
-    const jpg = qs.stringify(args)
-    const webp = qs.stringify(Object.assign(args, { fm: 'webp' }))
+    const jpg = qs.stringify(query)
+    const webp = qs.stringify(Object.assign(query, { fm: 'webp' }))
 
     return (
       <picture>
