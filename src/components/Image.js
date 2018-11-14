@@ -10,28 +10,23 @@ class Image extends React.Component {
   }
 
   render() {
+    const { src, alt, ...props } = this.props
+
     const args = {
-      fm: this.props.format,
-      q: this.props.quality,
-      w: this.props.width,
-      h: this.props.height
+      fm: props.format,
+      q: props.quality,
+      w: props.width,
+      h: props.height
     }
 
-    const defaultQuery = qs.stringify(args),
-      webpQuery = qs.stringify(Object.assign(args, { fm: 'webp' }))
+    const jpg = qs.stringify(args)
+    const webp = qs.stringify(Object.assign(args, { fm: 'webp' }))
 
     return (
       <picture>
-        <source type="image/webp" srcSet={`${this.props.src}?${webpQuery}`} />
-        <source
-          type="image/jpeg"
-          srcSet={`${this.props.src}?${defaultQuery}`}
-        />
-        <img
-          className="image"
-          src={`${this.props.src}?${defaultQuery}`}
-          alt={this.props.alt}
-        />
+        <source type="image/webp" srcSet={`${src}?${webp}`} />
+        <source type="image/jpeg" srcSet={`${src}?${jpg}`} />
+        <img className="image" src={`${src}?${jpg}`} alt={alt} />
       </picture>
     )
   }
