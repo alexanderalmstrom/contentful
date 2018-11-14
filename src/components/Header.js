@@ -6,10 +6,10 @@ import './Header.scss'
 class Header extends React.Component {
   render() {
     return (
-      <header className="main-header">
+      <header className="site-header">
         <div className="container">
-          <h1 className="main-brand">
-            <Link className="main-brand-link" to="/">
+          <h1 className="site-brand">
+            <Link className="site-brand-link" to="/">
               Contentful
             </Link>
           </h1>

@@ -5,7 +5,7 @@ import './Footer.scss'
 class Footer extends React.Component {
   render() {
     return (
-      <footer className="main-footer">
+      <footer className="site-footer">
         <small>&copy; Copyright 2018</small>
       </footer>
     )
