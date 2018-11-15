@@ -17,7 +17,7 @@ class Card extends React.Component {
             <Image
               src={entry.fields.image.fields.file.url}
               alt={entry.fields.image.fields.title}
-              width={640}
+              width={680}
             />
           </div>
           <div className="card-content">

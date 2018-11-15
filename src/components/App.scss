@@ -18,6 +18,10 @@ body {
   line-height: 1.3;
   background-color: $light-gray;
   color: $black;
+
+  @include media(sm) {
+    font-size: 1.8rem;
+  }
 }
 
 img {
@@ -35,7 +39,7 @@ h4,
 h5,
 h6 {
   margin: 0 0 2rem 0;
-  line-height: 1.1;
+  line-height: 1;
   font-weight: normal;
 }
 
