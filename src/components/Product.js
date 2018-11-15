@@ -31,6 +31,7 @@ class Product extends React.Component {
               <Image
                 src={entry.fields.image.fields.file.url}
                 alt={entry.fields.image.fields.title}
+                width={800}
               />
             </div>
             <div className="product-content">
