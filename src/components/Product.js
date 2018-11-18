@@ -5,6 +5,7 @@ import { connectComponent } from '../connect'
 
 import Loading from './Loading'
 import Image from './Image'
+import Products from './Products'
 
 import './Product.scss'
 
@@ -15,13 +16,21 @@ class Product extends React.Component {
 
   componentDidMount() {
     const { slug } = this.props.match.params
+    
+    if (!this.props.products.entries.length) {
+      this.props.loadProducts()
+    }
+  }
 
-    this.props.loadProduct(slug)
+  componentDidUpdate() {
+    window.scrollTo(0, 0)
   }
 
   render() {
     const { slug } = this.props.match.params
-    const entry = this.props.product.entry[slug]
+    const entry = this.props.products.entries[slug]
+
+    console.log(this.props.products)
 
     return (
       <div className="container">
@@ -41,6 +50,12 @@ class Product extends React.Component {
               </div>
               <p className="product-description">{entry.fields.description}</p>
             </div>
+            { entry.fields.related ? (
+              <div className="related-products">
+                <h3 className="related-products-title">Related products</h3>
+                <Products products={entry.fields.related} />
+              </div>
+            ) : null }
           </div>
         ) : (
           <Loading />
@@ -52,8 +67,7 @@ class Product extends React.Component {
 
 Product.propTypes = {
   app: PropTypes.object,
-  product: PropTypes.object,
-  loadProduct: PropTypes.func
+  product: PropTypes.object
 }
 
 export default connectComponent(Product)

@@ -8,3 +8,53 @@
   flex-wrap: wrap;
   width: 100%;
 }
+
+.related-products-title {
+  @include column(12);
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  text-align: center;
+  font-size: 3rem;
+
+  @include media(sm) {
+    font-size: 4rem;
+  }
+
+  @include media(md) {
+    font-size: 5rem;
+  }
+}
+
+.related-products {
+  .card {
+    @include column(6);
+    
+    @include media(md) {
+      @include column(4);
+    }
+
+    .card-content {
+      margin-top: -1rem;
+      margin-left: 1rem;
+      margin-right: 1rem;
+      
+      @include media(sm) {
+        margin-top: -2rem;
+        margin-left: 2rem;
+        margin-right: 2rem;
+      }
+    }
+
+    h2 {
+      font-size: 2rem;
+
+      @include media(sm) {
+        font-size: 3rem;
+      }
+
+      @include media(md) {
+        font-size: 4rem;
+      }
+    }
+  }
+}

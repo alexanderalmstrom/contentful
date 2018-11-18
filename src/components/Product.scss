@@ -12,11 +12,10 @@
 .product-image,
 .product-content {
   @include column(12);
+  margin-bottom: 2rem;
 }
 
 .product-image {
-  margin-bottom: 2rem;
-
   @include media(sm) {
     @include column(6);
   }
@@ -31,9 +30,6 @@
 }
 
 .product-content {
-  @include gutter($grid-gutter * 2);
-  margin-top: -$grid-gutter * 2.25;
-
   @include media(sm) {
     @include column(6);
     margin-top: $grid-gutter;

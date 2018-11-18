@@ -16,13 +16,19 @@
 
   .container {
     max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+
+    @include media(sm) {
+      padding-left: $grid-gutter;
+      padding-right: $grid-gutter;
+    }
   }
 }
 
 .site-brand {
   @include column(12);
   margin-bottom: 0;
-  margin-left: $grid-gutter;
   font-size: 2rem;
 
   @include media(sm) {

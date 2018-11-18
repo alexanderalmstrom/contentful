@@ -30,6 +30,7 @@
 
 .card-content {
   margin-left: $grid-gutter;
+  margin-right: $grid-gutter;
   margin-top: -2rem;
 
   @include media(sm) {
