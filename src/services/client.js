@@ -1,16 +1,15 @@
 import { createClient } from 'contentful'
 import qs from 'query-string'
 
-let config = {}
 let client
 let auth
 let preview
 let query
 
 export function initClient() {
-  if (process.env.CONTENTFUL_SPACE_ID && process.env.CONTENTFUL_ACCESS_TOKEN) {
-    config.space = process.env.CONTENTFUL_SPACE_ID
-    config.accessToken = process.env.CONTENTFUL_ACCESS_TOKEN
+  const config = {
+    space: process.env.CONTENTFUL_SPACE_ID,
+    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
   }
 
   if (isPreview()) {
