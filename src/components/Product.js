@@ -15,7 +15,6 @@ class Product extends React.Component {
     super(props)
 
     this.state = {
-      available: true,
       message: null
     }
   }
@@ -35,13 +34,11 @@ class Product extends React.Component {
 
     if (this.props.management.authState == 'success') {
       increaseProductStock(id, 1).then(response => {
-        if (response && response.success) {
+        console.log(response)
+
+        if (response && response.message) {
           this.setState({
-            message: "Product added to cart."
-          })
-        } else {
-          this.setState({
-            message: "Product is out of stock."
+            message: response.message
           })
         }
       })

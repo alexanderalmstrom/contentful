@@ -7,30 +7,36 @@ export function increaseProductStock(id, amount) {
     .then(environment => environment.getEntry(id))
     .then(entry => {
       let stock
+      let hasStock
 
       if (!entry) {
-        throw new Error(`Failed to get product.`)
+        throw new Error(`Failed to get entry.`)
       }
 
-      if (entry.fields && entry.fields.stock) {
-        stock = entry.fields.stock[locale]
-      } else {
-        throw new Error(`Could not find product stock for id ${entry.sys.id}`)
+      if (!entry.fields) {
+        throw new Error(`Failed to get fields.`) 
       }
 
-      stock = parseInt(stock)
-
-      if (stock < 1) {
-        return {
-          success: false
-        }
+      if (entry.fields.stock) {
+        stock = parseInt(entry.fields.stock[locale])
+        hasStock = stock > 0 ? true : false
       } else {
+        hasStock = false
+      }
+
+      if (hasStock) { 
         stock = stock - amount
         entry.fields.stock[locale] = stock
         entry.update()
 
         return {
-          success: true
+          error: false,
+          message: "Product added to cart."
+        }
+      } else {
+        return {
+          error: true,
+          message: "Out of stock."
         }
       }
     })
