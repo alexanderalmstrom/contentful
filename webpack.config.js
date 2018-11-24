@@ -102,7 +102,8 @@ if (env == 'production') {
         CONTENTFUL_ACCESS_TOKEN: JSON.stringify(process.env.CONTENTFUL_ACCESS_TOKEN),
         CONTENTFUL_PREVIEW_ACCESS_TOKEN: JSON.stringify(process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN),
         CONTENTFUL_PREVIEW: JSON.stringify(process.env.CONTENTFUL_PREVIEW),
-        CONTENTFUL_ENVIRONMENT: JSON.stringify(process.env.CONTENTFUL_ENVIRONMENT)
+        CONTENTFUL_ENVIRONMENT: JSON.stringify(process.env.CONTENTFUL_ENVIRONMENT),
+        CONTENTFUL_MANAGEMENT_TOKEN: JSON.stringify(process.env.CONTENTFUL_MANAGEMENT_TOKEN)
       }
     }),
     new CleanWebpackPlugin('build'),
