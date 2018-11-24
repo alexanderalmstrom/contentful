@@ -74,9 +74,6 @@ class Product extends React.Component {
               { this.state.message ? (
                 <p>{this.state.message}</p>
               ) : null }
-              { !this.state.available ? (
-                <p>Product is out of stock.</p>
-              ) : null }
             </div>
             { entry.fields.related ? (
               <div className="related-products">

@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack-serve",
-    "build": "webpack",
+    "build": "webpack -p",
     "server": "node server.js",
     "format": "prettier --write \"src/**/*.{js,scss,json,md}\"",
     "deploy": "git push heroku master",
