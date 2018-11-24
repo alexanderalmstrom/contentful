@@ -2,21 +2,21 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { connectComponent } from '../connect'
+import { increaseProductStock } from '../services/product'
 
 import Loading from './Loading'
 import Image from './Image'
 import Products from './Products'
 
 import './Product.scss'
-import { getEnvironment } from '../services/management'
 
 class Product extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      locale: 'en-US',
-      available: true
+      available: true,
+      message: null
     }
   }
 
@@ -26,41 +26,25 @@ class Product extends React.Component {
     }
   }
 
-  componentDidUpdate() {
-    window.scrollTo(0, 0)
-  }
-
-  addToCart (e, id) {
+  addToCart (id, e) {
     e.preventDefault()
+    
+    this.setState({
+      message: null
+    })
 
     if (this.props.management.authState == 'success') {
-      getEnvironment()
-        .then(environment => environment.getEntry(id))
-        .then(entry => {
-          let stock
-
-          if (!entry.fields.stock) {
-            entry.fields.stock = {}
-            entry.fields.stock[this.state.locale] = 0
-            entry.update()
-            throw new Error('Product out of stock.')
-          } else {
-            stock = entry.fields.stock[this.state.locale]
-          }
-
-          stock = parseInt(stock)
-
-          if (stock < 1) {
-            this.setState({
-              available: false
-            })
-          } else {
-            stock--
-            entry.fields.stock[this.state.locale] = stock
-            entry.update()
-          }
-        })
-        .catch(console.error)
+      increaseProductStock(id, 1).then(response => {
+        if (response && response.success) {
+          this.setState({
+            message: "Product added to cart."
+          })
+        } else {
+          this.setState({
+            message: "Product is out of stock."
+          })
+        }
+      })
     }
   }
 
@@ -87,9 +71,12 @@ class Product extends React.Component {
               <p className="product-description">{entry.fields.description}</p>
               <button
                 className="product-btn"
-                onClick={(e) => this.addToCart(e, entry.sys.id) }>
+                onClick={this.addToCart.bind(this, entry.sys.id)}>
                 Add to cart
               </button>
+              { this.state.message ? (
+                <p>{this.state.message}</p>
+              ) : null }
               { !this.state.available ? (
                 <p>Product is out of stock.</p>
               ) : null }

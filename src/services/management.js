@@ -4,6 +4,10 @@ let client
 let auth
 let space
 
+export function getLocale () {
+  return 'en-US'
+}
+
 export function initManagement () {
   client = createClient({
     accessToken: process.env.CONTENTFUL_MANAGEMENT_TOKEN
