@@ -1,13 +1,13 @@
 import * as entryService from '../services/entry'
 
-export function setAppClientState(authState) {
+export function setAppContentfulState(authState) {
   return {
-    type: 'LOADED_CLIENT',
+    type: 'LOADED_CONTENTFUL',
     authState
   }
 }
 
-export function setManagementState(authState) {
+export function setAppManagementState(authState) {
   return {
     type: 'LOADED_MANAGEMENT',
     authState

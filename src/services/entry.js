@@ -1,4 +1,4 @@
-import { getClient } from './client'
+import { getClient } from './contentful'
 
 export function getEntries(content_type) {
   return getClient()

@@ -8,7 +8,7 @@ export function getLocale() {
   return 'en-US'
 }
 
-export function initManagement() {
+export function initClient() {
   client = createClient({
     accessToken: process.env.CONTENTFUL_MANAGEMENT_TOKEN
   })

@@ -1,9 +1,9 @@
 import { makeReducer } from './util'
 
-export const app = makeReducer(
+export const contentful = makeReducer(
   function(action) {
     switch (action.type) {
-      case 'LOADED_CLIENT':
+      case 'LOADED_CONTENTFUL':
         return { authState: action.authState }
     }
   },

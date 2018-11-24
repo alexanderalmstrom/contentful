@@ -34,8 +34,6 @@ class Product extends React.Component {
 
     if (this.props.management.authState == 'success') {
       increaseProductStock(id, 1).then(response => {
-        console.log(response)
-
         if (response && response.message) {
           this.setState({
             message: response.message

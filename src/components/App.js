@@ -2,8 +2,8 @@ import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import { connectComponent } from '../connect'
-import { initClient } from '../services/client'
-import { initManagement } from '../services/management'
+import  * as contentfulService from '../services/contentful'
+import * as managementService from '../services/management'
 
 import Products from './Products'
 import Product from './Product'
@@ -19,14 +19,14 @@ class App extends React.Component {
   }
 
   componentWillMount() {
-    initClient().then(
-      () => this.props.setAppClientState('success'),
-      () => this.props.setAppClientState('error')
+    contentfulService.initClient().then(
+      () => this.props.setAppContentfulState('success'),
+      () => this.props.setAppContentfulState('error')
     )
 
-    initManagement().then(
-      () => this.props.setManagementState('success'),
-      () => this.props.setManagementState('error')
+    managementService.initClient().then(
+      () => this.props.setAppManagementState('success'),
+      () => this.props.setAppManagementState('error')
     )
   }
 
@@ -34,7 +34,7 @@ class App extends React.Component {
     return (
       <div className="app">
         {(() => {
-          if (this.props.app.authState == 'success') {
+          if (this.props.contentful.authState == 'success') {
             return (
               <Router>
                 <Layout>

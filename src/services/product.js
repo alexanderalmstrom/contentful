@@ -10,11 +10,11 @@ export function increaseProductStock(id, amount) {
       let hasStock
 
       if (!entry) {
-        throw new Error(`Failed to get entry.`)
+        throw new Error('Failed to get entry.')
       }
 
       if (!entry.fields) {
-        throw new Error(`Failed to get fields.`)
+        throw new Error('Failed to get fields.')
       }
 
       if (entry.fields.stock) {
