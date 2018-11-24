@@ -14,9 +14,7 @@ class Product extends React.Component {
     super(props)
   }
 
-  componentDidMount() {
-    const { slug } = this.props.match.params
-    
+  componentDidMount() {    
     if (!this.props.products.entries.length) {
       this.props.loadProducts()
     }
@@ -27,10 +25,8 @@ class Product extends React.Component {
   }
 
   render() {
-    const { slug } = this.props.match.params
-    const entry = this.props.products.entries[slug]
-
-    console.log(this.props.products)
+    const { match, products } = this.props
+    const entry = products.entries[match.params.slug]
 
     return (
       <div className="container">
@@ -66,8 +62,7 @@ class Product extends React.Component {
 }
 
 Product.propTypes = {
-  app: PropTypes.object,
-  product: PropTypes.object
+  app: PropTypes.object
 }
 
 export default connectComponent(Product)

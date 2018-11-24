@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 import { connectComponent } from '../connect'
 
 import Image from './Image'
-import Product from './Product'
 
 import './Card.scss'
 
