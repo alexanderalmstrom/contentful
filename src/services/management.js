@@ -10,10 +10,10 @@ export function getLocale () {
 
 export function initManagement () {
   client = createClient({
-    accessToken: process.env.CONTENTFUL_MANAGEMENT_TOKEN
+    accessToken: CONTENTFUL_MANAGEMENT_TOKEN
   })
 
-  space = client.getSpace(process.env.CONTENTFUL_SPACE_ID).then(space => {
+  space = client.getSpace(CONTENTFUL_SPACE_ID).then(space => {
     auth = true
     return space
   })
@@ -22,7 +22,7 @@ export function initManagement () {
 }
 
 export function getEnvironment () {
-  return space.then(space => space.getEnvironment(process.env.CONTENTFUL_ENVIRONMENT))
+  return space.then(space => space.getEnvironment(CONTENTFUL_ENVIRONMENT))
 }
 
 export function getClient () {

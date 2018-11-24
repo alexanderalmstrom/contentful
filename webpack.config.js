@@ -96,15 +96,13 @@ if (env == 'production') {
 
   config.plugins.push(
     new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify(env),
-        CONTENTFUL_SPACE_ID: JSON.stringify(process.env.CONTENTFUL_SPACE),
-        CONTENTFUL_ACCESS_TOKEN: JSON.stringify(process.env.CONTENTFUL_ACCESS_TOKEN),
-        CONTENTFUL_PREVIEW_ACCESS_TOKEN: JSON.stringify(process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN),
-        CONTENTFUL_PREVIEW: JSON.stringify(process.env.CONTENTFUL_PREVIEW),
-        CONTENTFUL_ENVIRONMENT: JSON.stringify(process.env.CONTENTFUL_ENVIRONMENT),
-        CONTENTFUL_MANAGEMENT_TOKEN: JSON.stringify(process.env.CONTENTFUL_MANAGEMENT_TOKEN)
-      }
+      'process.env.NODE_ENV': JSON.stringify(env),
+      CONTENTFUL_SPACE_ID: JSON.stringify(process.env.CONTENTFUL_SPACE),
+      CONTENTFUL_ACCESS_TOKEN: JSON.stringify(process.env.CONTENTFUL_ACCESS_TOKEN),
+      CONTENTFUL_PREVIEW_ACCESS_TOKEN: JSON.stringify(process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN),
+      CONTENTFUL_PREVIEW: JSON.stringify(process.env.CONTENTFUL_PREVIEW),
+      CONTENTFUL_ENVIRONMENT: JSON.stringify(process.env.CONTENTFUL_ENVIRONMENT),
+      CONTENTFUL_MANAGEMENT_TOKEN: JSON.stringify(process.env.CONTENTFUL_MANAGEMENT_TOKEN)
     }),
     new CleanWebpackPlugin('build'),
     new CopyWebpackPlugin([

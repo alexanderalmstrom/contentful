@@ -8,22 +8,22 @@ let preview
 let query
 
 export function initClient() {
-  if (process.env.CONTENTFUL_SPACE_ID && process.env.CONTENTFUL_ACCESS_TOKEN) {
-    config.space =  process.env.CONTENTFUL_SPACE_ID
-    config.accessToken = process.env.CONTENTFUL_ACCESS_TOKEN
+  if (CONTENTFUL_SPACE_ID && CONTENTFUL_ACCESS_TOKEN) {
+    config.space = CONTENTFUL_SPACE_ID
+    config.accessToken = CONTENTFUL_ACCESS_TOKEN
   } else {
     throw new Error('Contentful space id and access token is required in .env')
   }
 
   if (isPreview()) {
-    config.accessToken = process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN
+    config.accessToken = CONTENTFUL_PREVIEW_ACCESS_TOKEN
     config.host = 'preview.contentful.com'
   } else {
     config.host = 'cdn.contentful.com'
   }
 
-  if (process.env.CONTENTFUL_ENVIRONMENT) {
-    config.environment = process.env.CONTENTFUL_ENVIRONMENT
+  if (CONTENTFUL_ENVIRONMENT) {
+    config.environment = CONTENTFUL_ENVIRONMENT
   }
 
   client = createClient(config)
@@ -39,11 +39,11 @@ export function getClient() {
 }
 
 export function isPreview() {
-  if  (!process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN) {
+  if  (!CONTENTFUL_PREVIEW_ACCESS_TOKEN) {
     preview = false
   }
 
-  if  (process.env.NODE_ENV == 'development' || process.env.CONTENTFUL_PREVIEW == 'true') {
+  if  (process.env.NODE_ENV == 'development' || CONTENTFUL_PREVIEW == 'true') {
     preview = true
   }
 
