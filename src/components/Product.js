@@ -25,9 +25,9 @@ class Product extends React.Component {
     }
   }
 
-  addToCart (id, e) {
+  addToCart(id, e) {
     e.preventDefault()
-    
+
     this.setState({
       message: null
     })
@@ -71,16 +71,14 @@ class Product extends React.Component {
                 onClick={this.addToCart.bind(this, entry.sys.id)}>
                 Add to cart
               </button>
-              { this.state.message ? (
-                <p>{this.state.message}</p>
-              ) : null }
+              {this.state.message ? <p>{this.state.message}</p> : null}
             </div>
-            { entry.fields.related ? (
+            {entry.fields.related ? (
               <div className="related-products">
                 <h3 className="related-products-title">Related products</h3>
                 <Products products={entry.fields.related} />
               </div>
-            ) : null }
+            ) : null}
           </div>
         ) : (
           <Loading />

@@ -14,7 +14,7 @@ export function increaseProductStock(id, amount) {
       }
 
       if (!entry.fields) {
-        throw new Error(`Failed to get fields.`) 
+        throw new Error(`Failed to get fields.`)
       }
 
       if (entry.fields.stock) {
@@ -24,19 +24,19 @@ export function increaseProductStock(id, amount) {
         hasStock = false
       }
 
-      if (hasStock) { 
+      if (hasStock) {
         stock = stock - amount
         entry.fields.stock[locale] = stock
         entry.update()
 
         return {
           error: false,
-          message: "Product added to cart."
+          message: 'Product added to cart.'
         }
       } else {
         return {
           error: true,
-          message: "Out of stock."
+          message: 'Out of stock.'
         }
       }
     })
