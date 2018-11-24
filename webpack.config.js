@@ -17,7 +17,9 @@ const env = process.env.WEBPACK_SERVE ? 'development' : 'production'
 const config = {
   mode: env,
 
-  entry: './src/main.js',
+  entry: {
+    main: './src/main.js'
+  },
 
   output: {
     filename: '[name].js',
@@ -44,9 +46,6 @@ const config = {
         use: {
           loader: 'babel-loader',
           options: {
-            babelrc: false,
-            presets: ["@babel/preset-env", "@babel/preset-react"],
-            plugins: ["react-hot-loader/babel"],
             cacheDirectory: true
           }
         }
@@ -76,6 +75,15 @@ const config = {
   },
 
   optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all'
+        }
+      }
+    },
     minimizer: [
       new UglifyJsPlugin({
         cache: true,
@@ -112,8 +120,7 @@ if (env == 'production') {
       }
     ]),
     new MiniCssExtractPlugin({
-      filename: '[name].[contenthash].css',
-      chunkFilename: '[id].[contenthash].css'
+      filename: '[name].[contenthash].css'
     }),
     new ManifestPlugin({
       basePath: '/',

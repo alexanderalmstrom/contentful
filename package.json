@@ -9,6 +9,7 @@
     "build": "webpack",
     "server": "node server.js",
     "format": "prettier --write \"src/**/*.{js,scss,json,md}\"",
+    "stats": "webpack --profile --json > stats.json",
     "deploy": "git push heroku master",
     "heroku-postbuild": "yarn run build"
   },
