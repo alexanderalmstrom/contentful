@@ -7,6 +7,13 @@ export function setAppClientState(authState) {
   }
 }
 
+export function setManagementState(authState) {
+  return {
+    type: 'LOADED_MANAGEMENT',
+    authState
+  }
+}
+
 export function loadProducts() {
   return {
     type: 'LOAD_PRODUCTS',

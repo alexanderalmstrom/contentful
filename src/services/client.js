@@ -3,13 +3,13 @@ import qs from 'query-string'
 
 let config = {}
 let client
-let auth = false
-let preview = false
+let auth
+let preview
 let query
 
 export function initClient() {
-  if (process.env.CONTENTFUL_SPACE && process.env.CONTENTFUL_ACCESS_TOKEN) {
-    config.space =  process.env.CONTENTFUL_SPACE
+  if (process.env.CONTENTFUL_SPACE_ID && process.env.CONTENTFUL_ACCESS_TOKEN) {
+    config.space =  process.env.CONTENTFUL_SPACE_ID
     config.accessToken = process.env.CONTENTFUL_ACCESS_TOKEN
   } else {
     throw new Error('Contentful space id and access token is required in .env')

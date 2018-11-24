@@ -65,3 +65,14 @@
     font-size: 3rem;
   }
 }
+
+.product-btn {
+  display: inline-block;
+  padding: 1.5rem 3rem;
+  font-size: 2rem;
+  border: none;
+  background-color: $black;
+  color: $white;
+  margin-bottom: 2rem;
+  cursor: pointer;
+}

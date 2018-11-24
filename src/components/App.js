@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import { connectComponent } from '../connect'
 import { initClient } from '../services/client'
+import { initManagement } from '../services/management'
 
 import Products from './Products'
 import Product from './Product'
@@ -21,6 +22,11 @@ class App extends React.Component {
     initClient().then(
       () => this.props.setAppClientState('success'),
       () => this.props.setAppClientState('error')
+    )
+
+    initManagement().then(
+      () => this.props.setManagementState('success'),
+      () => this.props.setManagementState('error')
     )
   }
 

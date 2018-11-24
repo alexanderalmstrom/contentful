@@ -8,13 +8,19 @@ import Image from './Image'
 import Products from './Products'
 
 import './Product.scss'
+import { getEnvironment } from '../services/management'
 
 class Product extends React.Component {
   constructor(props) {
     super(props)
+
+    this.state = {
+      locale: 'en-US',
+      available: true
+    }
   }
 
-  componentDidMount() {    
+  componentDidMount() {
     if (!this.props.products.entries.length) {
       this.props.loadProducts()
     }
@@ -22,6 +28,29 @@ class Product extends React.Component {
 
   componentDidUpdate() {
     window.scrollTo(0, 0)
+  }
+
+  addToCart (e, id) {
+    e.preventDefault()
+
+    if (this.props.management.authState == 'success') {
+      getEnvironment()
+        .then(environment => environment.getEntry(id))
+        .then(entry => {
+          let stock = parseInt(entry.fields.stock[this.state.locale])
+
+          if (stock < 1) {
+            this.setState({
+              available: false
+            })
+          } else {
+            stock--
+            entry.fields.stock[this.state.locale] = stock
+            entry.update()
+          }
+        })
+        .catch(console.error)
+    }
   }
 
   render() {
@@ -45,6 +74,14 @@ class Product extends React.Component {
                 {entry.fields.price} {entry.fields.currency}
               </div>
               <p className="product-description">{entry.fields.description}</p>
+              <button
+                className="product-btn"
+                onClick={(e) => this.addToCart(e, entry.sys.id) }>
+                Add to cart
+              </button>
+              { !this.state.available ? (
+                <p>Product is out of stock.</p>
+              ) : null }
             </div>
             { entry.fields.related ? (
               <div className="related-products">
