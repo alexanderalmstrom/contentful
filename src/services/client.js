@@ -39,16 +39,21 @@ export function getClient() {
 }
 
 export function isPreview() {
-  if  (!process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN) return
+  if  (!process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN) {
+    preview = false
+  }
 
-  if  (process.env.NODE_ENV == 'development' || process.env.CONTENTFUL_PREVIEW == 'true')
+  if  (process.env.NODE_ENV == 'development' || process.env.CONTENTFUL_PREVIEW == 'true') {
     preview = true
+  }
 
-  if (location.search)
+  if (location.search) {
     query = qs.parse(location.search)
+  }
 
-  if (query && query.preview)
+  if (query && query.preview) {
     preview = true
+  }
 
   return preview
 }
