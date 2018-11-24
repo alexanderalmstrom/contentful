@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import { connectComponent } from '../connect'
-import  * as contentfulService from '../services/contentful'
+import * as contentfulService from '../services/contentful'
 import * as managementService from '../services/management'
 
 import Products from './Products'
@@ -19,15 +19,19 @@ class App extends React.Component {
   }
 
   componentWillMount() {
-    contentfulService.initClient().then(
-      () => this.props.setAppContentfulState('success'),
-      () => this.props.setAppContentfulState('error')
-    )
+    contentfulService
+      .initClient()
+      .then(
+        () => this.props.setAppContentfulState('success'),
+        () => this.props.setAppContentfulState('error')
+      )
 
-    managementService.initClient().then(
-      () => this.props.setAppManagementState('success'),
-      () => this.props.setAppManagementState('error')
-    )
+    managementService
+      .initClient()
+      .then(
+        () => this.props.setAppManagementState('success'),
+        () => this.props.setAppManagementState('error')
+      )
   }
 
   render() {

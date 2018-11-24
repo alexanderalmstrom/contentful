@@ -1,13 +1,13 @@
 import { createClient } from 'contentful'
 import qs from 'query-string'
 
-let config = {}
 let client
 let auth
-let preview
 let query
 
 export function initClient() {
+  const config = {}
+
   if (process.env.CONTENTFUL_SPACE_ID && process.env.CONTENTFUL_ACCESS_TOKEN) {
     config.space = process.env.CONTENTFUL_SPACE_ID
     config.accessToken = process.env.CONTENTFUL_ACCESS_TOKEN
@@ -39,24 +39,17 @@ export function getClient() {
 }
 
 export function isPreview() {
-  if (!process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN) {
-    preview = false
-  }
+  let preview = false
 
-  if (
-    process.env.NODE_ENV == 'development' ||
-    process.env.CONTENTFUL_PREVIEW == 'true'
-  ) {
-    preview = true
-  }
+  if (!process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN) return
 
-  if (location.search) {
-    query = qs.parse(location.search)
-  }
+  if (process.env.NODE_ENV == 'development') preview = true
 
-  if (query && query.preview) {
-    preview = true
-  }
+  if (process.env.CONTENTFUL_PREVIEW == 'true') preview = true
+
+  if (location.search) query = qs.parse(location.search)
+
+  if (query && query.preview) preview = true
 
   return preview
 }
