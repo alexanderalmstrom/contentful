@@ -37,7 +37,18 @@ class Product extends React.Component {
       getEnvironment()
         .then(environment => environment.getEntry(id))
         .then(entry => {
-          let stock = parseInt(entry.fields.stock[this.state.locale])
+          let stock
+
+          if (!entry.fields.stock) {
+            entry.fields.stock = {}
+            entry.fields.stock[this.state.locale] = 0
+            entry.update()
+            throw new Error('Product out of stock.')
+          } else {
+            stock = entry.fields.stock[this.state.locale]
+          }
+
+          stock = parseInt(stock)
 
           if (stock < 1) {
             this.setState({
