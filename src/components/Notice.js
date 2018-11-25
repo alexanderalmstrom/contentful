@@ -5,7 +5,7 @@ import './Notice.scss'
 
 class Notice extends React.Component {
   render() {
-    return <div className="error">{this.props.message}</div>
+    return <div className="notice">{this.props.message}</div>
   }
 }
 
