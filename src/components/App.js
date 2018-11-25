@@ -5,6 +5,9 @@ import { connectComponent } from '../connect'
 import * as contentfulService from '../services/contentful'
 import * as managementService from '../services/management'
 
+import Loading from './Loading'
+import Notice from './Notice'
+
 import Products from './Products'
 import Product from './Product'
 import NotFound from './NotFound'
@@ -37,21 +40,23 @@ class App extends React.Component {
   render() {
     return (
       <div className="app">
-        {(() => {
-          if (this.props.contentful.authState == 'success') {
-            return (
-              <Router>
-                <Layout>
-                  <Switch>
-                    <Route exact path="/" component={Products} />
-                    <Route path="/product/:slug" component={Product} />
-                    <Route path="*" component={NotFound} />
-                  </Switch>
-                </Layout>
-              </Router>
-            )
-          }
-        })()}
+        { this.props.contentful.authState == 'error' ? (
+          <Notice message="Error when establishing connection with Contentful" />
+        ) : null }
+        { this.props.contentful.authState == 'success' ? (
+          <Router>
+            <Layout>
+              <Switch>
+                <Route exact path="/" component={Products} />
+                <Route path="/product/:slug" component={Product} />
+                <Route path="*" component={NotFound} />
+              </Switch>
+            </Layout>
+          </Router>
+        ) : null }
+        { this.props.contentful.authState == 'loading' ? (
+          <Loading />
+        ) : null }
       </div>
     )
   }
