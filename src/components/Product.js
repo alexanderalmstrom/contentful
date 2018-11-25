@@ -6,7 +6,6 @@ import { increaseProductStock } from '../services/product'
 
 import Loading from './Loading'
 import Image from './Image'
-import Related from './Related'
 
 import './Product.scss'
 
@@ -71,9 +70,6 @@ class Product extends React.Component {
               </button>
               {this.state.message ? <p>{this.state.message}</p> : null}
             </div>
-            {entry.fields.related ? (
-              <Related related={entry.fields.related} />
-            ) : null}
           </div>
         ) : (
           <Loading />
