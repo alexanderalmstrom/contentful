@@ -26,6 +26,10 @@
 }
 
 .related-products {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+
   .card {
     @include column(6);
 

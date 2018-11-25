@@ -6,7 +6,7 @@ import { increaseProductStock } from '../services/product'
 
 import Loading from './Loading'
 import Image from './Image'
-import Products from './Products'
+import Related from './Related'
 
 import './Product.scss'
 
@@ -72,10 +72,7 @@ class Product extends React.Component {
               {this.state.message ? <p>{this.state.message}</p> : null}
             </div>
             {entry.fields.related ? (
-              <div className="related-products">
-                <h3 className="related-products-title">Related products</h3>
-                <Products products={entry.fields.related} />
-              </div>
+              <Related related={entry.fields.related} />
             ) : null}
           </div>
         ) : (
