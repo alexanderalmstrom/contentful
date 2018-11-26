@@ -5,7 +5,7 @@ import { createLogger } from 'redux-logger'
 
 import reducers from './reducers/index'
 
-export default function configureStore () {
+export function configureStore () {
     const middleware = applyMiddleware(
       promiseMiddleware(),
       thunk,
