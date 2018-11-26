@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { connectComponent } from '../connect'
-import { increaseProductStock } from '../services/product'
+import * as productService from  '../services/product'
 
 import Loading from './Loading'
 import Image from './Image'
@@ -30,7 +30,7 @@ class Product extends React.Component {
     this.setState({ message: null })
 
     if (this.props.management.authState == 'success') {
-      increaseProductStock(id, 1).then(response => {
+      productService.addToCart(id, 1).then(response => {
         if (response && response.message) {
           this.setState({ message: response.message })
         }

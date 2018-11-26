@@ -1,13 +1,13 @@
 import { getLocale, getEnvironment } from './management'
 
-export function increaseProductStock(id, amount) {
+export function addToCart(productId, productCount) {
   const locale = getLocale()
 
   return getEnvironment()
-    .then(environment => environment.getEntry(id))
+    .then(environment => environment.getEntry(productId))
     .then(entry => {
-      let stock
-      let hasStock
+      let stockCount,
+          isInStock
 
       if (!entry) {
         throw new Error('Failed to get entry.')
@@ -18,15 +18,15 @@ export function increaseProductStock(id, amount) {
       }
 
       if (entry.fields.stock) {
-        stock = parseInt(entry.fields.stock[locale])
-        hasStock = stock > 0 ? true : false
+        stockCount = parseInt(entry.fields.stock[locale])
+        isInStock = stockCount > 0 ? true : false
       } else {
-        hasStock = false
+        isInStock = false
       }
 
-      if (hasStock) {
-        stock = stock - amount
-        entry.fields.stock[locale] = stock
+      if (isInStock) {
+        stockCount = stockCount - productCount
+        entry.fields.stock[locale] = stockCount
         entry.update()
 
         return {
