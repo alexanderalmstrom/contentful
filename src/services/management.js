@@ -9,6 +9,9 @@ export function getLocale() {
 }
 
 export function initClient() {
+  if (!process.env.CONTENTFUL_MANAGEMENT_TOKEN)
+    throw new Error('Contentful management token is required in .env')
+
   client = createClient({
     accessToken: process.env.CONTENTFUL_MANAGEMENT_TOKEN
   })
@@ -22,8 +25,10 @@ export function initClient() {
 }
 
 export function getEnvironment() {
+  const env = process.env.CONTENTFUL_ENVIRONMENT ? process.env.CONTENTFUL_ENVIRONMENT : 'master'
+
   return space.then(space =>
-    space.getEnvironment(process.env.CONTENTFUL_ENVIRONMENT)
+    space.getEnvironment(env)
   )
 }
 

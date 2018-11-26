@@ -27,16 +27,12 @@ class Product extends React.Component {
   addToCart(id, e) {
     e.preventDefault()
 
-    this.setState({
-      message: null
-    })
+    this.setState({ message: null })
 
     if (this.props.management.authState == 'success') {
       increaseProductStock(id, 1).then(response => {
         if (response && response.message) {
-          this.setState({
-            message: response.message
-          })
+          this.setState({ message: response.message })
         }
       })
     }
