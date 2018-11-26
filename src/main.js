@@ -3,22 +3,43 @@ import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import promiseMiddleware from 'redux-promise-middleware'
 import thunk from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 
-import reducers from './reducers'
+import reducers from './reducers/index'
 
-const store = applyMiddleware(promiseMiddleware(), thunk, createLogger())(
-  createStore
-)
+export default function configureStore (initialState) {
+  const middleware = applyMiddleware(
+    promiseMiddleware(),
+    thunk,
+    createLogger()
+  )
+
+  const enhancer = compose(middleware)
+  
+  const store = createStore(
+    reducers,
+    enhancer
+  )
+
+  if (module.hot) {
+    // Enable Webpack hot module replacement for reducers
+    module.hot.accept('./reducers', () => {
+      const nextRootReducer = require('./reducers/index')
+      store.replaceReducer(nextRootReducer)
+    })
+  }
+
+  return store
+}
 
 import App from './components/App'
 
 const render = Component => {
   ReactDOM.render(
-    <Provider store={store(reducers)}>
+    <Provider store={configureStore()}>
       <AppContainer>
         <Component />
       </AppContainer>
