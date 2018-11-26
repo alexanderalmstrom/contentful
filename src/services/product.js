@@ -30,12 +30,10 @@ export function increaseProductStock(id, amount) {
         entry.update()
 
         return {
-          error: false,
           message: 'Product added to cart.'
         }
       } else {
         return {
-          error: true,
           message: 'Out of stock.'
         }
       }
