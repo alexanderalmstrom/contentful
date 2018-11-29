@@ -24,13 +24,23 @@ class Image extends React.Component {
 
     return (
       <div>
-        { image && image.fields ? (
+        {image && image.fields ? (
           <picture>
-            <source type="image/webp" srcSet={`${image.fields.file.url}?${webp}`} />
-            <source type="image/jpeg" srcSet={`${image.fields.file.url}?${jpg}`} />
-            <img className="image" src={`${image.fields.file.url}?${jpg}`} alt={image.title} />
+            <source
+              type="image/webp"
+              srcSet={`${image.fields.file.url}?${webp}`}
+            />
+            <source
+              type="image/jpeg"
+              srcSet={`${image.fields.file.url}?${jpg}`}
+            />
+            <img
+              className="image"
+              src={`${image.fields.file.url}?${jpg}`}
+              alt={image.title}
+            />
           </picture>
-        ) : null }
+        ) : null}
       </div>
     )
   }

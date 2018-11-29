@@ -40,10 +40,10 @@ class App extends React.Component {
   render() {
     return (
       <div className="app">
-        { this.props.contentful.authState == 'error' ? (
+        {this.props.contentful.authState == 'error' ? (
           <Notice message="Error when establishing connection with Contentful" />
-        ) : null }
-        { this.props.contentful.authState == 'success' ? (
+        ) : null}
+        {this.props.contentful.authState == 'success' ? (
           <Router>
             <Layout>
               <Switch>
@@ -53,10 +53,8 @@ class App extends React.Component {
               </Switch>
             </Layout>
           </Router>
-        ) : null }
-        { this.props.contentful.authState == 'loading' ? (
-          <Loading />
-        ) : null }
+        ) : null}
+        {this.props.contentful.authState == 'loading' ? <Loading /> : null}
       </div>
     )
   }

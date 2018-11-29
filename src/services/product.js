@@ -6,8 +6,7 @@ export function addToCart(productId, productCount) {
   return getEnvironment()
     .then(environment => environment.getEntry(productId))
     .then(entry => {
-      let stockCount,
-          isInStock
+      let stockCount, isInStock
 
       if (!entry) {
         throw new Error('Failed to get entry.')

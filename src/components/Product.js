@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { connectComponent } from '../connect'
-import * as productService from  '../services/product'
+import * as productService from '../services/product'
 
 import Loading from './Loading'
 import Image from './Image'
@@ -47,12 +47,9 @@ class Product extends React.Component {
         {entry && entry.fields ? (
           <div className="product">
             <div className="product-image">
-              { entry.fields.image ? (
-                <Image
-                  image={entry.fields.image}
-                  width={800}
-                />
-              ) : null }
+              {entry.fields.image ? (
+                <Image image={entry.fields.image} width={800} />
+              ) : null}
             </div>
             <div className="product-content">
               <h2 className="product-name">{entry.fields.name}</h2>
