@@ -129,8 +129,10 @@ if (env == 'production') {
       }
     }),
     new RevPlugin({
-      layoutPath: path.resolve(__dirname, 'build', 'index.html'),
-      manifestPath: path.resolve(__dirname, 'build', 'manifest.json')
+      files: [
+        path.resolve(__dirname, 'build', 'index.html')
+      ],
+      manifest: path.resolve(__dirname, 'build', 'manifest.json')
     })
   )
 }
