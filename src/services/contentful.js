@@ -48,9 +48,11 @@ export function isPreview() {
   if (
     process.env.CONTENTFUL_PREVIEW &&
     process.env.CONTENTFUL_PREVIEW == 'true'
-  )
+  ) {
     preview = true
-  else preview = false
+  } else {
+    preview = false
+  }
 
   if (location.search) query = qs.parse(location.search)
 
