@@ -1,11 +1,11 @@
 const path = require('path')
 const fs = require('fs')
 
-function Rev (options) {
+function RevPlugin (options) {
   this.options = options
 }
 
-Rev.prototype.apply = function (compiler) {
+RevPlugin.prototype.apply = function (compiler) {
   const options = this.options
 
   if (!options.manifest)
@@ -43,4 +43,4 @@ Rev.prototype.apply = function (compiler) {
   })
 }
 
-module.exports = Rev
+module.exports = RevPlugin
