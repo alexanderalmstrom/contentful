@@ -45,7 +45,10 @@ export function isPreview() {
 
   if (process.env.NODE_ENV == 'development') preview = true
 
-  if (process.env.CONTENTFUL_PREVIEW == 'true') preview = true
+  if (process.env.CONTENTFUL_PREVIEW && process.env.CONTENTFUL_PREVIEW == 'true')
+    preview = true
+  else
+    preview = false
 
   if (location.search) query = qs.parse(location.search)
 

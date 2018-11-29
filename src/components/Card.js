@@ -16,11 +16,12 @@ class Card extends React.Component {
       <div className="card">
         <Link to={`/product/${entry.fields.slug}`} className="card-link">
           <div className="card-image">
-            <Image
-              src={entry.fields.image.fields.file.url}
-              alt={entry.fields.image.fields.title}
-              width={680}
-            />
+            { entry.fields.image ? (
+              <Image
+                image={entry.fields.image}
+                width={680}
+              />
+            ) : null }
           </div>
           <div className="card-content">
             <h2 className="card-name">{entry.fields.name}</h2>

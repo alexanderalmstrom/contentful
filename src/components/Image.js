@@ -10,7 +10,7 @@ class Image extends React.Component {
   }
 
   render() {
-    const { src, alt, ...args } = this.props
+    const { image, ...args } = this.props
 
     const query = {
       fm: args.format,
@@ -23,11 +23,15 @@ class Image extends React.Component {
     const webp = qs.stringify(Object.assign(query, { fm: 'webp' }))
 
     return (
-      <picture>
-        <source type="image/webp" srcSet={`${src}?${webp}`} />
-        <source type="image/jpeg" srcSet={`${src}?${jpg}`} />
-        <img className="image" src={`${src}?${jpg}`} alt={alt} />
-      </picture>
+      <div>
+        { image && image.fields ? (
+          <picture>
+            <source type="image/webp" srcSet={`${image.fields.file.url}?${webp}`} />
+            <source type="image/jpeg" srcSet={`${image.fields.file.url}?${jpg}`} />
+            <img className="image" src={`${image.fields.file.url}?${jpg}`} alt={image.title} />
+          </picture>
+        ) : null }
+      </div>
     )
   }
 }
@@ -35,10 +39,11 @@ class Image extends React.Component {
 Image.defaultProps = {
   format: 'jpg',
   quality: 70,
-  width: 1280
+  width: 1440
 }
 
 Image.propTypes = {
+  image: PropTypes.object.isRequired,
   format: PropTypes.string,
   quality: PropTypes.number,
   width: PropTypes.number,
