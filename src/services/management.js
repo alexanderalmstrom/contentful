@@ -24,12 +24,12 @@ export function initClient() {
   return space
 }
 
-export function getEnvironment() {
+export function getSpace() {
   const env = process.env.CONTENTFUL_ENVIRONMENT
     ? process.env.CONTENTFUL_ENVIRONMENT
     : 'master'
 
-  return space.then(space => space.getEnvironment(env))
+  return space.then(contentful => contentful.getEnvironment(env))
 }
 
 export function getClient() {

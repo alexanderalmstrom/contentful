@@ -1,10 +1,10 @@
-import { getLocale, getEnvironment } from './management'
+import { getLocale, getSpace } from './management'
 
 export function addToCart(productId, productCount) {
   const locale = getLocale()
 
-  return getEnvironment()
-    .then(environment => environment.getEntry(productId))
+  return getSpace()
+    .then(space => space.getEntry(productId))
     .then(entry => {
       let stockCount, isInStock
 
