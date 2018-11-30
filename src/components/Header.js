@@ -1,21 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import * as cartServive from '../services/cart'
+
 import './Header.scss'
 
 class Header extends React.Component {
   constructor (props) {
     super(props)
-  }
-
-  toggleCart () {
-    const body = document.querySelector('body')
-
-    if (body.classList.contains('is-cart-open')) {
-      body.classList.remove('is-cart-open')
-    } else {
-      body.classList.add('is-cart-open')
-    }
   }
 
   render() {
@@ -27,7 +19,7 @@ class Header extends React.Component {
               Contentful
             </Link>
           </div>
-          <button className="cart-btn" onClick={this.toggleCart.bind(this)}>Bag</button>
+          <button className="cart-btn" onClick={cartServive.toggleCart.bind(this)}>Bag</button>
         </div>
       </header>
     )
