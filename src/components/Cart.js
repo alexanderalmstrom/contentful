@@ -15,8 +15,6 @@ class Cart extends React.Component {
 
   componentDidMount() {
     cartService.getCart().then(items => {
-      console.log(items)
-
       this.setState({ items: items })
     })
   }
