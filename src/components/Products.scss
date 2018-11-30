@@ -7,4 +7,11 @@
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+  max-width: 110rem;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include media(lg) {
+    margin-top: 4rem;
+  }
 }

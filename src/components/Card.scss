@@ -29,30 +29,12 @@
 }
 
 .card-content {
-  margin-left: $grid-gutter;
-  margin-right: $grid-gutter;
-  margin-top: -2rem;
-
-  @include media(sm) {
-    margin-top: -2.5rem;
-  }
-
-  @include media(md) {
-    margin-top: -3.5rem;
-  }
+  margin-top: 2rem;
 }
 
 .card-name {
   margin-bottom: 1rem;
-  font-size: 3rem;
-
-  @include media(sm) {
-    font-size: 4rem;
-  }
-
-  @include media(md) {
-    font-size: 5rem;
-  }
+  font-size: inherit;
 }
 
 .card-description {
