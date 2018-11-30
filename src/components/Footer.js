@@ -4,7 +4,7 @@ import './Footer.scss'
 
 class Footer extends React.Component {
   render() {
-    return null
+    return <footer className="footer" />
   }
 }
 

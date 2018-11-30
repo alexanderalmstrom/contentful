@@ -62,12 +62,14 @@ class Product extends React.Component {
                 {entry.fields.price} {entry.fields.currency}
               </div>
               <p className="product-description">{entry.fields.description}</p>
-              <button
-                className="product-btn"
-                onClick={this.addToCart.bind(this, entry.sys.id)}>
-                Add to cart
-              </button>
-              {this.state.message ? <p>{this.state.message}</p> : null}
+              <div className="product-form">
+                <button
+                  className="product-btn"
+                  onClick={this.addToCart.bind(this, entry.sys.id)}>
+                  Add to cart
+                </button>
+                {this.state.message ? <p>{this.state.message}</p> : null}
+              </div>
             </div>
           </div>
         ) : (

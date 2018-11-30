@@ -64,13 +64,40 @@
   }
 }
 
+.product-form {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $white;
+  color: $black;
+  text-align: center;
+
+  @include media(lg) {
+    position: relative;
+    left: inherit;
+    right: inherit;
+    bottom: inherit;
+    margin-bottom: 3rem;
+    background-color: transparent;
+  }
+
+  p {
+    margin: 2rem;
+  }
+}
+
 .product-btn {
-  display: inline-block;
+  display: block;
+  width: 100%;
   padding: 2rem 4rem;
   font-size: 3rem;
   border: none;
   background-color: $black;
   color: $white;
-  margin-bottom: 2rem;
   cursor: pointer;
+
+  @include media(lg) {
+    margin-bottom: 3rem;
+  }
 }

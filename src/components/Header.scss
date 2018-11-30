@@ -3,12 +3,12 @@
 @import '../variables';
 @import '../mixins';
 
-#header {
+.header {
   position: fixed;
   width: 100%;
-  height: 8rem;
   display: flex;
   align-items: center;
+  height: 8rem;
 
   @include media(sm) {
     height: 12rem;
@@ -16,16 +16,20 @@
 
   .container {
     max-width: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: $grid-gutter;
+    padding-right: $grid-gutter;
 
     @include media(sm) {
-      padding-left: $grid-gutter;
-      padding-right: $grid-gutter;
+      padding-left: $grid-gutter * 2;
+      padding-right: $grid-gutter * 2;
     }
   }
 }
 
 .site-brand {
-  @include column(12);
+  display: inline-block;
   margin-bottom: 0;
   font-size: 2rem;
 
@@ -36,4 +40,12 @@
 
 .site-brand-link {
   text-decoration: none;
+}
+
+.cart-btn {
+  display: inline-block;
+  border: none;
+  background-color: transparent;
+  margin-left: auto;
+  font-size: 2rem;
 }

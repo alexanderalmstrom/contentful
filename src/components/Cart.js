@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 import { connectComponent } from '../connect'
 import * as cartService from '../services/cart'
 
+import './Cart.scss'
+
 class Cart extends React.Component {
   constructor(props) {
     super(props)
@@ -21,14 +23,21 @@ class Cart extends React.Component {
 
   render() {
     return (
-      <div id="cart">
+      <div className="cart">
         {this.state.items.length ? (
           <div className="cart-items">
             {this.state.items.map(item => {
-              return <div className="cart-item">{item.fields.name}</div>
+              return <div
+                key={item.sys.id}
+                className="cart-item">
+                <h3 className="cart-item-name">{item.fields.name}</h3>
+                <h3 className="cart-item-price">{item.fields.price} {item.fields.currency}</h3>
+              </div>
             })}
           </div>
-        ) : null}
+        ) : (
+          <div className="cart-empty">Your bag is empty :(</div>
+        )}
       </div>
     )
   }

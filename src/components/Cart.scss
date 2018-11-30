@@ -1,0 +1,27 @@
+// Cart.scss
+
+@import '../variables';
+@import '../mixins';
+
+.cart {
+	position: fixed;
+	top: 0;
+	left: 100%;
+	background-color: $black;
+	color: $white;
+	padding: 4rem;
+	width: 30rem;
+	height: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
+	-webkit-overflow-scrolling: touch;
+
+
+	.is-cart-open & {
+		transform: translateX(-100%);
+	}
+}
+
+.cart-empty {
+	font-size: 1.6rem;
+}
