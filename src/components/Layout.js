@@ -2,6 +2,7 @@ import React from 'react'
 
 import Header from './Header'
 import Footer from './Footer'
+import Cart from './Cart'
 
 import './Layout.scss'
 
@@ -11,6 +12,7 @@ class Layout extends React.Component {
       <div className="layout">
         <Header />
         <main className="main">{this.props.children}</main>
+        <Cart />
         <Footer />
       </div>
     )

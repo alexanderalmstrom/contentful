@@ -37,7 +37,6 @@ class Products extends React.Component {
 }
 
 Products.propTypes = {
-  app: PropTypes.object,
   products: PropTypes.object,
   loadProducts: PropTypes.func
 }

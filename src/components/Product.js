@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import { connectComponent } from '../connect'
 import * as productService from '../services/product'
+import * as cartService from '../services/cart'
 
 import Loading from './Loading'
 import Image from './Image'
@@ -31,6 +32,10 @@ class Product extends React.Component {
 
     if (this.props.management.authState == 'success') {
       productService.addToCart(id, 1).then(response => {
+        if (!response.error) {
+          cartService.setCartItem(id)
+        }
+
         if (response && response.message) {
           this.setState({ message: response.message })
         }
@@ -74,7 +79,8 @@ class Product extends React.Component {
 }
 
 Product.propTypes = {
-  app: PropTypes.object
+  products: PropTypes.object,
+  loadProducts: PropTypes.func
 }
 
 export default connectComponent(Product)

@@ -29,10 +29,12 @@ export function addToCart(productId, productCount) {
         entry.update()
 
         return {
+          error: false,
           message: 'Product added to cart.'
         }
       } else {
         return {
+          error: true,
           message: 'Out of stock.'
         }
       }
