@@ -1,4 +1,5 @@
 import * as entryService from '../services/entry'
+import * as cartService from '../services/cart'
 
 export function setAppContentfulState(authState) {
   return {
@@ -28,5 +29,12 @@ export function loadProduct(slug) {
     meta: {
       slug
     }
+  }
+}
+
+export function loadCart() {
+  return {
+    type: 'LOAD_CART',
+    payload: cartService.getCart()
   }
 }

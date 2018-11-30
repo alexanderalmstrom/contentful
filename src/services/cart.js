@@ -8,17 +8,13 @@ const State = {
   IS_CART_OPEN: 'is-cart-open'
 }
 
-let cartItems
-
 export function getCart() {
-  cartItems = getCartItems()
-
-  if (!cartItems) return
+  const items = getCartItems()
 
   return getClient()
     .getEntries({
       content_type: 'product',
-      'sys.id[in]': cartItems.join(',')
+      'sys.id[in]': items.join(',')
     })
     .then(payload => {
       return payload.items
@@ -26,9 +22,11 @@ export function getCart() {
 }
 
 export function setCartItem(item) {
-  cartItems.push(item)
+  const items = getCartItems()
 
-  localStorage.setItem('cartItems', cartItems)
+  items.push(item)
+
+  localStorage.setItem('cartItems', items)
 }
 
 export function getCartItems() {

@@ -1,37 +1,33 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { connectComponent } from '../connect'
 import * as cartService from '../services/cart'
+import { connectComponent } from '../connect'
 
 import './Cart.scss'
 
 class Cart extends React.Component {
   constructor(props) {
     super(props)
-
-    this.state = {
-      items: []
-    }
   }
 
   componentDidMount() {
-    cartService.getCart().then(items => {
-      this.setState({ items: items })
-    })
+    this.props.loadCart()
   }
 
   render() {
+    const { entries } = this.props.cart
+
     return (
       <div className="cart">
-        {this.state.items.length ? (
+        {entries ? (
           <div className="cart-items">
-            {this.state.items.map(item => {
+            {Object.keys(entries).map((id, index) => {
               return <div
-                key={item.sys.id}
+                key={entries[id].sys.id}
                 className="cart-item">
-                <h3 className="cart-item-name">{item.fields.name}</h3>
-                <h3 className="cart-item-price">{item.fields.price} {item.fields.currency}</h3>
+                <h3 className="cart-item-name">{entries[id].fields.name}</h3>
+                <h3 className="cart-item-price">{entries[id].fields.price} {entries[id].fields.currency}</h3>
               </div>
             })}
           </div>
@@ -43,4 +39,9 @@ class Cart extends React.Component {
   }
 }
 
-export default Cart
+Cart.propTypes = {
+  cart: PropTypes.object,
+  loadCart: PropTypes.func
+}
+
+export default connectComponent(Cart)
