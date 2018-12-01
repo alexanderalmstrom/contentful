@@ -70,6 +70,14 @@ a {
   }
 }
 
+button {
+  &:disabled {
+    opacity: 0.2;
+    cursor: default;
+    pointer-events: none;
+  }
+}
+
 .container {
   @include container;
   padding-left: $grid-gutter;

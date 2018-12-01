@@ -7,6 +7,7 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 15rem;
 }
 
 .product-image,
@@ -73,7 +74,7 @@
   color: $black;
   text-align: center;
 
-  @include media(lg) {
+  @include media(sm) {
     position: relative;
     left: inherit;
     right: inherit;
@@ -99,5 +100,11 @@
 
   @include media(lg) {
     margin-bottom: 3rem;
+  }
+
+  span {
+    font-size: 1.4rem;
+    display: block;
+    margin-top: 0.5rem;
   }
 }

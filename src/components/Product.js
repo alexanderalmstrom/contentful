@@ -65,8 +65,10 @@ class Product extends React.Component {
               <div className="product-form">
                 <button
                   className="product-btn"
-                  onClick={this.addToCart.bind(this, entry.sys.id)}>
-                  Add to cart
+                  onClick={this.addToCart.bind(this, entry.sys.id)}
+                  disabled={entry.fields.stock ? null : "disabled"}>
+                  {entry.fields.stock ? "Add to cart" : "Out of stock"}
+                  {entry.fields.stock ? <span>{entry.fields.stock} items left</span> : null}
                 </button>
                 {this.state.message ? <p>{this.state.message}</p> : null}
               </div>
