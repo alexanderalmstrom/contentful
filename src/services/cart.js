@@ -26,13 +26,15 @@ export function setCartItem(item) {
 
   items.push(item)
 
-  localStorage.setItem('cartItems', items)
+  localStorage.setItem('cartItems', JSON.stringify(items))
 }
 
 export function getCartItems() {
-  let items = localStorage.getItem('cartItems')
+  return localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : []
+}
 
-  return items ? [items] : []
+export function isCartOpen () {
+  return Selector.BODY.classList.contains(State.IS_CART_OPEN)
 }
 
 export function openCart () {
@@ -40,13 +42,13 @@ export function openCart () {
 }
 
 export function closeCart () {
-  Selector.BODY.classList.add(State.IS_CART_OPEN)
+  Selector.BODY.classList.remove(State.IS_CART_OPEN)
 }
 
 export function toggleCart () {
-  if (Selector.BODY.classList.contains(State.IS_CART_OPEN)) {
-    Selector.BODY.classList.remove(State.IS_CART_OPEN)
+  if (isCartOpen()) {
+    closeCart()
   } else {
-    Selector.BODY.classList.add(State.IS_CART_OPEN)
+    openCart()
   }
 }

@@ -20,14 +20,14 @@ class Cart extends React.Component {
 
     return (
       <div className="cart">
-        {entries ? (
+        {entries && entries.length ? (
           <div className="cart-items">
-            {Object.keys(entries).map((id, index) => {
+            {entries.map(item => {
               return <div
-                key={entries[id].sys.id}
+                key={item.sys.id}
                 className="cart-item">
-                <h3 className="cart-item-name">{entries[id].fields.name}</h3>
-                <h3 className="cart-item-price">{entries[id].fields.price} {entries[id].fields.currency}</h3>
+                <h3 className="cart-item-name">{item.fields.name}</h3>
+                <h3 className="cart-item-price">{item.fields.price} {item.fields.currency}</h3>
               </div>
             })}
           </div>

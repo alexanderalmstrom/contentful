@@ -11,10 +11,7 @@ export const cart = makeReducer(
       case 'LOAD_CART_FULFILLED':
         return {
           fetching: false,
-          entries: action.payload.reduce((collection, entry) => {
-            collection[entry.sys.id] = entry
-            return collection
-          }, {})
+          entries: action.payload
         }
 
       case 'LOAD_CART_REJECTED':
