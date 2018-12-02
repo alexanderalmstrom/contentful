@@ -38,7 +38,7 @@ class Cart extends React.Component {
               })}
             </div>
           ) : (
-            <div className="cart-empty">Your bag is empty :(</div>
+            <p className="cart-empty">Your bag is empty :(</p>
           )}
         </div>
         <div className="backdrop cart-backdrop" onClick={cartService.closeCart.bind(this)}></div>
