@@ -9,6 +9,7 @@
 
 html {
   font-size: 10px;
+  min-height: 100%;
 }
 
 body {
@@ -71,8 +72,15 @@ a {
 }
 
 button {
+  outline: none;
+
+  &:focus {
+    outline: none;
+  }
+
   &:disabled {
-    opacity: 0.2;
+    background-color: rgba($gray, 0.5);
+    color: $black;
     cursor: default;
     pointer-events: none;
   }

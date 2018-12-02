@@ -23,7 +23,7 @@ class Image extends React.Component {
     const webp = qs.stringify(Object.assign(query, { fm: 'webp' }))
 
     return (
-      <div>
+      <div className={args.className}>
         {image && image.fields ? (
           <picture>
             <source
@@ -54,6 +54,7 @@ Image.defaultProps = {
 
 Image.propTypes = {
   image: PropTypes.object.isRequired,
+  className: PropTypes.string,
   format: PropTypes.string,
   quality: PropTypes.number,
   width: PropTypes.number,

@@ -30,7 +30,7 @@ export function addToCart(productId, productCount) {
 
         return {
           error: false,
-          message: 'Product added to cart.'
+          message: 'Added to bag!'
         }
       } else {
         return {
