@@ -13,8 +13,9 @@ class Header extends React.Component {
   }
 
   openCart () {
-    this.props.loadCart()
-    cartServive.toggleCart()
+    this.props.loadCart().then(() => {
+      cartServive.openCart()
+    })
   }
 
   render() {
@@ -35,7 +36,7 @@ class Header extends React.Component {
 
 Header.propTypes = {
   products: PropTypes.object,
-  loadProducts: PropTypes.func
+  loadCart: PropTypes.func
 }
 
 export default connectComponent(Header)

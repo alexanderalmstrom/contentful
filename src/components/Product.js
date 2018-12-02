@@ -34,6 +34,9 @@ class Product extends React.Component {
       productService.addToCart(id, 1).then(response => {
         if (!response.error) {
           cartService.setCartItem(id)
+          this.props.loadCart().then(() => {
+            cartService.openCart()
+          }) 
         }
 
         if (response && response.message) {
@@ -84,7 +87,8 @@ class Product extends React.Component {
 
 Product.propTypes = {
   products: PropTypes.object,
-  loadProducts: PropTypes.func
+  loadProducts: PropTypes.func,
+  loadCart: PropTypes.func
 }
 
 export default connectComponent(Product)
