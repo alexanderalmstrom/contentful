@@ -36,7 +36,7 @@ yarn run server
 
 ## Deploy to Heroku
 
-Requires a Heroku application and heroku-cli.
+Requires a Heroku application and heroku-cli installed.
 
 Create new app
 
@@ -44,7 +44,7 @@ Create new app
 heroku create your-app-name
 ```
 
-Add existing app to remote
+or add existing app to remote
 
 ```
 heroku git:remote -a your-app-name
@@ -64,9 +64,13 @@ heroku open
 
 ## Deploy to Netlify
 
+Install netlify-cli
+
 ```
 npm install netlify-cli -g
 ```
+
+Deploy app
 
 ```
 netlify deploy
