@@ -9,7 +9,11 @@ const router = express.Router()
 app.use(bodyParser.json())
 app.use(express.static(path.resolve(__dirname, 'build')))
 
-router.get('/*', (res, req) => {
+router.get('*', (res, req) => {
+  res.sendFile(path.resolve(__dirname, 'build', 'index.html'))
+})
+
+router.get('/product', (res, req) => {
   res.sendFile(path.resolve(__dirname, 'build', 'index.html'))
 })
 
