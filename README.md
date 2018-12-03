@@ -34,10 +34,40 @@ A simple node server for testing production.
 yarn run server
 ```
 
-## Deploy
+## Deploy to Heroku
 
-Requires a Heroku application.
+Requires a Heroku application and heroku-cli.
+
+Create new app
+
+```
+heroku create your-app-name
+```
+
+Add existing app to remote
+
+```
+heroku git:remote -a your-app-name
+```
+
+Deploy app
 
 ```
 yarn run deploy
+```
+
+Open app in browser
+
+```
+heroku open
+```
+
+## Deploy to Netlify
+
+```
+npm install netlify-cli -g
+```
+
+```
+netlify deploy
 ```
