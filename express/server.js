@@ -7,14 +7,13 @@ const app = express()
 const router = express.Router()
 
 app.use(bodyParser.json())
-app.use(express.static(path.join(process.cwd(), 'build')))
 
-router.get('*', (res, req) => {
-  res.sendFile(path.join(process.cwd(), 'build', 'index.html'))
-})
-
-router.get('/product/*', (res, req) => {
-  res.sendFile(path.join(process.cwd(), 'build', 'index.html'))
+router.get('/*', function(res, req) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'), function (err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
 })
 
 app.use('/.netlify/functions/server', router)
