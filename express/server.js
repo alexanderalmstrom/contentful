@@ -13,7 +13,7 @@ router.get('*', (res, req) => {
   res.sendFile(path.resolve(__dirname, 'build', 'index.html'))
 })
 
-router.get('/product', (res, req) => {
+router.get('/product/*', (res, req) => {
   res.sendFile(path.resolve(__dirname, 'build', 'index.html'))
 })
 
