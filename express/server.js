@@ -6,10 +6,8 @@ const bodyParser = require('body-parser')
 const app = express()
 const router = express.Router()
 
-router.get('/hello', function(res, req) {
-  res.writeHead(200, { 'Content-Type': 'text/html' })
-  res.write('<h1>Hello!</h1>')
-  res.end()
+router.get('/hello', function(req, res) {
+  res.json({ message: "Hello!" })
 })
 
 app.use(bodyParser.json())
