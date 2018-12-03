@@ -6,16 +6,13 @@ const bodyParser = require('body-parser')
 const app = express()
 const router = express.Router()
 
-app.use(bodyParser.json())
-
-router.get('/*', function(res, req) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'), function (err) {
-    if (err) {
-      res.status(500).send(err)
-    }
-  })
+router.get('/hello', function(res, req) {
+  res.writeHead(200, { 'Content-Type': 'text/html' })
+  res.write('<h1>Hello!</h1>')
+  res.end()
 })
 
+app.use(bodyParser.json())
 app.use('/.netlify/functions/server', router)
 
 module.exports = app
