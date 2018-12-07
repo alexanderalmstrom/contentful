@@ -30,7 +30,7 @@ export function getCart() {
     })
 }
 
-export function setCartItem (item) {
+export function addCartItem (item) {
   const cartItems = getCartItems()
 
   cartItems.push(item)
