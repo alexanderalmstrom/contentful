@@ -1,13 +1,5 @@
 import { getClient } from './contentful'
 
-const Selector = {
-  BODY: document.querySelector('body')
-}
-
-const State = {
-  IS_CART_OPEN: 'is-cart-open'
-}
-
 export function getCart() {
   const cartItems = getCartItems()
 
@@ -50,15 +42,15 @@ export function getCartItems () {
 }
 
 export function isCartOpen () {
-  return Selector.BODY.classList.contains(State.IS_CART_OPEN)
+  return document.querySelector('body').classList.contains('is-cart-open')
 }
 
 export function openCart () {
-  Selector.BODY.classList.add(State.IS_CART_OPEN)
+  document.querySelector('body').classList.add('is-cart-open')
 }
 
 export function closeCart () {
-  Selector.BODY.classList.remove(State.IS_CART_OPEN)
+  document.querySelector('body').classList.remove('is-cart-open')
 }
 
 export function toggleCart () {
