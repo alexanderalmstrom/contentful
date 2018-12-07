@@ -9,27 +9,43 @@ const State = {
 }
 
 export function getCart() {
-  const items = getCartItems()
+  const cartItems = getCartItems()
+
+  const countObj = cartItems.reduce((acc, curr) => {
+    return (acc[curr] = ++acc[curr] || 1, acc)
+  }, {})
 
   return getClient()
     .getEntries({
       content_type: 'product',
-      'sys.id[in]': items.join(',')
+      'sys.id[in]': cartItems.join(',')
     })
     .then(payload => {
-      return payload.items
+      const items = payload.items.map(item => {
+        item.quantity = countObj[item.sys.id]
+        return item
+      })
+
+      return items
     })
 }
 
-export function setCartItem(item) {
-  const items = getCartItems()
+export function setCartItem (item) {
+  const cartItems = getCartItems()
 
-  items.push(item)
+  cartItems.push(item)
 
-  localStorage.setItem('cartItems', JSON.stringify(items))
+  localStorage.setItem('cartItems', JSON.stringify(cartItems))
 }
 
-export function getCartItems() {
+export function removeCartItem (id) {
+  const cartItems = getCartItems()
+  const newCartItems = cartItems.filter(item => item != id)
+
+  localStorage.setItem('cartItems', JSON.stringify(newCartItems))
+}
+
+export function getCartItems () {
   return localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : []
 }
 

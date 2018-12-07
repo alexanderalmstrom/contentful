@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import * as cartService from '../services/cart'
+import * as productService from '../services/product'
 import { connectComponent } from '../connect'
 
 import Image from './Image'
@@ -15,6 +16,19 @@ class Cart extends React.Component {
 
   componentDidMount() {
     this.props.loadCart()
+  }
+
+  removeFromCart(id, quantity, e) {
+    e.preventDefault()
+
+    if (this.props.management.authState == 'success') {
+      productService.removeFromCart(id, quantity).then(response => {
+        if (!response.error) {
+          cartService.removeCartItem(id)
+          this.props.loadCart()
+        }
+      })
+    }
   }
 
   render() {
@@ -32,8 +46,14 @@ class Cart extends React.Component {
                   <Image image={item.fields.image} width={100} className="cart-item-image" />
                   <div className="cart-item-details">
                     <h3 className="cart-item-name">{item.fields.name}</h3>
-                    <div className="cart-item-price">{item.fields.price} {item.fields.currency}</div>
+                    <div className="cart-item-price">{item.fields.price * item.quantity} {item.fields.currency}</div>
+                    <div className="cart-item-quantity">QTY {item.quantity}</div>
                   </div>
+                  <button
+                    className="cart-remove"
+                    onClick={this.removeFromCart.bind(this, item.sys.id, item.quantity)}>
+                    X
+                  </button>
                 </div>
               })}
             </div>

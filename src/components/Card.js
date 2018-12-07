@@ -2,8 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
-import { connectComponent } from '../connect'
-
 import Image from './Image'
 
 import './Card.scss'
@@ -37,4 +35,4 @@ Card.propTypes = {
   entry: PropTypes.object.isRequired
 }
 
-export default connectComponent(Card)
+export default Card
