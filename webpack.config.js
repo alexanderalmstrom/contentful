@@ -27,9 +27,12 @@ const config = {
 
   devServer: {
     contentBase: path.resolve(__dirname, 'src'),
+    watchContentBase: true,
     host: '0.0.0.0',
     disableHostCheck: true,
-    port: 5000
+    port: 5000,
+    hot: true,
+    historyApiFallback: true
   },
 
   module: {
@@ -89,6 +92,7 @@ const config = {
   },
 
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
     new Dotenv()
   ]
 }
