@@ -7,11 +7,11 @@ export function stock(event, id, quantity) {
     .then(space => space.getEntry(id))
     .then(entry => {
       if (!entry) {
-        throw new Error('Entry not found.')
+        throw new Error('Entry not found')
       }
 
       if (!entry.fields) {
-        throw new Error('Fields not found.')
+        throw new Error('Fields not found')
       }
 
       const stock = entry.fields.stock
@@ -33,7 +33,7 @@ export function stock(event, id, quantity) {
           } else {
             return {
               error: true,
-              message: 'Out of stock.'
+              message: 'Out of stock'
             }
           }
 
@@ -50,7 +50,7 @@ export function stock(event, id, quantity) {
 
           break
         default:
-          throw new Error('Event is required.')
+          throw new Error('Event is required')
           break
       }
     })
