@@ -1,8 +1,6 @@
 const path = require('path')
 const fs = require('fs')
 const webpack = require('webpack')
-const history = require('connect-history-api-fallback')
-const convert = require('koa-connect')
 const Dotenv = require('dotenv-webpack')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -12,7 +10,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const ManifestPlugin = require('webpack-manifest-plugin')
 const RevPlugin = require('./plugins/RevPlugin')
 
-const env = process.env.WEBPACK_SERVE ? 'development' : 'production'
+const env = process.env.NODE_ENV
 
 const config = {
   mode: env,
@@ -27,15 +25,11 @@ const config = {
     publicPath: '/'
   },
 
-  serve: {
-    port: 5000,
-    content: path.resolve(__dirname, 'src'),
-    devMiddleware: {
-      publicPath: '/'
-    },
-    add: (app) => {
-      app.use(convert(history()))
-    }
+  devServer: {
+    contentBase: path.resolve(__dirname, 'src'),
+    host: '0.0.0.0',
+    disableHostCheck: true,
+    port: 5000
   },
 
   module: {
