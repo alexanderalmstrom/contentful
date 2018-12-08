@@ -22,9 +22,9 @@ class Cart extends React.Component {
     e.preventDefault()
 
     if (this.props.management.authState == 'success') {
-      productService.removeFromCart(id, quantity).then(response => {
+      productService.stock('remove', id, quantity).then(response => {
         if (!response.error) {
-          cartService.removeCartItem(id)
+          cartService.removeFromCart(id)
           this.props.loadCart()
         }
       })

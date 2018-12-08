@@ -35,6 +35,6 @@ export function loadProduct(slug) {
 export function loadCart() {
   return {
     type: 'LOAD_CART',
-    payload: cartService.getCart()
+    payload: cartService.getCartItems()
   }
 }

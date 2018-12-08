@@ -1,16 +1,16 @@
 import { getClient } from './contentful'
 
-export function getCart() {
-  const cartItems = getCartItems()
+export function getCartItems() {
+  const cart = getCart()
 
-  const countObj = cartItems.reduce((acc, curr) => {
+  const countObj = cart.reduce((acc, curr) => {
     return (acc[curr] = ++acc[curr] || 1, acc)
   }, {})
 
   return getClient()
     .getEntries({
       content_type: 'product',
-      'sys.id[in]': cartItems.join(',')
+      'sys.id[in]': cart.join(',')
     })
     .then(payload => {
       const items = payload.items.map(item => {
@@ -22,23 +22,23 @@ export function getCart() {
     })
 }
 
-export function addCartItem (item) {
-  const cartItems = getCartItems()
+export function addToCart (item) {
+  const cart = getCart()
 
-  cartItems.push(item)
+  cart.push(item)
 
-  localStorage.setItem('cartItems', JSON.stringify(cartItems))
+  localStorage.setItem('cart', JSON.stringify(cart))
 }
 
-export function removeCartItem (id) {
-  const cartItems = getCartItems()
-  const newCartItems = cartItems.filter(item => item != id)
+export function removeFromCart (id) {
+  const cart = getCart()
+  const newCart = cart.filter(item => item != id)
 
-  localStorage.setItem('cartItems', JSON.stringify(newCartItems))
+  localStorage.setItem('cart', JSON.stringify(newCart))
 }
 
-export function getCartItems () {
-  return localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : []
+export function getCart () {
+  return localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
 }
 
 export function isCartOpen () {

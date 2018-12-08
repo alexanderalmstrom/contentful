@@ -31,9 +31,9 @@ class Product extends React.Component {
     this.setState({ message: null })
 
     if (this.props.management.authState == 'success') {
-      productService.addToCart(id, 1).then(response => {
+      productService.stock('add', id, 1).then(response => {
         if (!response.error) {
-          cartService.addCartItem(id)
+          cartService.addToCart(id)
           this.props.loadCart().then(() => {
             cartService.openCart()
           }) 
