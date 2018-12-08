@@ -7,11 +7,11 @@ export function stock(event, id, quantity) {
     .then(space => space.getEntry(id))
     .then(entry => {
       if (!entry) {
-        throw new Error('Failed to get entry.')
+        throw new Error('Entry not found.')
       }
 
       if (!entry.fields) {
-        throw new Error('Failed to get fields.')
+        throw new Error('Fields not found.')
       }
 
       const stock = entry.fields.stock ? parseInt(entry.fields.stock[locale]) : 0
@@ -48,7 +48,7 @@ export function stock(event, id, quantity) {
 
           break
         default:
-          throw new Error('No event specified.')
+          throw new Error('Event is required.')
           break
       }
     })
