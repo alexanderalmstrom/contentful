@@ -7,7 +7,7 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 15rem;
+  margin-bottom: 6rem;
 }
 
 .product-image,
@@ -41,14 +41,14 @@
 }
 
 .product-name {
-  font-size: 4rem;
+  font-size: 3rem;
 
   @include media(sm) {
-    font-size: 6rem;
+    font-size: 4rem;
   }
 
   @include media(md) {
-    font-size: 8rem;
+    font-size: 6rem;
   }
 }
 
@@ -57,11 +57,11 @@
   font-size: 2rem;
 
   @include media(sm) {
-    font-size: 2.5rem;
+    font-size: 2.4rem;
   }
 
   @include media(md) {
-    font-size: 3rem;
+    font-size: 2.8rem;
   }
 }
 
@@ -70,11 +70,6 @@
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 2rem;
-  background-color: $white;
-  color: $black;
-  text-align: center;
-  font-size: 1.4rem;
 
   @include media(sm) {
     position: relative;
@@ -94,16 +89,16 @@
 .product-btn {
   display: block;
   width: 100%;
-  padding: 1.5rem 3rem;
-  font-size: 2rem;
+  padding: 2rem 3rem;
+  font-size: 2.4rem;
   border: none;
   background-color: $black;
   color: $white;
   cursor: pointer;
 
   @include media(md) {
-    padding: 2rem 4rem;
-    font-size: 3rem;
+    padding: 2.2rem 3.4rem;
+    font-size: 3.2rem;
   }
 
   @include media(lg) {
