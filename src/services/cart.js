@@ -4,7 +4,7 @@ export function getCartItems() {
   const cart = getCart()
 
   const countObj = cart.reduce((acc, curr) => {
-    return (acc[curr] = ++acc[curr] || 1, acc)
+    return (acc[curr] = ++acc[curr] || 1), acc
   }, {})
 
   return getClient()
@@ -22,7 +22,7 @@ export function getCartItems() {
     })
 }
 
-export function addToCart (item) {
+export function addToCart(item) {
   const cart = getCart()
 
   cart.push(item)
@@ -30,30 +30,32 @@ export function addToCart (item) {
   localStorage.setItem('cart', JSON.stringify(cart))
 }
 
-export function removeFromCart (id) {
+export function removeFromCart(id) {
   const cart = getCart()
   const newCart = cart.filter(item => item != id)
 
   localStorage.setItem('cart', JSON.stringify(newCart))
 }
 
-export function getCart () {
-  return localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
+export function getCart() {
+  return localStorage.getItem('cart')
+    ? JSON.parse(localStorage.getItem('cart'))
+    : []
 }
 
-export function isCartOpen () {
+export function isCartOpen() {
   return document.querySelector('body').classList.contains('is-cart-open')
 }
 
-export function openCart () {
+export function openCart() {
   document.querySelector('body').classList.add('is-cart-open')
 }
 
-export function closeCart () {
+export function closeCart() {
   document.querySelector('body').classList.remove('is-cart-open')
 }
 
-export function toggleCart () {
+export function toggleCart() {
   if (isCartOpen()) {
     closeCart()
   } else {

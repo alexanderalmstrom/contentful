@@ -8,14 +8,8 @@ import * as cartServive from '../services/cart'
 import './Header.scss'
 
 class Header extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
-  }
-
-  openCart () {
-    this.props.loadCart().then(() => {
-      cartServive.openCart()
-    })
   }
 
   render() {
@@ -27,15 +21,15 @@ class Header extends React.Component {
               Contentful
             </Link>
           </div>
-          <button className="cart-btn" onClick={this.openCart.bind(this)}>Bag</button>
+          <button
+            className="cart-btn"
+            onClick={cartServive.openCart.bind(this)}>
+            Bag
+          </button>
         </div>
       </header>
     )
   }
 }
 
-Header.propTypes = {
-  loadCart: PropTypes.func
-}
-
-export default connectComponent(Header)
+export default Header

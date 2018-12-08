@@ -36,7 +36,7 @@ class Product extends React.Component {
           cartService.addToCart(id)
           this.props.loadCart().then(() => {
             cartService.openCart()
-          }) 
+          })
         }
 
         if (response && response.message) {
@@ -70,10 +70,12 @@ class Product extends React.Component {
                   className="product-btn"
                   onClick={this.addToCart.bind(this, entry.sys.id)}
                   disabled={entry.fields.stock ? false : true}>
-                  {entry.fields.stock ? "Add to bag" : "Out of stock"}
+                  {entry.fields.stock ? 'Add to bag' : 'Out of stock'}
                 </button>
                 {this.state.message ? <p>{this.state.message}</p> : null}
-                {entry.fields.stock ? <p>{entry.fields.stock} items left</p> : null}
+                {entry.fields.stock ? (
+                  <p>{entry.fields.stock} items left</p>
+                ) : null}
               </div>
             </div>
           </div>

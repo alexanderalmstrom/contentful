@@ -14,7 +14,9 @@ export function stock(event, id, quantity) {
         throw new Error('Fields not found.')
       }
 
-      const stock = entry.fields.stock ? parseInt(entry.fields.stock[locale]) : 0
+      const stock = entry.fields.stock
+        ? parseInt(entry.fields.stock[locale])
+        : 0
       const hasStock = stock > 0 ? true : false
 
       switch (event) {
@@ -23,7 +25,7 @@ export function stock(event, id, quantity) {
             const newStock = stock - quantity
             entry.fields.stock[locale] = newStock
             entry.update()
-    
+
             return {
               error: false,
               message: 'Added!'
@@ -40,7 +42,7 @@ export function stock(event, id, quantity) {
           const newStock = stock + quantity
           entry.fields.stock[locale] = newStock
           entry.update()
-    
+
           return {
             error: false,
             message: 'Removed!'

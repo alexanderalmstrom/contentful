@@ -40,28 +40,44 @@ class Cart extends React.Component {
           {entries && entries.length ? (
             <div className="cart-items">
               {entries.map(item => {
-                return <div
-                  key={item.sys.id}
-                  className="cart-item">
-                  <Image image={item.fields.image} width={100} className="cart-item-image" />
-                  <div className="cart-item-details">
-                    <h3 className="cart-item-name">{item.fields.name}</h3>
-                    <div className="cart-item-price">{item.fields.price * item.quantity} {item.fields.currency}</div>
-                    <div className="cart-item-quantity">QTY {item.quantity}</div>
+                return (
+                  <div key={item.sys.id} className="cart-item">
+                    <Image
+                      image={item.fields.image}
+                      width={100}
+                      className="cart-item-image"
+                    />
+                    <div className="cart-item-details">
+                      <h3 className="cart-item-name">{item.fields.name}</h3>
+                      <div className="cart-item-price">
+                        {item.fields.price * item.quantity}{' '}
+                        {item.fields.currency}
+                      </div>
+                      <div className="cart-item-quantity">
+                        QTY {item.quantity}
+                      </div>
+                    </div>
+                    <button
+                      className="cart-remove"
+                      onClick={this.removeFromCart.bind(
+                        this,
+                        item.sys.id,
+                        item.quantity
+                      )}>
+                      X
+                    </button>
                   </div>
-                  <button
-                    className="cart-remove"
-                    onClick={this.removeFromCart.bind(this, item.sys.id, item.quantity)}>
-                    X
-                  </button>
-                </div>
+                )
               })}
             </div>
           ) : (
             <p className="cart-empty">Your bag is empty :(</p>
           )}
         </div>
-        <div className="backdrop cart-backdrop" onClick={cartService.closeCart.bind(this)}></div>
+        <div
+          className="backdrop cart-backdrop"
+          onClick={cartService.closeCart.bind(this)}
+        />
       </div>
     )
   }
