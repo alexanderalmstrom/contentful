@@ -4,7 +4,6 @@ const webpack = require('webpack')
 const Dotenv = require('dotenv-webpack')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const ManifestPlugin = require('webpack-manifest-plugin')
@@ -71,34 +70,17 @@ const config = {
     ]
   },
 
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all'
-        }
-      }
-    },
-    minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: env == 'development'? true : false
-      }),
-      new OptimizeCSSAssetsPlugin()
-    ]
-  },
-
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new Dotenv()
   ]
 }
 
+if (env == 'development') {
+  config.plugins.push(new webpack.HotModuleReplacementPlugin())
+}
+
 if (env == 'production') {
-  config.output.filename = '[name].[contenthash].js'
+  config.output.filename = '[name]-[hash].js'
 
   config.plugins.push(
     new webpack.DefinePlugin({
@@ -118,8 +100,9 @@ if (env == 'production') {
       }
     ]),
     new MiniCssExtractPlugin({
-      filename: '[name].[contenthash].css'
+      filename: '[name]-[hash].css'
     }),
+    new OptimizeCSSAssetsPlugin(),
     new ManifestPlugin({
       basePath: '/',
       filter: function (file) {
