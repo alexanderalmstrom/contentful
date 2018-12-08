@@ -33,7 +33,7 @@
   z-index: 1;
 
   @include media(sm) {
-    width: 30rem;
+    width: 32rem;
   }
 
   .is-cart-open & {
@@ -61,7 +61,7 @@
 .cart-item-details {
   flex: 1 0 0;
   margin-left: 2rem;
-  padding-right: 2rem;
+  padding-right: 3rem;
 }
 
 .cart-item-image {
