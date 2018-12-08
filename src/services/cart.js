@@ -49,10 +49,18 @@ export function isCartOpen() {
 
 export function openCart() {
   document.querySelector('body').classList.add('is-cart-open')
+
+  setTimeout(() => {
+    document.querySelector('body').classList.add('is-cart-animated')
+  }, 10)
 }
 
 export function closeCart() {
-  document.querySelector('body').classList.remove('is-cart-open')
+  document.querySelector('body').classList.remove('is-cart-animated')
+
+  setTimeout(() => {
+    document.querySelector('body').classList.remove('is-cart-open')
+  }, 300)
 }
 
 export function toggleCart() {
