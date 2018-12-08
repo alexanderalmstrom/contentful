@@ -25,7 +25,6 @@ class Cart extends React.Component {
       productService.stock('remove', id, quantity).then(response => {
         if (!response.error) {
           cartService.removeFromCart(id)
-          this.props.loadCart()
         }
       })
     }
@@ -41,7 +40,10 @@ class Cart extends React.Component {
             <div className="cart-items">
               {entries.map(item => {
                 return (
-                  <div key={item.sys.id} className="cart-item">
+                  <div
+                    key={item.sys.id}
+                    className="cart-item"
+                    data-cart-item-id={item.sys.id}>
                     <Image
                       image={item.fields.image}
                       width={100}

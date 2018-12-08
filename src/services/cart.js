@@ -31,6 +31,8 @@ export function addToCart(item) {
 }
 
 export function removeFromCart(id) {
+  document.querySelector(`[data-cart-item-id='${id}']`).remove()
+
   const cart = getCart()
   const newCart = cart.filter(item => item != id)
 
