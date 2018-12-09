@@ -22,7 +22,9 @@ class Cart extends React.Component {
     e.preventDefault()
 
     if (this.props.management.authState == 'success') {
-      productService.cart('remove', id, quantity)
+      productService.cart('remove', id, quantity).then(() => {
+        this.props.loadCart()
+      })
     }
   }
 
@@ -38,8 +40,7 @@ class Cart extends React.Component {
                 return (
                   <div
                     key={item.sys.id}
-                    className="cart-item"
-                    data-cart-item-id={item.sys.id}>
+                    className="cart-item">
                     <Image
                       image={item.fields.image}
                       width={100}

@@ -33,8 +33,6 @@ export function addToCart(item) {
 }
 
 export function removeFromCart(id) {
-  document.querySelector(`[data-cart-item-id='${id}']`).remove()
-
   const cart = getCart().filter(item => item != id)
 
   localStorage.setItem('cart', JSON.stringify(cart))
