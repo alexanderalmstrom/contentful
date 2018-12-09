@@ -9,7 +9,6 @@ import Loading from './Loading'
 import Image from './Image'
 
 import './Product.scss'
-import { getEntryBySlug } from '../services/entry'
 
 class Product extends React.Component {
   constructor(props) {
