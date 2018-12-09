@@ -48,8 +48,8 @@ class Cart extends React.Component {
                     <div className="cart-item-details">
                       <div className="cart-item-name">{item.fields.name}</div>
                       <div className="cart-item-price">
-                        {item.fields.price * item.quantity}{' '}
-                        {item.fields.currency}
+                        {item.fields.price}
+                        <span className="currency">{item.fields.currency}</span>
                       </div>
                       <div className="cart-item-quantity">
                         QTY {item.quantity}
