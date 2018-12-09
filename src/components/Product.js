@@ -34,15 +34,15 @@ class Product extends React.Component {
     if (this.props.management.authState == 'success') {
       productService.cart('add', id, 1).then(response => {
         if (response) {
+          this.props.loadCart().then(() => {
+            cartService.openCart()
+          })
+
           this.setState({ button: 'Added!' })
 
           setTimeout(() => {
             this.setState({ button: 'Add to cart' })
           }, 2000)
-
-          this.props.loadCart().then(() => {
-            cartService.openCart()
-          })
         } else {
           this.setState({ button: 'Out of stock' })
         }
