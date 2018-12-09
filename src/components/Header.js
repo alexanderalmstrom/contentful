@@ -24,7 +24,7 @@ class Header extends React.Component {
           <button
             className="cart-btn"
             onClick={cartServive.openCart.bind(this)}>
-            Bag
+            Bag <span>{this.props.cart.entries.length}</span>
           </button>
         </div>
       </header>
@@ -32,4 +32,8 @@ class Header extends React.Component {
   }
 }
 
-export default Header
+Header.propTypes = {
+  cart: PropTypes.object
+}
+
+export default connectComponent(Header)

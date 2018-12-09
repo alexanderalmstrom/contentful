@@ -28,15 +28,18 @@ export function addToCart(item) {
   cart.push(item)
 
   localStorage.setItem('cart', JSON.stringify(cart))
+
+  document.querySelector('.cart-btn span').innerHTML = cart.length
 }
 
 export function removeFromCart(id) {
   document.querySelector(`[data-cart-item-id='${id}']`).remove()
 
-  const cart = getCart()
-  const newCart = cart.filter(item => item != id)
+  const cart = getCart().filter(item => item != id)
 
-  localStorage.setItem('cart', JSON.stringify(newCart))
+  localStorage.setItem('cart', JSON.stringify(cart))
+
+  document.querySelector('.cart-btn span').innerHTML = cart.length
 }
 
 export function getCart() {

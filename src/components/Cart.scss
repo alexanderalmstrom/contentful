@@ -117,3 +117,22 @@
     opacity: 1;
   }
 }
+
+.cart-btn {
+  display: inline-block;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  margin-left: auto;
+  font-size: 1.6rem;
+
+  span {
+    &:before {
+      content: "(";
+    }
+
+    &:after {
+      content: ")"
+    }
+  }
+}
