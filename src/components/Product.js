@@ -24,6 +24,8 @@ class Product extends React.Component {
     if (!this.props.products.entries.length) {
       this.props.loadProducts()
     }
+
+    window.scrollTo(0, 0)
   }
 
   addToCart(id, e) {
