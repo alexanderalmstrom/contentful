@@ -22,6 +22,8 @@ class Cart extends React.Component {
     e.preventDefault()
 
     if (this.props.management.authState == 'success') {
+      e.target.parentNode.classList.add('loading')
+      
       productService.cart('remove', id, quantity).then(() => {
         this.props.loadCart()
       })

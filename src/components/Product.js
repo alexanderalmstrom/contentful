@@ -29,9 +29,9 @@ class Product extends React.Component {
   addToCart(id, e) {
     e.preventDefault()
 
-    this.setState({ button: 'Loading' })
-
     if (this.props.management.authState == 'success') {
+      this.setState({ button: 'Loading' })
+
       productService.cart('add', id, 1).then(response => {
         if (response) {
           this.props.loadCart().then(() => {

@@ -53,9 +53,14 @@
   flex-wrap: nowrap;
   margin-bottom: 2rem;
   position: relative;
+  transition: opacity 0.3s;
 
   @include media(sm) {
     margin-bottom: 3rem;
+  }
+
+  &.loading {
+    opacity: 0.5;
   }
 }
 

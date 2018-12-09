@@ -5,7 +5,7 @@ import './Loading.scss'
 
 class Loading extends React.Component {
   render() {
-    return <div className="loading">{this.props.message}</div>
+    return <div className="loading-screen">{this.props.message}</div>
   }
 }
 
