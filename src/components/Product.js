@@ -11,11 +11,19 @@ import Image from './Image'
 import './Product.scss'
 
 class Product extends React.Component {
+  text = {
+    DEFAULT: 'Add to cart',
+    UNAVAILABLE: 'Out of stock',
+    LOADING: 'Loading',
+    SUCCESS: 'Added!',
+    ERROR: 'Error'
+  }
+
   constructor(props) {
     super(props)
 
     this.state = {
-      button: 'Add to cart'
+      button: this.text.DEFAULT
     }
   }
 
@@ -31,7 +39,7 @@ class Product extends React.Component {
     e.preventDefault()
 
     if (this.props.management.authState == 'success') {
-      this.setState({ button: 'Loading' })
+      this.setState({ button: this.text.LOADING })
 
       productService.cart('add', id, 1).then(response => {
         if (response) {
@@ -39,17 +47,17 @@ class Product extends React.Component {
             cartService.openCart()
           })
 
-          this.setState({ button: 'Added!' })
+          this.setState({ button: this.text.SUCCESS })
 
           setTimeout(() => {
-            this.setState({ button: 'Add to cart' })
+            this.setState({ button: this.text.DEFAULT })
           }, 2000)
         } else {
-          this.setState({ button: 'Out of stock' })
+          this.setState({ button: this.text.UNAVAILABLE })
         }
       })
     } else {
-      this.setState({ button: 'Error' })
+      this.setState({ button: this.text.ERROR })
     }
   }
 
@@ -77,7 +85,7 @@ class Product extends React.Component {
                   className="product-btn"
                   onClick={this.addToCart.bind(this, entry.sys.id)}
                   disabled={entry.fields.stock > 0 ? false : true}>
-                  {entry.fields.stock ? this.state.button : 'Out of stock'}
+                  {entry.fields.stock ? this.state.button : this.text.UNAVAILABLE}
                 </button>
               </div>
             </div>
