@@ -133,11 +133,11 @@
 
   span {
     &:before {
-      content: "(";
+      content: '(';
     }
 
     &:after {
-      content: ")"
+      content: ')';
     }
   }
 }

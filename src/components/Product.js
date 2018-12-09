@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Helmet } from 'react-helmet'
 
 import { connectComponent } from '../connect'
 import * as productService from '../services/product'
@@ -69,6 +70,12 @@ class Product extends React.Component {
       <div className="container">
         {entry && entry.fields ? (
           <div className="product">
+            <Helmet>
+              <title>
+                {entry.fields.name} - {this.props.app.name}
+              </title>
+              <meta name="description" content={entry.fields.description} />
+            </Helmet>
             <div className="product-image">
               {entry.fields.image ? (
                 <Image image={entry.fields.image} width={800} />
@@ -85,7 +92,9 @@ class Product extends React.Component {
                   className="product-btn"
                   onClick={this.addToCart.bind(this, entry.sys.id)}
                   disabled={entry.fields.stock > 0 ? false : true}>
-                  {entry.fields.stock ? this.state.button : this.text.UNAVAILABLE}
+                  {entry.fields.stock
+                    ? this.state.button
+                    : this.text.UNAVAILABLE}
                 </button>
               </div>
             </div>

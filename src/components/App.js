@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 
 import { connectComponent } from '../connect'
 import * as contentfulService from '../services/contentful'
@@ -40,6 +41,10 @@ class App extends React.Component {
   render() {
     return (
       <div className="app">
+        <Helmet>
+          <title>{this.props.app.name}</title>
+          <meta name="description" content={this.props.app.description} />
+        </Helmet>
         {this.props.contentful.authState == 'error' ? (
           <Notice message="Error when establishing connection with Contentful" />
         ) : null}

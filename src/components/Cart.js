@@ -23,7 +23,7 @@ class Cart extends React.Component {
 
     if (this.props.management.authState == 'success') {
       e.target.parentNode.classList.add('loading')
-      
+
       productService.cart('remove', id, quantity).then(() => {
         this.props.loadCart()
       })
@@ -40,9 +40,7 @@ class Cart extends React.Component {
             <div className="cart-items">
               {entries.map(item => {
                 return (
-                  <div
-                    key={item.sys.id}
-                    className="cart-item">
+                  <div key={item.sys.id} className="cart-item">
                     <Image
                       image={item.fields.image}
                       width={100}
