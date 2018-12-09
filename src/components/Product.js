@@ -32,16 +32,19 @@ class Product extends React.Component {
     this.setState({ button: "Loading" })
 
     if (this.props.management.authState == 'success') {
-      productService.stock('add', id, 1).then(response => {
-        if (!response.error) {
-          cartService.addToCart(id)
+      productService.cart('add', id, 1).then(response => {
+        if (response) {
+          this.setState({ button: "Added!" })
+
+          setTimeout(() => {
+            this.setState({ button: "Add to cart" })
+          }, 2000)
+          
           this.props.loadCart().then(() => {
             cartService.openCart()
           })
-        }
-
-        if (response && response.message) {
-          this.setState({ button: response.message })
+        } else {
+          this.setState({ button: "Out of stock" })
         }
       })
     }
@@ -87,7 +90,8 @@ class Product extends React.Component {
 Product.propTypes = {
   products: PropTypes.object,
   loadProducts: PropTypes.func,
-  loadCart: PropTypes.func
+  loadCart: PropTypes.func,
+  cart: PropTypes.object
 }
 
 export default connectComponent(Product)

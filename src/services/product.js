@@ -1,6 +1,7 @@
 import { getLocale, getSpace } from './management'
+import * as cartService from './cart'
 
-export function stock(event, id, quantity) {
+export function cart(event, id, quantity) {
   const locale = getLocale()
 
   return getSpace()
@@ -24,30 +25,22 @@ export function stock(event, id, quantity) {
           if (hasStock) {
             const newStock = stock - quantity
             entry.fields.stock[locale] = newStock
-            entry.update()
 
-            return {
-              error: false,
-              message: 'Added!'
-            }
+            cartService.addToCart(id)
+
+            return entry.update()
           } else {
-            return {
-              error: true,
-              message: 'Out of stock'
-            }
+            return false
           }
 
           break
         case 'remove':
           const newStock = stock + quantity
           entry.fields.stock[locale] = newStock
-          entry.update()
 
-          return {
-            error: false,
-            message: 'Removed!'
-          }
-
+          cartService.removeFromCart(id)
+          
+          return entry.update()
           break
         default:
           throw new Error('Event is required')
