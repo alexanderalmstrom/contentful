@@ -22,10 +22,9 @@ export function cart(event, id, quantity) {
       switch (event) {
         case 'add':
           if (stock > 0) {
-            const newStock = stock - quantity
-            entry.fields.stock[locale] = newStock
-
             cartService.addToCart(id)
+
+            entry.fields.stock[locale] = stock - quantity
 
             return entry.update()
           } else {
@@ -34,10 +33,9 @@ export function cart(event, id, quantity) {
 
           break
         case 'remove':
-          const newStock = stock + quantity
-          entry.fields.stock[locale] = newStock
-
           cartService.removeFromCart(id)
+
+          entry.fields.stock[locale] = stock + quantity
 
           return entry.update()
           break
