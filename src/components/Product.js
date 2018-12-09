@@ -9,14 +9,14 @@ import Loading from './Loading'
 import Image from './Image'
 
 import './Product.scss'
-import { getEntryBySlug } from '../services/entry';
+import { getEntryBySlug } from '../services/entry'
 
 class Product extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      button: "Add to cart"
+      button: 'Add to cart'
     }
   }
 
@@ -29,22 +29,22 @@ class Product extends React.Component {
   addToCart(id, e) {
     e.preventDefault()
 
-    this.setState({ button: "Loading" })
+    this.setState({ button: 'Loading' })
 
     if (this.props.management.authState == 'success') {
       productService.cart('add', id, 1).then(response => {
         if (response) {
-          this.setState({ button: "Added!" })
+          this.setState({ button: 'Added!' })
 
           setTimeout(() => {
-            this.setState({ button: "Add to cart" })
+            this.setState({ button: 'Add to cart' })
           }, 2000)
-          
+
           this.props.loadCart().then(() => {
             cartService.openCart()
           })
         } else {
-          this.setState({ button: "Out of stock" })
+          this.setState({ button: 'Out of stock' })
         }
       })
     }
@@ -74,7 +74,7 @@ class Product extends React.Component {
                   className="product-btn"
                   onClick={this.addToCart.bind(this, entry.sys.id)}
                   disabled={entry.fields.stock > 0 ? false : true}>
-                  { entry.fields.stock ? this.state.button : "Out of stock" }
+                  {entry.fields.stock ? this.state.button : 'Out of stock'}
                 </button>
               </div>
             </div>

@@ -39,7 +39,7 @@ export function cart(event, id, quantity) {
           entry.fields.stock[locale] = newStock
 
           cartService.removeFromCart(id)
-          
+
           return entry.update()
           break
         default:
