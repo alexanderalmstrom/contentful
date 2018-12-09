@@ -47,6 +47,8 @@ class Product extends React.Component {
           this.setState({ button: 'Out of stock' })
         }
       })
+    } else {
+      this.setState({ button: 'Error' })
     }
   }
 
