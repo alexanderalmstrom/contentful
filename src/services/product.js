@@ -18,11 +18,10 @@ export function cart(event, id, quantity) {
       const stock = entry.fields.stock
         ? parseInt(entry.fields.stock[locale])
         : 0
-      const hasStock = stock > 0 ? true : false
 
       switch (event) {
         case 'add':
-          if (hasStock) {
+          if (stock > 0) {
             const newStock = stock - quantity
             entry.fields.stock[locale] = newStock
 
