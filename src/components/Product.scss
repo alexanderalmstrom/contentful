@@ -37,6 +37,7 @@
 
   @include media(md) {
     @include column(5);
+    padding-left: $grid-gutter * 2;
   }
 }
 
