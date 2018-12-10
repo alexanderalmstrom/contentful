@@ -1,10 +1,10 @@
 # Contentful
 
-Demo setup with React, Contentful and Webpack.
+React + Contentful
 
 ## Install
 
-Install required npm dependencies.
+Install npm dependencies.
 
 ```
 yarn install
@@ -12,7 +12,7 @@ yarn install
 
 ## Development
 
-Runs webpack serve and a local development server.
+Run webpack dev server.
 
 ```
 yarn run start
@@ -20,7 +20,7 @@ yarn run start
 
 ## Build
 
-Builds a `build` directory with bundled files.
+Create a `build` directory with bundled assets.
 
 ```
 yarn run build
@@ -28,7 +28,7 @@ yarn run build
 
 ## Server
 
-A simple node server for testing production.
+A static node express server for production.
 
 ```
 yarn run server
@@ -36,7 +36,7 @@ yarn run server
 
 ## Deploy to Heroku
 
-Requires a Heroku application and heroku-cli installed.
+heroku-cli is required.
 
 Create new app
 
