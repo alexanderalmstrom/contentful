@@ -1,6 +1,8 @@
 # Contentful
 
-React + Contentful
+React, Redux and Contentful.
+
+1. Edit `.env.example` with Contentful space id and tokens. Rename it to `.env`.
 
 ## Install
 
