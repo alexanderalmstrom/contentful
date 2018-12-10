@@ -66,9 +66,11 @@ class Product extends React.Component {
     const { match, products } = this.props
     const entry = products.entries[match.params.slug]
 
+    if (!entry || !entry.fields) return null
+
     return (
       <div className="container">
-        {entry && entry.fields ? (
+        {!this.props.products.fetching ? (
           <div className="product">
             <Helmet>
               <title>

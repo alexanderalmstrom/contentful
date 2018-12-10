@@ -8,7 +8,7 @@ import App from './components/App'
 
 const render = Component => {
   ReactDOM.render(
-    <Provider store={configureStore()}>
+    <Provider store={configureStore()} key={Math.random()}>
       <AppContainer>
         <Component />
       </AppContainer>

@@ -25,7 +25,11 @@ class Cart extends React.Component {
       e.target.parentNode.classList.add('loading')
 
       productService.cart('remove', id, quantity).then(() => {
-        this.props.loadCart()
+        this.props.loadCart().then(() => {
+          if (this.props.cart.entries.length < 1) {
+            cartService.closeCart()
+          }
+        })
       })
     }
   }
