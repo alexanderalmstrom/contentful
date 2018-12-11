@@ -4,10 +4,6 @@ let client
 let auth
 let space
 
-export function getLocale() {
-  return 'en-US'
-}
-
 export function initClient() {
   if (!process.env.CONTENTFUL_MANAGEMENT_TOKEN)
     throw new Error('Contentful management token is required in .env')

@@ -38,6 +38,20 @@ class App extends React.Component {
       )
   }
 
+  renderLocales () {
+    return (
+      <div className="locales">
+        { this.props.contentful.space.locales.map(locale => {
+          return <div
+            className="locale"
+            onClick={contentfulService.setLocale.bind(this, locale.code)}>
+              {locale.name}
+            </div>
+        }) }
+      </div>
+    )
+  }
+
   render() {
     return (
       <div className="app">
@@ -56,6 +70,7 @@ class App extends React.Component {
                 <Route path="/product/:slug" component={Product} />
                 <Route path="*" component={NotFound} />
               </Switch>
+              { this.renderLocales() }
             </Layout>
           </Router>
         ) : null}

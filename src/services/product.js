@@ -1,4 +1,5 @@
-import { getLocale, getSpace } from './management'
+import { getLocale } from './contentful'
+import { getSpace } from './management'
 import * as cartService from './cart'
 
 export function cart(event, id, quantity) {
