@@ -41,15 +41,15 @@ class App extends React.Component {
   render() {
     return (
       <div className="app">
-        <Helmet>
-          <title>{this.props.app.name}</title>
-          <meta name="description" content={this.props.app.description} />
-        </Helmet>
         {this.props.contentful.authState == 'error' ? (
           <Notice message="Error when establishing connection with Contentful" />
         ) : null}
         {this.props.contentful.authState == 'success' ? (
           <Router>
+            <Helmet>
+              <title>{this.props.contentful.space.name}</title>
+              <meta name="description" content="" />
+            </Helmet>
             <Layout>
               <Switch>
                 <Route exact path="/" component={Products} />

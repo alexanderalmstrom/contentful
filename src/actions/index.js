@@ -1,10 +1,14 @@
 import * as entryService from '../services/entry'
 import * as cartService from '../services/cart'
+import * as contentfulService from '../services/contentful'
 
 export function setAppContentfulState(authState) {
   return {
     type: 'LOADED_CONTENTFUL',
-    authState
+    payload: contentfulService.getSpace(),
+    meta: {
+      authState: authState
+    }
   }
 }
 

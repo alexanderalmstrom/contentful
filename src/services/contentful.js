@@ -2,6 +2,7 @@ import { createClient } from 'contentful'
 import qs from 'query-string'
 
 let client
+let space
 let auth
 let query
 
@@ -28,14 +29,20 @@ export function initClient() {
 
   client = createClient(config)
 
-  return client.getSpace().then(space => {
+  space = client.getSpace().then(space => {
     auth = true
     return space
   })
+
+  return space
 }
 
 export function getClient() {
   return auth && client
+}
+
+export function getSpace() {
+  return auth && space
 }
 
 export function isPreview() {

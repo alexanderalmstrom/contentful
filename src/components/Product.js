@@ -73,9 +73,7 @@ class Product extends React.Component {
         {!this.props.products.fetching ? (
           <div className="product">
             <Helmet>
-              <title>
-                {entry.fields.name} - {this.props.app.name}
-              </title>
+              <title>{entry.fields.name} - {this.props.contentful.space.name}</title>
               <meta name="description" content={entry.fields.description} />
             </Helmet>
             <div className="product-image">
