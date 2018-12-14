@@ -8,7 +8,7 @@ class Klarna {
   }
 
   createOrder () {
-    return await axios.get('/checkout/v3/orders', order)
+    return await axios.get('https://api.playground.klarna.com/checkout/v3/orders', order)
   }
 
   updateOrder () {
