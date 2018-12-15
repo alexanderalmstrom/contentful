@@ -9,6 +9,6 @@
 
 [[redirects]]
   from = "/api/*"
-  to = "/api/"
+  to = "https://www.contentfulapp.com/api"
   status = 200
   force = true
