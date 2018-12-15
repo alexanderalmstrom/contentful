@@ -52,7 +52,7 @@ class Product extends React.Component {
 
           setTimeout(() => {
             this.setState({ button: this.text.DEFAULT })
-          }, 2000)
+          }, 1000)
         } else {
           this.setState({ button: this.text.UNAVAILABLE })
         }

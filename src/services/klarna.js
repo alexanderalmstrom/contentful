@@ -1,4 +1,5 @@
 import axios from 'axios'
+import qs from 'query-string'
 
 const credentials = {
   username: process.env.KLARNA_USERNAME,
@@ -23,10 +24,12 @@ function headers () {
 export function createOrder (order) {
   const data = Object.assign(config, order)
 
-  return axios({
-    method: 'post',
-    url: 'https://api.playground.klarna.com/checkout/v3/orders',
-    data: data,
-    headers: headers()
-  })
+  const url = 'https://api.playground.klarna.com/checkout/v3/orders'
+
+  axios({ data: qs.stringify(data), headers: headers() }, url)
+    .then(response => {
+      console.log(response)
+    }).catch(error => {
+      console.log(error)
+    })
 }
