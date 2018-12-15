@@ -12,8 +12,8 @@ const config = {
 }
 
 function headers () {
-  const token = `Basic  ${Buffer.from(`${credentials.username}:${credentials.password}`).toString('base64')}`
-  
+  const token = `Basic ${Buffer.from(`${credentials.username}:${credentials.password}`).toString('base64')}`
+
   return {
     'Content-Type': "application/json",
     'Authorization': token
@@ -23,7 +23,7 @@ function headers () {
 export function createOrder (order) {
   const data = Object.assign(config, order)
 
-  return  axios({
+  return axios({
     method: 'post',
     url: 'https://api.playground.klarna.com/checkout/v3/orders',
     data: data,

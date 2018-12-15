@@ -92,6 +92,8 @@ if (env == 'production') {
       'process.env.CONTENTFUL_MANAGEMENT_TOKEN': JSON.stringify(process.env.CONTENTFUL_MANAGEMENT_TOKEN),
       'process.env.CONTENTFUL_DEFAULT_LOCALE': JSON.stringify(process.env.CONTENTFUL_DEFAULT_LOCALE),
       'process.env.CONTENTFUL_ENVIRONMENT': JSON.stringify(process.env.CONTENTFUL_ENVIRONMENT),
+      'process.env.KLARNA_USERNAME': JSON.stringify(process.env.KLARNA_USERNAME),
+      'process.env.KLARNA_PASSWORD': JSON.stringify(process.env.KLARNA_PASSWORD)
     }),
     new CleanWebpackPlugin('build'),
     new CopyWebpackPlugin([
