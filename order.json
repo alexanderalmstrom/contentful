@@ -1,14 +1,14 @@
 {
-  "order_amount": 1000,
-  "order_tax_amount": 250,
+  "order_amount": 50000,
+  "order_tax_amount": 4545.4545454545,
   "order_lines": [
     {
-      "name": "Cat t-shirt",
-      "quantity": 2,
-      "unit_price": 500,
-      "tax_rate": 2500,
-      "total_amount": 1000,
-      "total_tax_amount": 250
+      "name": "Red t-shirt",
+      "quantity": 5,
+      "unit_price": 10000,
+      "tax_rate": 1000,
+      "total_amount": 50000,
+      "total_tax_amount": 4545.4545454545
     }
   ],
   "merchant_urls": {
