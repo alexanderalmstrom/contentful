@@ -11,6 +11,7 @@ import Notice from './Notice'
 
 import Products from './Products'
 import Product from './Product'
+import Checkout from './Checkout'
 import NotFound from './NotFound'
 
 import Layout from './Layout'
@@ -43,6 +44,7 @@ class App extends React.Component {
       <div className="locales">
         { this.props.contentful.space.locales.map(locale => {
           return <div
+            key={locale.code}
             className="locale"
             onClick={contentfulService.setLocale.bind(this, locale.code)}>
               {locale.name}
@@ -64,13 +66,14 @@ class App extends React.Component {
               <title>{this.props.contentful.space.name}</title>
               <meta name="description" content="" />
             </Helmet>
+            { this.renderLocales() }
             <Layout>
               <Switch>
                 <Route exact path="/" component={Products} />
                 <Route path="/product/:slug" component={Product} />
+                <Route path="/checkout" component={Checkout} />
                 <Route path="*" component={NotFound} />
               </Switch>
-              { this.renderLocales() }
             </Layout>
           </Router>
         ) : null}

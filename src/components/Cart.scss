@@ -40,6 +40,10 @@
   .is-cart-animated & {
     transform: translateX(-100%);
   }
+
+  a {
+    color: $white;
+  }
 }
 
 .cart-empty {
@@ -128,4 +132,16 @@
       content: ')';
     }
   }
+}
+
+a.checkout-btn {
+  display: block;
+  width: 100%;
+  background-color: $white;
+  color: $black;
+  padding: 1.5rem 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  text-decoration: none;
+  font-size: 2rem;
 }

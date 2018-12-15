@@ -1,23 +1,32 @@
 import axios from 'axios'
 
-const order = require('../../order.json')
+const credentials = {
+  username: process.env.KLARNA_USERNAME,
+  password: process.env.KLARNA_PASSWORD
+}
 
-class Klarna {
-  constructor () {
+const config = {
+  purchase_country: "se",
+  purchase_currency: "sek",
+  locale: "sv-se"
+}
 
-  }
-
-  createOrder () {
-    return await axios.get('https://api.playground.klarna.com/checkout/v3/orders', order)
-  }
-
-  updateOrder () {
-
-  }
-
-  getOrder () {
-
+function headers () {
+  const token = `Basic  ${Buffer.from(`${credentials.username}:${credentials.password}`).toString('base64')}`
+  
+  return {
+    'Content-Type': "application/json",
+    'Authorization': token
   }
 }
 
-export default Klarna
+export function createOrder (order) {
+  const data = Object.assign(config, order)
+
+  return  axios({
+    method: 'post',
+    url: 'https://api.playground.klarna.com/checkout/v3/orders',
+    data: data,
+    headers: headers()
+  })
+}

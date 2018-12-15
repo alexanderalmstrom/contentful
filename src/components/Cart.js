@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 import * as cartService from '../services/cart'
 import * as productService from '../services/product'
@@ -41,37 +42,40 @@ class Cart extends React.Component {
       <div className="cart">
         <div className="cart-content">
           {entries && entries.length ? (
-            <div className="cart-items">
-              {entries.map(item => {
-                return (
-                  <div key={item.sys.id} className="cart-item">
-                    <Image
-                      image={item.fields.image}
-                      width={100}
-                      className="cart-item-image"
-                    />
-                    <div className="cart-item-details">
-                      <div className="cart-item-name">{item.fields.name}</div>
-                      <div className="cart-item-price">
-                        {item.fields.price}
-                        <span className="currency">{item.fields.currency}</span>
+            <div className="cart-inner">
+              <Link to="/checkout" className="checkout-btn">Checkout</Link>
+              <div className="cart-items">
+                {entries.map(item => {
+                  return (
+                    <div key={item.sys.id} className="cart-item">
+                      <Image
+                        image={item.fields.image}
+                        width={100}
+                        className="cart-item-image"
+                      />
+                      <div className="cart-item-details">
+                        <div className="cart-item-name">{item.fields.name}</div>
+                        <div className="cart-item-price">
+                          {item.fields.price}
+                          <span className="currency">{item.fields.currency}</span>
+                        </div>
+                        <div className="cart-item-quantity">
+                          QTY {item.quantity}
+                        </div>
                       </div>
-                      <div className="cart-item-quantity">
-                        QTY {item.quantity}
-                      </div>
+                      <button
+                        className="cart-remove"
+                        onClick={this.removeFromCart.bind(
+                          this,
+                          item.sys.id,
+                          item.quantity
+                        )}>
+                        X
+                      </button>
                     </div>
-                    <button
-                      className="cart-remove"
-                      onClick={this.removeFromCart.bind(
-                        this,
-                        item.sys.id,
-                        item.quantity
-                      )}>
-                      X
-                    </button>
-                  </div>
-                )
-              })}
+                  )
+                })}
+              </div>
             </div>
           ) : (
             <p className="cart-empty">Your bag is empty.</p>

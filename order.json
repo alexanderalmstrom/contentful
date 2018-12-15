@@ -1,6 +1,4 @@
 {
-  "purchase_currency": "sek",
-  "locale": "sv-se",
   "order_amount": 1000,
   "order_tax_amount": 250,
   "order_lines": [
