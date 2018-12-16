@@ -44,13 +44,16 @@ class Checkout extends React.Component {
       }
 
       entries.map(entry => {
+        const { quantity } = entry
+        const { name, price } = entry.fields
+
         order.order_lines.push({
-          "name": entry.fields.name,
-          "quantity": entry.quantity,
-          "unit_price": entry.fields.price,
+          "name": name,
+          "quantity": quantity,
+          "unit_price": (price * 100),
           "tax_rate": this.state.tax_rate,
-          "total_amount": entry.fields.price * entry.quantity,
-          "total_tax_amount": getTax(entry.fields.price * entry.quantity, this.state.tax_rate)
+          "total_amount": (price * 100) * quantity,
+          "total_tax_amount": getTax((price * 100) * quantity, this.state.tax_rate)
         })
 
         order.order_amount = order.order_lines.reduce((acc, obj) => {
@@ -72,8 +75,8 @@ class Checkout extends React.Component {
     
   }
 
-  getOrder (item) {
-
+  getOrder () {
+    
   }
 
   render () {
