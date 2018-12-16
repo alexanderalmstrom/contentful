@@ -24,6 +24,8 @@ class Checkout extends React.Component {
   }
 
   componentDidUpdate() {
+    if (!this.props.cart || this.props.cart.fetching) return
+
     const cart = cartService.getCart()
 
     if (!cart) return
