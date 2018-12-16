@@ -20,6 +20,7 @@ class Checkout extends React.Component {
 
   componentDidMount () {
     this.props.loadCart()
+    cartService.closeCart()
   }
 
   componentDidUpdate () {
@@ -32,52 +33,48 @@ class Checkout extends React.Component {
     }
   }
 
-  componentDidMount () {
-    cartService.closeCart()
-  }
-
   createOrder () {
     const { cart } = this.props
     const { entries } = cart
 
-    if (!cart.fetching && entries.length > 0) {
-      const order = {
-        "order_lines": [],
-        "shipping_options": [
-          {
-            "id": "free_shipping",
-            "name": "Free shipping",
-            "price": 0,
-            "tax_amount": 0,
-            "tax_rate": 0
-          }
-        ]
-      }
+    if (!cart.fetching && entries.length > 0) return
 
-      entries.map(entry => {
-        const { quantity } = entry
-        const { name, price } = entry.fields
+    const order = {
+      "order_lines": [],
+      "shipping_options": [
+        {
+          "id": "free_shipping",
+          "name": "Free shipping",
+          "price": 0,
+          "tax_amount": 0,
+          "tax_rate": 0
+        }
+      ]
+    }
 
-        order.order_lines.push({
-          "name": name,
-          "quantity": quantity,
-          "unit_price": (price * 100),
-          "tax_rate": this.state.tax_rate,
-          "total_amount": (price * 100) * quantity,
-          "total_tax_amount": getTax((price * 100) * quantity, this.state.tax_rate)
-        })
+    entries.map(entry => {
+      const { quantity } = entry
+      const { name, price } = entry.fields
 
-        order.order_amount = order.order_lines.reduce((acc, obj) => {
-          return acc + obj.total_amount
-        }, 0)
-
-        order.order_tax_amount = order.order_lines.reduce((acc, obj) => {
-          return acc + obj.total_tax_amount
-        }, 0)
+      order.order_lines.push({
+        "name": name,
+        "quantity": quantity,
+        "unit_price": (price * 100),
+        "tax_rate": this.state.tax_rate,
+        "total_amount": (price * 100) * quantity,
+        "total_tax_amount": getTax((price * 100) * quantity, this.state.tax_rate)
       })
 
-      createOrder(order)
-    }
+      order.order_amount = order.order_lines.reduce((acc, obj) => {
+        return acc + obj.total_amount
+      }, 0)
+
+      order.order_tax_amount = order.order_lines.reduce((acc, obj) => {
+        return acc + obj.total_tax_amount
+      }, 0)
+    })
+
+    createOrder(order)
   }
 
   getOrder ({ quantity, order_id }) {
