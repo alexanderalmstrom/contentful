@@ -7,7 +7,7 @@ export function createOrder (order) {
 
       if (!html_snippet) return
 
-      const checkoutContainer = document.getElementById('my-checkout-container')
+      const checkoutContainer = document.getElementById('kco-container')
 
       checkoutContainer.innerHTML = html_snippet
 
