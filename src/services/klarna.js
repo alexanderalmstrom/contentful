@@ -1,14 +1,7 @@
 import axios from 'axios'
 
 export function createOrder (order) {
-  axios.post('/api/orders', {
-      data: order,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    })
+  axios.post('/api/orders', order)
     .then(response => {
       console.log(response.data)
 
