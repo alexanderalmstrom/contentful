@@ -4,7 +4,6 @@
 @import '../mixins';
 
 .cart {
-
 }
 
 .cart-modal {
@@ -39,16 +38,16 @@
     -webkit-overflow-scrolling: touch;
     z-index: 1;
     transition: transform 0.3s;
-  
+
     @include media(sm) {
       width: 32rem;
     }
-  
+
     .is-cart-animated & {
       transform: translateX(-100%);
     }
   }
-  
+
   .cart-empty {
     padding: 1.5rem;
     text-align: center;

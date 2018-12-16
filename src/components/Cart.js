@@ -45,7 +45,9 @@ class Cart extends React.Component {
         <div className="cart-content">
           {entries && entries.length ? (
             <div className="cart-inner">
-              <Link to="/checkout" className="checkout-btn">Checkout</Link>
+              <Link to="/checkout" className="checkout-btn">
+                Checkout
+              </Link>
               <div className="cart-items">
                 {entries.map(item => {
                   return (
@@ -59,7 +61,9 @@ class Cart extends React.Component {
                         <div className="cart-item-name">{item.fields.name}</div>
                         <div className="cart-item-price">
                           {item.fields.price}
-                          <span className="currency">{item.fields.currency}</span>
+                          <span className="currency">
+                            {item.fields.currency}
+                          </span>
                         </div>
                         <div className="cart-item-quantity">
                           QTY {item.quantity}

@@ -10,7 +10,7 @@ import Image from './Image'
 import './Checkout.scss'
 
 class Checkout extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -18,12 +18,12 @@ class Checkout extends React.Component {
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.props.loadCart()
     cartService.closeCart()
   }
 
-  componentDidUpdate () {
+  componentDidUpdate() {
     const cart = cartService.getCart()
 
     if (!cart) return
@@ -43,19 +43,18 @@ class Checkout extends React.Component {
     }
   }
 
-  createOrder () {
-    const { cart } = this.props
-    const { entries } = cart
+  createOrder() {
+    const { entries } = this.props.cart
 
     const order = {
-      "order_lines": [],
-      "shipping_options": [
+      order_lines: [],
+      shipping_options: [
         {
-          "id": "free_shipping",
-          "name": "Fri frakt",
-          "price": 0,
-          "tax_amount": 0,
-          "tax_rate": 0
+          id: 'free_shipping',
+          name: 'Fri frakt',
+          price: 0,
+          tax_amount: 0,
+          tax_rate: 0
         }
       ]
     }
@@ -65,27 +64,27 @@ class Checkout extends React.Component {
       const { name, price } = entry.fields
 
       order.order_lines.push({
-        "name": name,
-        "quantity": quantity,
-        "unit_price": (price * 100),
-        "tax_rate": this.state.tax_rate,
-        "total_amount": (price * 100) * quantity,
-        "total_tax_amount": getTax((price * 100) * quantity, this.state.tax_rate)
+        name: name,
+        quantity: quantity,
+        unit_price: price * 100,
+        tax_rate: this.state.tax_rate,
+        total_amount: price * 100 * quantity,
+        total_tax_amount: getTax(price * 100 * quantity, this.state.tax_rate)
       })
 
       order.order_amount = order.order_lines.reduce((acc, obj) => {
-        return (acc + obj.total_amount)
+        return acc + obj.total_amount
       }, 0)
 
       order.order_tax_amount = order.order_lines.reduce((acc, obj) => {
-        return (acc + obj.total_tax_amount)
+        return acc + obj.total_tax_amount
       }, 0)
     })
 
     createOrder(order)
   }
 
-  render () {
+  render() {
     const { entries } = this.props.cart
 
     return (
@@ -105,14 +104,12 @@ class Checkout extends React.Component {
                     {item.fields.price}
                     <span className="currency">{item.fields.currency}</span>
                   </div>
-                  <div className="cart-item-quantity">
-                    QTY {item.quantity}
-                  </div>
+                  <div className="cart-item-quantity">QTY {item.quantity}</div>
                 </div>
               </div>
             )
           })}
-          <div id="kco-container"></div>
+          <div id="kco-container" />
         </div>
       </div>
     )

@@ -1,20 +1,23 @@
 import axios from 'axios'
 
-const API_URL = process.env.NODE_ENV == 'production' ? 'https://contentful-api.netlify.com/.netlify/functions/server' : 'http://localhost:3000/api'
+const API_URL =
+  process.env.NODE_ENV == 'production'
+    ? 'https://contentful-api.netlify.com/.netlify/functions/server'
+    : 'http://localhost:3000/api'
 
 const config = {
-  purchase_country: "SE",
-  purchase_currency: "SEK",
-  locale: "sv-SE",
+  purchase_country: 'SE',
+  purchase_currency: 'SEK',
+  locale: 'sv-SE',
   merchant_urls: {
-    terms: "https://www.contentfulapp.com/terms",
-    checkout: "https://www.contentfulapp.com/checkout",
-    confirmation: "https://www.contentfulapp.com/confirmation",
-    push: "https://www.contentfulapp.com/api/push"
+    terms: 'https://www.contentfulapp.com/terms',
+    checkout: 'https://www.contentfulapp.com/checkout',
+    confirmation: 'https://www.contentfulapp.com/confirmation',
+    push: 'https://www.contentfulapp.com/api/push'
   }
 }
 
-function renderCheckout (html_snippet) {
+function renderCheckout(html_snippet) {
   const checkoutContainer = document.getElementById('kco-container')
 
   checkoutContainer.innerHTML = html_snippet
@@ -31,40 +34,46 @@ function renderCheckout (html_snippet) {
   }
 }
 
-export function createOrder (order) {
+export function createOrder(order) {
   order = Object.assign(config, order)
 
   console.log('CREATE ORDER: ', order)
 
-  const response = axios.post(`${API_URL}/orders`, order)
+  const response = axios
+    .post(`${API_URL}/orders`, order)
     .then(response => {
       const { html_snippet, order_id } = response.data
 
       if (!html_snippet) return
 
       renderCheckout(html_snippet)
-      
+
       const quantity = order.order_lines.reduce((acc, obj) => {
         return acc + obj.quantity
       }, 0)
 
-      localStorage.setItem('order', JSON.stringify({
-        quantity: quantity,
-        order_id: order_id
-      }))
+      localStorage.setItem(
+        'order',
+        JSON.stringify({
+          quantity: quantity,
+          order_id: order_id
+        })
+      )
 
       return response
-    }).catch(error => {
+    })
+    .catch(error => {
       console.log(error)
     })
 
   return response
 }
 
-export function getOrder (id) {
+export function getOrder(id) {
   console.log('GET ORDER: ', id)
 
-  const response = axios.get(`${API_URL}/orders/${id}`)
+  const response = axios
+    .get(`${API_URL}/orders/${id}`)
     .then(response => {
       const { html_snippet } = response.data
 
@@ -73,13 +82,14 @@ export function getOrder (id) {
       renderCheckout(html_snippet)
 
       return response
-    }).catch(error => {
+    })
+    .catch(error => {
       console.log(error)
     })
 
   return response
 }
 
-export function getTax (total_amount, tax_rate) {
-  return total_amount - total_amount * 10000 / (10000 + tax_rate)
+export function getTax(total_amount, tax_rate) {
+  return total_amount - (total_amount * 10000) / (10000 + tax_rate)
 }

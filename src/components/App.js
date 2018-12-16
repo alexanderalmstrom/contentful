@@ -39,17 +39,19 @@ class App extends React.Component {
       )
   }
 
-  renderLocales () {
+  renderLocales() {
     return (
       <div className="locales is-hidden">
-        { this.props.contentful.space.locales.map(locale => {
-          return <div
-            key={locale.code}
-            className="locale"
-            onClick={contentfulService.setLocale.bind(this, locale.code)}>
+        {this.props.contentful.space.locales.map(locale => {
+          return (
+            <div
+              key={locale.code}
+              className="locale"
+              onClick={contentfulService.setLocale.bind(this, locale.code)}>
               {locale.name}
             </div>
-        }) }
+          )
+        })}
       </div>
     )
   }
@@ -66,7 +68,7 @@ class App extends React.Component {
               <title>{this.props.contentful.space.name}</title>
               <meta name="description" content="" />
             </Helmet>
-            { this.renderLocales() }
+            {this.renderLocales()}
             <Layout>
               <Switch>
                 <Route exact path="/" component={Products} />

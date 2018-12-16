@@ -7,7 +7,10 @@ let auth
 let query
 
 export function getLocale() {
-  return JSON.parse(localStorage.getItem('locale')) || process.env.CONTENTFUL_DEFAULT_LOCALE
+  return (
+    JSON.parse(localStorage.getItem('locale')) ||
+    process.env.CONTENTFUL_DEFAULT_LOCALE
+  )
 }
 
 export function setLocale(locale) {

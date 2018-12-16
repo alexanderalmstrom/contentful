@@ -74,6 +74,6 @@ export function toggleCart() {
   }
 }
 
-export function getOrder () {
+export function getOrder() {
   return JSON.parse(localStorage.getItem('order')) || {}
 }
