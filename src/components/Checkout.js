@@ -75,8 +75,6 @@ class Checkout extends React.Component {
         }, 0)
       })
 
-      console.log('ORDER: ', order)
-
       createOrder(order)
     }
   }

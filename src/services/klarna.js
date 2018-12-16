@@ -14,6 +14,8 @@ const config = {
 export function createOrder (order) {
   const _order = Object.assign(config, order)
 
+  console.log('CREATE ORDER: ', _order)
+
   const response = axios.post(`${API_URL}/orders`, _order)
     .then(response => {
       const { html_snippet, order_id } = response.data
@@ -46,6 +48,8 @@ export function createOrder (order) {
 }
 
 export function getOrder (id) {
+  console.log('GET ORDER: ', id)
+
   const response = axios.get(`${API_URL}/orders/${id}`)
     .then(response => {
       const { html_snippet } = response.data
