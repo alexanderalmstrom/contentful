@@ -6,8 +6,10 @@
   from = "/api"
   to = "https://contentful-api.netlify.com/.netlify/functions/server"
   status  = 200
+  force = true
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  force = false
