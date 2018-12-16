@@ -46,7 +46,7 @@ export function createOrder (order) {
 }
 
 export function getOrder (id) {
-  const response = axios.get(`${API_URL}/${id}`)
+  const response = axios.get(`${API_URL}/orders/${id}`)
     .then(response => {
       const { html_snippet } = response.data
 
