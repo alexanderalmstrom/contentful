@@ -3,8 +3,8 @@
   command = "yarn run build"
 
 [[redirects]]
-  from = "/api"
-  to = "https://contentful-api.netlify.com/.netlify/functions/server"
+  from = "/api/*"
+  to = "https://contentful-api.netlify.com/.netlify/functions/server/:splat"
   status  = 200
   force = true
 
