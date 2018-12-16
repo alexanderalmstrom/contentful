@@ -46,9 +46,9 @@ export function createOrder (order) {
 }
 
 export function getOrder (id) {
-  const response = axios.post(`${API_URL}/${id}`)
+  const response = axios.get(`${API_URL}/${id}`)
     .then(response => {
-      const { html_snippet } = response.data.response
+      const { html_snippet } = response.data
 
       if (!html_snippet) return
 
