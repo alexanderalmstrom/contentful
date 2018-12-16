@@ -45,7 +45,7 @@ export function createOrder (order) {
       renderCheckout(html_snippet)
 
       localStorage.setItem('order', JSON.stringify({
-        quantity: _order.order_lines.length,
+        quantity: order.order_lines.length,
         order_id: order_id
       }))
 
