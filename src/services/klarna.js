@@ -7,6 +7,6 @@ export function createOrder (order) {
 
       document.getElementById('klarna-checkout-iframe').innerHTML = response.data.html_snippet
     }).catch(error => {
-      //console.log(error)
+      console.log(error)
     })
 }
