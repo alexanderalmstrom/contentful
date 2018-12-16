@@ -41,7 +41,7 @@ class App extends React.Component {
 
   renderLocales () {
     return (
-      <div className="locales">
+      <div className="locales is-hidden">
         { this.props.contentful.space.locales.map(locale => {
           return <div
             key={locale.code}

@@ -87,6 +87,10 @@ button {
   }
 }
 
+.is-hidden {
+  display: none !important;
+}
+
 .container {
   @include container;
   padding-left: $grid-gutter;
