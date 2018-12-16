@@ -4,15 +4,15 @@ export function createOrder (order) {
   axios.post('https://contentful-api.netlify.com/.netlify/functions/server/orders', order)
     .then(response => {
       console.log(response.data)
-      let checkoutContainer = document.getElementById('klarna-checkout-iframe')
-      
+      var checkoutContainer = document.getElementById('my-checkout-container')
+
       checkoutContainer.innerHTML = response.data.html_snippet
 
-      let scriptsTags = checkoutContainer.getElementsByTagName('script')
+      var scriptsTags = checkoutContainer.getElementsByTagName('script')
       // This is necessary otherwise the scripts tags are not going to be evaluated
-      for (let i = 0; i < scriptsTags.length; i++) {
-        let parentNode = scriptsTags[i].parentNode
-        let newScriptTag = document.createElement('script')
+      for (var i = 0; i < scriptsTags.length; i++) {
+        var parentNode = scriptsTags[i].parentNode
+        var newScriptTag = document.createElement('script')
         newScriptTag.type = 'text/javascript'
         newScriptTag.text = scriptsTags[i].text
         parentNode.removeChild(scriptsTags[i])
