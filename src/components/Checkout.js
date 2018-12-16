@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connectComponent } from '../connect'
 
-import { createOrder, getTax } from '../services/klarna'
+import { createOrder, getOrder, getTax } from '../services/klarna'
 
 import Image from './Image'
 
@@ -26,6 +26,16 @@ class Checkout extends React.Component {
   }
 
   componentDidUpdate () {
+    const order_id = localStorage.getItem('order')
+
+    if (order_id) {
+      this.getOrder(order_id)
+    } else {
+      this.createOrder()
+    }
+  }
+
+  createOrder () {
     const { cart } = this.props
     const { entries } = cart
 
@@ -65,18 +75,14 @@ class Checkout extends React.Component {
         }, 0)
       })
 
-      console.log(order)
+      console.log('ORDER: ', order)
 
       createOrder(order)
     }
   }
 
-  createOrder () {
-    
-  }
-
-  getOrder () {
-    
+  getOrder (id) {
+    getOrder(JSON.parse(id))
   }
 
   render () {

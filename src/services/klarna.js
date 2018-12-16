@@ -14,9 +14,9 @@ const config = {
 export function createOrder (order) {
   const _order = Object.assign(config, order)
 
-  axios.post(`${API_URL}/orders`, _order)
+  const response = axios.post(`${API_URL}/orders`, _order)
     .then(response => {
-      const { html_snippet } = response.data
+      const { html_snippet, order_id } = response.data
 
       if (!html_snippet) return
 
@@ -34,15 +34,21 @@ export function createOrder (order) {
         parentNode.removeChild(scriptsTags[i])
         parentNode.appendChild(newScriptTag)
       }
+
+      localStorage.setItem('order', JSON.stringify(order_id))
+
+      return response
     }).catch(error => {
       console.log(error)
     })
+
+  return response
 }
 
 export function getOrder (id) {
-  axios.get(`${API_URL}/${id}`)
+  const response = axios.post(`${API_URL}/${id}`)
     .then(response => {
-      const { html_snippet } = response.data
+      const { html_snippet } = response.data.response
 
       if (!html_snippet) return
 
@@ -60,9 +66,13 @@ export function getOrder (id) {
         parentNode.removeChild(scriptsTags[i])
         parentNode.appendChild(newScriptTag)
       }
+
+      return response
     }).catch(error => {
       console.log(error)
     })
+
+  return response
 }
 
 export function getTax (total_amount, tax_rate) {
