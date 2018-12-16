@@ -11,4 +11,22 @@
   }
 }
 
+.header {
+  .is-checkout & {
+    position: relative;
+  }
+
+  .container {
+    .is-checkout & {
+      justify-content: center;
+    }
+  }
+}
+
+.main {
+  .is-checkout & {
+    padding-top: 0;
+  }
+}
+
 #kco-container {}

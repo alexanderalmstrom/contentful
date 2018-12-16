@@ -19,6 +19,14 @@ class Checkout extends React.Component {
     }
   }
 
+  componentWillMount () {
+    document.querySelector('body').classList.add('is-checkout')
+  }
+
+  componentWillUnmount () {
+    document.querySelector('body').classList.remove('is-checkout')
+  }
+
   componentDidMount() {
     this.props.loadCart()
     cartService.closeCart()
