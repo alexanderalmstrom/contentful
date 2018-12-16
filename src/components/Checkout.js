@@ -17,19 +17,15 @@ class Checkout extends React.Component {
     }
   }
 
-  componentWillMount () {
+  componentDidMount () {
     this.props.loadCart()
-  }
-  
-  componentDidMount() {
-    
   }
 
   componentDidUpdate () {
-    const order_id = localStorage.getItem('order')
+    const order = JSON.parse(localStorage.getItem('order'))
 
-    if (order_id) {
-      this.getOrder(order_id)
+    if (order) {
+      this.getOrder(order)
     } else {
       this.createOrder()
     }
@@ -79,8 +75,15 @@ class Checkout extends React.Component {
     }
   }
 
-  getOrder (id) {
-    getOrder(JSON.parse(id))
+  getOrder ({ quantity, order_id }) {
+    const { cart } = this.props
+    const { entries } = cart
+
+    if (entries.length == quantity) {
+      getOrder(order_id)
+    } else {
+      this.createOrder()
+    }
   }
 
   render () {

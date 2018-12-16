@@ -37,7 +37,10 @@ export function createOrder (order) {
         parentNode.appendChild(newScriptTag)
       }
 
-      localStorage.setItem('order', JSON.stringify(order_id))
+      localStorage.setItem('order', JSON.stringify({
+        quantity: _order.order_lines.length,
+        order_id: order_id
+      }))
 
       return response
     }).catch(error => {

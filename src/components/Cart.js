@@ -29,6 +29,8 @@ class Cart extends React.Component {
         this.props.loadCart().then(() => {
           if (this.props.cart.entries.length < 1) {
             cartService.closeCart()
+            localStorage.removeItem('order')
+            window.location = '/'
           }
         })
       })
