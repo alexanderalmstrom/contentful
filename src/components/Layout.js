@@ -12,7 +12,7 @@ class Layout extends React.Component {
       <div className="layout">
         <Header />
         <main className="main">{this.props.children}</main>
-        <Cart />
+        <Cart className="cart-modal" />
         <Footer />
       </div>
     )

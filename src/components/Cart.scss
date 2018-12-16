@@ -4,6 +4,10 @@
 @import '../mixins';
 
 .cart {
+
+}
+
+.cart-modal {
   display: none;
   position: fixed;
   top: 0;
@@ -16,40 +20,52 @@
   .is-cart-open & {
     display: block;
   }
-}
-
-.cart-content {
-  position: absolute;
-  top: 0;
-  left: 100%;
-  background-color: $black;
-  color: $white;
-  padding: 2rem;
-  width: 80%;
-  height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-  z-index: 1;
-  transition: transform 0.3s;
-
-  @include media(sm) {
-    width: 32rem;
-  }
-
-  .is-cart-animated & {
-    transform: translateX(-100%);
-  }
 
   a {
     color: $white;
   }
-}
 
-.cart-empty {
-  padding: 1.5rem;
-  text-align: center;
-  font-size: inherit;
+  .cart-content {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background-color: $black;
+    color: $white;
+    padding: 2rem;
+    width: 80%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    z-index: 1;
+    transition: transform 0.3s;
+  
+    @include media(sm) {
+      width: 32rem;
+    }
+  
+    .is-cart-animated & {
+      transform: translateX(-100%);
+    }
+  }
+  
+  .cart-empty {
+    padding: 1.5rem;
+    text-align: center;
+    font-size: inherit;
+  }
+
+  .checkout-btn {
+    display: block;
+    width: 100%;
+    background-color: $white;
+    color: $black;
+    padding: 1.5rem 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    text-decoration: none;
+    font-size: 2rem;
+  }
 }
 
 .cart-item {
@@ -113,35 +129,4 @@
   .is-cart-animated & {
     opacity: 1;
   }
-}
-
-.cart-btn {
-  display: inline-block;
-  border: none;
-  background-color: transparent;
-  padding: 0;
-  margin-left: auto;
-  font-size: 1.6rem;
-
-  span {
-    &:before {
-      content: '(';
-    }
-
-    &:after {
-      content: ')';
-    }
-  }
-}
-
-a.checkout-btn {
-  display: block;
-  width: 100%;
-  background-color: $white;
-  color: $black;
-  padding: 1.5rem 2rem;
-  margin-bottom: 2rem;
-  text-align: center;
-  text-decoration: none;
-  font-size: 2rem;
 }

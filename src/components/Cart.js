@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import { connectComponent } from '../connect'
 
 import * as cartService from '../services/cart'
 import * as productService from '../services/product'
-import { connectComponent } from '../connect'
 
 import Image from './Image'
 
@@ -39,7 +39,7 @@ class Cart extends React.Component {
     const { entries } = this.props.cart
 
     return (
-      <div className="cart">
+      <div className={`cart ${this.props.className}`}>
         <div className="cart-content">
           {entries && entries.length ? (
             <div className="cart-inner">
