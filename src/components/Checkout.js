@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connectComponent } from '../connect'
 
+import * as cartService from '../services/cart'
 import { createOrder, getOrder, getTax } from '../services/klarna'
 
 import Image from './Image'
@@ -29,6 +30,10 @@ class Checkout extends React.Component {
     } else {
       this.createOrder()
     }
+  }
+
+  componentDidMount () {
+    cartService.closeCart()
   }
 
   createOrder () {
