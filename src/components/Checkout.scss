@@ -1,7 +1,14 @@
 // Checkout.scss
 
 .checkout {
+  .container {
+    max-width: 68rem;
+  }
+
+  .cart-item {
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+  }
 }
 
-#kco-container {
-}
+#kco-container {}
