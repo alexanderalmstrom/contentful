@@ -24,10 +24,20 @@ class Checkout extends React.Component {
   }
 
   componentDidUpdate () {
-    const order = JSON.parse(localStorage.getItem('order'))
+    const cart = cartService.getCart()
+
+    if (!cart) return
+
+    const order = cartService.getOrder()
 
     if (order) {
-      this.getOrder(order)
+      const { quantity, order_id } = order
+
+      if (order_id && quantity && quantity == cart.length) {
+        getOrder(order_id)
+      } else {
+        this.createOrder()
+      }
     } else {
       this.createOrder()
     }
@@ -36,8 +46,6 @@ class Checkout extends React.Component {
   createOrder () {
     const { cart } = this.props
     const { entries } = cart
-
-    if (!cart.fetching && entries.length > 0) return
 
     const order = {
       "order_lines": [],
@@ -66,26 +74,15 @@ class Checkout extends React.Component {
       })
 
       order.order_amount = order.order_lines.reduce((acc, obj) => {
-        return acc + obj.total_amount
+        return (acc + obj.total_amount)
       }, 0)
 
       order.order_tax_amount = order.order_lines.reduce((acc, obj) => {
-        return acc + obj.total_tax_amount
+        return (acc + obj.total_tax_amount)
       }, 0)
     })
 
     createOrder(order)
-  }
-
-  getOrder ({ quantity, order_id }) {
-    const { cart } = this.props
-    const { entries } = cart
-
-    if (entries.length == quantity) {
-      getOrder(order_id)
-    } else {
-      this.createOrder()
-    }
   }
 
   render () {

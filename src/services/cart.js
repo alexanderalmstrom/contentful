@@ -73,3 +73,7 @@ export function toggleCart() {
     openCart()
   }
 }
+
+export function getOrder () {
+  return JSON.parse(localStorage.getItem('order')) || {}
+}
