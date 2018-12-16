@@ -52,7 +52,7 @@ class Checkout extends React.Component {
       "shipping_options": [
         {
           "id": "free_shipping",
-          "name": "Free shipping",
+          "name": "Fri frakt",
           "price": 0,
           "tax_amount": 0,
           "tax_rate": 0
