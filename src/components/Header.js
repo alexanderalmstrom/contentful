@@ -24,7 +24,7 @@ class Header extends React.Component {
           <button
             className="cart-btn"
             onClick={cartServive.openCart.bind(this)}>
-            Bag <span>{this.props.cart.entries.length}</span>
+            Bag <span>{cartServive.getCart().length}</span>
           </button>
         </div>
       </header>
