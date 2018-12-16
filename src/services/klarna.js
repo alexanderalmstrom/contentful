@@ -10,35 +10,39 @@ const config = {
     terms: "https://www.contentfulapp.com/terms",
     checkout: "https://www.contentfulapp.com/checkout",
     confirmation: "https://www.contentfulapp.com/confirmation",
-    push: "https://www.contentfulapp.com/push"
+    push: "https://www.contentfulapp.com/api/push"
+  }
+}
+
+function renderCheckout (html_snippet) {
+  const checkoutContainer = document.getElementById('kco-container')
+
+  checkoutContainer.innerHTML = html_snippet
+
+  const scriptsTags = checkoutContainer.getElementsByTagName('script')
+
+  for (let i = 0; i < scriptsTags.length; i++) {
+    const parentNode = scriptsTags[i].parentNode
+    const newScriptTag = document.createElement('script')
+    newScriptTag.type = 'text/javascript'
+    newScriptTag.text = scriptsTags[i].text
+    parentNode.removeChild(scriptsTags[i])
+    parentNode.appendChild(newScriptTag)
   }
 }
 
 export function createOrder (order) {
-  const _order = Object.assign(config, order)
+  order = Object.assign(config, order)
 
-  console.log('CREATE ORDER: ', _order)
+  console.log('CREATE ORDER: ', order)
 
-  const response = axios.post(`${API_URL}/orders`, _order)
+  const response = axios.post(`${API_URL}/orders`, order)
     .then(response => {
       const { html_snippet, order_id } = response.data
 
       if (!html_snippet) return
 
-      const checkoutContainer = document.getElementById('kco-container')
-
-      checkoutContainer.innerHTML = html_snippet
-
-      const scriptsTags = checkoutContainer.getElementsByTagName('script')
-
-      for (let i = 0; i < scriptsTags.length; i++) {
-        const parentNode = scriptsTags[i].parentNode
-        const newScriptTag = document.createElement('script')
-        newScriptTag.type = 'text/javascript'
-        newScriptTag.text = scriptsTags[i].text
-        parentNode.removeChild(scriptsTags[i])
-        parentNode.appendChild(newScriptTag)
-      }
+      renderCheckout(html_snippet)
 
       localStorage.setItem('order', JSON.stringify({
         quantity: _order.order_lines.length,
@@ -62,20 +66,7 @@ export function getOrder (id) {
 
       if (!html_snippet) return
 
-      const checkoutContainer = document.getElementById('kco-container')
-
-      checkoutContainer.innerHTML = html_snippet
-
-      const scriptsTags = checkoutContainer.getElementsByTagName('script')
-
-      for (let i = 0; i < scriptsTags.length; i++) {
-        const parentNode = scriptsTags[i].parentNode
-        const newScriptTag = document.createElement('script')
-        newScriptTag.type = 'text/javascript'
-        newScriptTag.text = scriptsTags[i].text
-        parentNode.removeChild(scriptsTags[i])
-        parentNode.appendChild(newScriptTag)
-      }
+      renderCheckout(html_snippet)
 
       return response
     }).catch(error => {
