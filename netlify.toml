@@ -3,6 +3,11 @@
   command = "yarn run build"
 
 [[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
   from = "/api/*"
-  to = "https://contentful-api.netlify.com/:splat"
+  to = "https://contentful-api.netlify.com/.netlify/functions/server/:splat"
   status  = 200
