@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export function createOrder (order) {
-  axios.post('https://contentful-api.netlify.com/orders', {
+  axios.post('/api/orders', {
       data: order,
       headers: {
         'Access-Control-Allow-Origin': '*',
