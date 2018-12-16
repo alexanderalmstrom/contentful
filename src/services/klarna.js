@@ -3,6 +3,9 @@ import axios from 'axios'
 const API_URL = process.env.NODE_ENV == 'production' ? 'https://contentful-api.netlify.com/.netlify/functions/server' : 'http://localhost:3000/api'
 
 const config = {
+  purchase_country: "SE",
+  purchase_currency: "SEK",
+  locale: "sv-SE",
   merchant_urls: {
     terms: "https://www.contentfulapp.com/terms",
     checkout: "https://www.contentfulapp.com/checkout",
