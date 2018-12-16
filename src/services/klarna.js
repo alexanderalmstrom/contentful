@@ -12,9 +12,9 @@ const config = {
 }
 
 export function createOrder (order) {
-  order = Object.assign(config, order)
+  const _order = Object.assign(config, order)
 
-  axios.post(`${API_URL}/orders`, { crossDomain: true }, order)
+  axios.post(`${API_URL}/orders`, _order)
     .then(response => {
       const { html_snippet } = response.data
 
