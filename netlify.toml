@@ -1,10 +1,11 @@
 [build]
   publish = "build"
-  command = "yarn run build"
+  command = "yarn install && yarn run build"
+  functions = "functions"
 
 [[redirects]]
   from = "/api/*"
-  to = "https://contentful-api.netlify.com/.netlify/functions/server/:splat"
+  to = "/.netlify/functions/server/:splat"
   status  = 200
   force = true
 

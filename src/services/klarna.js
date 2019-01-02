@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 const API_URL =
-  process.env.NODE_ENV == 'production'
-    ? 'https://contentful-api.netlify.com/.netlify/functions/server'
+  process.env.NODE_ENV == 'production' && !process.env.API_TEST
+    ? '/.netlify/functions/server'
     : 'http://localhost:3000/api'
 
 const config = {
