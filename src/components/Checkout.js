@@ -42,9 +42,9 @@ class Checkout extends React.Component {
     const order = cartService.getOrder()
 
     if (order) {
-      const { quantity, order_id } = order
+      const { order_length, order_id } = order
 
-      if (order_id && quantity && quantity == cart.length) {
+      if (order_id && order_length && order_length == cart.length) {
         getOrder(order_id)
       } else {
         this.createOrder()

@@ -53,14 +53,14 @@ export function createOrder(order) {
 
       renderCheckout(html_snippet)
 
-      const quantity = order.order_lines.reduce((acc, obj) => {
+      const order_length = order.order_lines.reduce((acc, obj) => {
         return acc + obj.quantity
       }, 0)
 
       localStorage.setItem(
         'order',
         JSON.stringify({
-          quantity: quantity,
+          order_length: order_length,
           order_id: order_id
         })
       )
