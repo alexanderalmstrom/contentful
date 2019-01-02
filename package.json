@@ -5,12 +5,13 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start:api": "NODE_ENV=development node api.js",
+    "start:api": "NODE_ENV=development node server-api.js",
     "start:dev-server": "NODE_ENV=development webpack-dev-server",
+    "start:server": "node server-site.js",
     "start": "concurrently \"yarn run start:api\" \"yarn run start:dev-server\"",
-    "build": "concurrently \"netlify-lambda build express\" \"NODE_ENV=production webpack\"",
-    "server:dev": "concurrently \"yarn run start:api\" \"NODE_ENV=development node server.js\"",
-    "server:prod": "NODE_ENV=production node server.js",
+    "build": "concurrently \"netlify-lambda build server\" \"NODE_ENV=production webpack\"",
+    "server:dev": "NODE_ENV=development concurrently \"yarn run start:api\" \"yarn run start:server\"",
+    "server:prod": "NODE_ENV=production yarn run start:server",
     "format": "prettier --write \"src/**/*.{js,scss,json,md}\"",
     "stats": "webpack --profile --json > stats.json"
   },

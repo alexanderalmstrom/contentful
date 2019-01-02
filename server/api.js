@@ -31,10 +31,6 @@ router.all('/*', function(req, res, next) {
   next()
 })
 
-router.get('/', function (req, res, next) {
-  next()
-})
-
 router.post('/orders', function (req, res, next) {
   requestPromise({
     method: 'POST',
