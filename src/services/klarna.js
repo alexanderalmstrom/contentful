@@ -5,15 +5,20 @@ const API_URL =
     ? '/api'
     : 'http://localhost:3000/api'
 
+const SITE_URL = process.env.SITE_URL || "https://www.contentfulapp.com"
+const COUNTRY  = process.env.DEFAULT_COUNTRY || 'SE'
+const CURRENCY = process.env.DEFAULT_CURRENCY || 'SEK'
+const LOCALE = process.env.DEFAULT_LOCALE || 'sv-SE'
+
 const config = {
-  purchase_country: 'SE',
-  purchase_currency: 'SEK',
-  locale: 'sv-SE',
+  purchase_country: COUNTRY,
+  purchase_currency: CURRENCY,
+  locale: LOCALE,
   merchant_urls: {
-    terms: 'https://www.contentfulapp.com/terms',
-    checkout: 'https://www.contentfulapp.com/checkout',
-    confirmation: 'https://www.contentfulapp.com/confirmation',
-    push: 'https://www.contentfulapp.com/api/push'
+    terms: `${SITE_URL}/terms`,
+    checkout: `${SITE_URL}/checkout`,
+    confirmation: `${SITE_URL}/confirmation`,
+    push: `${SITE_URL}/api/push`
   }
 }
 
